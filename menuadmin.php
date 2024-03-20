@@ -1,5 +1,5 @@
 <ul class="button-list">
-    <li><a href="./" class="button">Strona Główna</a></li>
+    <li><a href="./indexadminiuzytkownik.php" class="button">Strona Główna</a></li>
     <?php
     if ($_SESSION['zalogowany'] == false) {
         echo "<li> <a href='./logowanie.php' class='button'>Logowanie</a></li>";

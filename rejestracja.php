@@ -19,7 +19,11 @@ session_start();
             </div>
             <div id="menlewo">
                 <?php
-                include 'menu.php';
+                if ($_SESSION['user'] == 'admin' || $_SESSION['user'] == 'pracownik') {
+                    include 'menuadmin.php';
+                } else {
+                    include 'menu.php';
+                }
                 ?>
             </div>
             <div id="menprawo"></div>
@@ -32,34 +36,37 @@ session_start();
             </form>
             <?php
             if (isset($_POST["wyss"])) {
-
-                $login = $_POST["login"];
-                $pass = $_POST["pass"];
-
-                function szyfruj_haslo($pass)
-                {
-                    return md5($pass);
-                }
-
-                $szyfrowane = szyfruj_haslo($pass);
-
-                $host = "localhost";
-                $dbuser = "root";
-                $dbpassword = "";
-                $dbname = "Aaawlasny_projekt_BS";
-
-                $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
-
-                if (!$conn) {
-                    die("Nie połaczono z baza danych" . mysqli_connect_error());
-                }
-
-                $sql = "INSERT INTO `uzytkownicy`(`login`, `pass`, `upr`) VALUES ('$login','$szyfrowane', 'user')";
-                $result = $conn->query($sql);
-                if ($result) {
-                    echo "Dodano!";
+                if (empty($_POST['login']) || empty($_POST['pass'])) {
+                    echo "<script>alert('Nie uzupełniłeś wszystkich pozycji przy rejestracji')</script>";
                 } else {
-                    echo "Nie dodano!!!!";
+                    $login = $_POST["login"];
+                    $pass = $_POST["pass"];
+
+                    function szyfruj_haslo($pass)
+                    {
+                        return md5($pass);
+                    }
+
+                    $szyfrowane = szyfruj_haslo($pass);
+
+                    $host = "localhost";
+                    $dbuser = "root";
+                    $dbpassword = "";
+                    $dbname = "Aaawlasny_projekt_BS";
+
+                    $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+
+                    if (!$conn) {
+                        die("Nie połaczono z baza danych" . mysqli_connect_error());
+                    }
+
+                    $sql = "INSERT INTO `uzytkownicy`(`login`, `pass`, `upr`) VALUES ('$login','$szyfrowane', 'user')";
+                    $result = $conn->query($sql);
+                    if ($result) {
+                        echo "Dodano!";
+                    } else {
+                        echo "Nie dodano!!!!";
+                    }
                 }
             } else {
                 echo "";
