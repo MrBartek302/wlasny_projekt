@@ -32,7 +32,7 @@ session_start();
             <form method="POST" action="" style="height: 20px;">
                 <input type="text" name="login" placeholder="Login">
                 <input type="text" name="pass" placeholder="Hasło">
-                <input type="submit" name="wyss" value="Zarejestruj">
+                <input type="submit" id="wyss" name="wyss" value="Zarejestruj">
             </form>
             <?php
             if (isset($_POST["wyss"])) {
@@ -63,7 +63,13 @@ session_start();
                     $sql = "INSERT INTO `uzytkownicy`(`login`, `pass`, `upr`) VALUES ('$login','$szyfrowane', 'user')";
                     $result = $conn->query($sql);
                     if ($result) {
-                        echo "Dodano!";
+                        echo "<script>
+                            document.getElementById('wyss').style.backgroundColor = 'green';
+                            setTimeout(function() {
+                                window.location.href = './rejestracja.php';
+                            }, 3000);
+                        </script>";
+                        exit();
                     } else {
                         echo "Nie dodano!!!!";
                     }

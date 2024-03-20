@@ -34,6 +34,7 @@ session_start();
         <div id="tresc">
             <div id="trescogol">
                 <div id="trescogolgora">
+                    <h1>Utwórz wydarzenie: </h1>
                     <form action="" method="POST">
                         <input type="text" name="tytul" placeholder="Nazwa Wydarzenia" style="text-align: center;">
                         <input type="text" name="opis" placeholder="Opis Wydarzenia" style="text-align: center;">
@@ -84,11 +85,32 @@ session_start();
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            echo "<div id='wydarzenie'>";
-                            echo "<p>" . $row['ID'] . "</p>";
-                            echo "<h1>" . $row['nazwa_wyd'] . "</h1>";
-                            echo "<h2>" . $row['opis_wyd'] . "</h2>";
-                            echo "<p>" . $row['data_wyd'] . "</p>";
+                            echo "<div id = 'wydarzenie'>";
+
+                            echo "<div id = 'divgora' style='display: flex; align-items: baseline; justify-content: center;'>";
+                            echo "<h1>" . "Nazwa: " .  $row['nazwa_wyd'] . "</h1>";
+                            echo "</div>";
+
+                            echo "<div id = 'divsrodek'>";
+                            echo "<h2>" . "Opis: " . $row['opis_wyd'] . "</h2>";
+                            echo "</div>";
+
+                            echo "<div id = 'divdol'>";
+
+                            echo "<div id = 'divdollewo'>";
+                            echo "<h4>" . "Data wydarzenia: " . $row['data_wyd'] . "</h4>";
+                            echo "</div>";
+
+                            echo "<div id = 'divdolprawo'>";
+                            echo "<form method='POST' action=''>";
+                            echo "<input type='hidden' name='wartoscID' value='" . $row['ID'] . "'>";
+                            echo "<input type='submit' name='usun' id='usunbutton' value='Usuń!'>";
+                            echo "</form>";
+
+                            echo "</div>";
+
+                            echo "</div>";
+
                             echo "</div>";
                         }
                     } else {
@@ -96,13 +118,35 @@ session_start();
                     }
                     $conn->close();
                     ?>
+
+                    <?php
+                    $host = "localhost";
+                    $dbuser = "root";
+                    $dbpassword = "";
+                    $dbname = "Aaawlasny_projekt_BS";
+                    $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+
+                    if (!$conn) {
+                        die("Nie połączono z bazą danych" . mysqli_connect_error());
+                    }
+
+                    if (isset($_POST['usun'])) {
+                        $idusun = $_POST['wartoscID'];
+                        $sql_usun = "DELETE FROM `wydarzenia` WHERE `ID` = $idusun";
+                        $result = $conn->query($sql_usun);
+                        if ($result) {
+                            header("Location: ./indexadminiuzytkownik.php");
+                        } else {
+                            echo "wystąpił błąd!";
+                        }
+                    }
+                    $conn->close();
+                    ?>
+
                 </div>
             </div>
         </div>
     </div>
-
-
-
 </body>
 
 </html>

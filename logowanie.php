@@ -73,7 +73,7 @@ session_start();
                         $_SESSION['upr'] = $row['upr'];
 
                         //przenosi do wybranej strony
-                        if ($_SESSION['upr'] == 'admin' || $_SESSION['upr'] == 'uzytkownik') {
+                        if ($_SESSION['upr'] == 'admin' || $_SESSION['upr'] == 'pracownik') {
                             header('location: ./indexadminiuzytkownik.php');
                         } elseif ($_SESSION['upr'] == 'user') {
                             header('location: ./index.php');

@@ -46,11 +46,28 @@ session_start();
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<div id='wydarzenie'>";
-                        echo "<p>" . $row['ID'] . "</p>";
-                        echo "<h1>" . $row['nazwa_wyd'] . "</h1>";
-                        echo "<h2>" . $row['opis_wyd'] . "</h2>";
-                        echo "<p>" . $row['data_wyd'] . "</p>";
+                        echo "<div id = 'wydarzenie'>";
+
+                        echo "<div id = 'divgora' style='display: flex; align-items: baseline; justify-content: center;'>";
+                        echo "<h1>" . "Nazwa: " .  $row['nazwa_wyd'] . "</h1>";
+                        echo "</div>";
+
+                        echo "<div id = 'divsrodek'>";
+                        echo "<h2>" . "Opis: " . $row['opis_wyd'] . "</h2>";
+                        echo "</div>";
+
+                        echo "<div id = 'divdol'>";
+
+                        echo "<div id = 'divdollewo'>";
+                        echo "<h4>" . "Data wydarzenia: " . $row['data_wyd'] . "</h4>";
+                        echo "</div>";
+
+                        echo "<div id = 'divdolprawo'>";
+                        echo "test";
+                        echo "</div>";
+
+                        echo "</div>";
+
                         echo "</div>";
                     }
                 } else {
