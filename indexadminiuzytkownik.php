@@ -87,8 +87,17 @@ session_start();
                         while ($row = $result->fetch_assoc()) {
                             echo "<div id = 'wydarzenie'>";
 
-                            echo "<div id = 'divgora' style='display: flex; align-items: baseline; justify-content: center;'>";
+                            echo "<div id = 'divgora'>";
+
+                            echo "<div id = 'divgoralewo'>";
+                            echo "<h3>" . "ID: " .  $row['ID'] . "</h3>";
+                            echo "</div>";
+
+                            echo "<div id = 'divgoraprawo'>";
                             echo "<h1>" . "Nazwa: " .  $row['nazwa_wyd'] . "</h1>";
+                            echo "</div>";
+
+
                             echo "</div>";
 
                             echo "<div id = 'divsrodek'>";

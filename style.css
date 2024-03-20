@@ -189,10 +189,28 @@ body {
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 99%;
+  font-size: 98%;
   color: black;
   width: 120px;
   height: 25px;
+}
+
+#zainteresbutton {
+  background-color: rgb(5, 116, 242);
+  border: solid rgb(32, 32, 221) 5px;
+  border-radius: 20px;
+  transition: 0.3s ease;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 98%;
+  color: black;
+  width: 140px;
+  height: 40px;
+}
+
+#zainteresbutton:hover {
+  background-color: rgb(32, 32, 221);
 }
 
 #usunbutton:hover {

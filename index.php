@@ -32,7 +32,7 @@ session_start();
             </div>
         </div>
         <div id="tresc">
-            <div id="trescogol" style=" align-items: baseline; justify-content: center; flex-direction: row; flex-wrap: wrap; overflow-y: auto; border-top: solid darkmagenta 3px; border-radius: 20px; width: 100%; height: 95%;">
+            <div id="trescogol" style=" align-items: baseline; justify-content: center; flex-direction: row; flex-wrap: wrap; overflow-y: auto; border-top: solid darkmagenta 3px; border-radius: 20px; width: 99%; height: 95%;">
                 <?php
                 $host = "localhost";
                 $dbuser = "root";
@@ -63,7 +63,11 @@ session_start();
                         echo "</div>";
 
                         echo "<div id = 'divdolprawo'>";
-                        echo "test";
+                        echo "<form method='POST' action=''>";
+                        echo "<input type='hidden' name='wartoscID' value='" . $row['ID'] . "'>";
+                        echo "<input type='submit' name='zainteres' id='zainteresbutton' value='Zainteresowany!'>";
+                        echo "</form>";
+
                         echo "</div>";
 
                         echo "</div>";
@@ -74,6 +78,33 @@ session_start();
                     echo "";
                 }
                 $conn->close();
+                ?>
+
+                <?php
+                if (isset($_POST['zainteres'])) {
+                    $host = "localhost";
+                    $dbuser = "root";
+                    $dbpassword = "";
+                    $dbname = "Aaawlasny_projekt_BS";
+                    $uzytkownik = $_SESSION['user'];
+                    $id_wydarz = $_POST['wartoscID'];
+
+                    $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+                    if (!$conn) {
+                        die("Nie połaczono z baza danych" . mysqli_connect_error());
+                    }
+
+                    if ($_SESSION['zalogowany'] == false) {
+                        echo "<script>alert('Nie możesz wybrać tej opcji, nie jesteś zalogowany')</script>";
+                    } else {
+                        $sql = "INSERT INTO `zainteresowania`(`uzytkownik`, `id_wydarzenia`) VALUES ('$uzytkownik','$id_wydarz')";
+                        $result = $conn->query($sql);
+                        if ($result) {
+                        } else {
+                            echo "";
+                        }
+                    }
+                }
                 ?>
             </div>
         </div>
