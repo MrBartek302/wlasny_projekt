@@ -16,7 +16,7 @@ session_start();
     <div id="ogol">
         <div id="menu">
             <div id="menlewolewo">
-                <h1>Strona Główna Admina</h1>
+                <h1>Strona Główna Adminaa</h1>
             </div>
             <div id="menlewo">
                 <?php
