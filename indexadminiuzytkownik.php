@@ -102,15 +102,14 @@ session_start();
                     <div id="trescogolgoraprawo">
                         <h1>Edytuj wydarzenie: </h1>
                         <form action="" method="POST">
-                            <input type="number" name="idwyd" placeholder="ID Wydarzenia do zmiany" style="text-align: center;">
-                            <input type="number" name="idzam" placeholder="Zmienione ID" style="text-align: center;">
+                            <input type="number" name="idwyd" placeholder="ID wydarzenia do zmiany" style="text-align: center;">
                             <input type="text" name="tytul1" placeholder="Nazwa Wydarzenia" style="text-align: center;">
                             <input type="text" name="opis1" placeholder="Opis Wydarzenia" style="text-align: center;">
                             <input type="date" name="data1" placeholder="Data Wydarzenia">
                             <input type="submit" name="wyss1" value="Edytuj!">
                             <?php
                             if (isset($_POST['wyss1'])) {
-                                if (empty($_POST['idwyd']) || empty($_POST['idzam']) || empty($_POST['tytul1']) || empty($_POST['opis1']) || empty($_POST['data1'])) {
+                                if (empty($_POST['idwyd']) || empty($_POST['tytul1']) || empty($_POST['opis1']) || empty($_POST['data1'])) {
                                     echo "<script>alert('Nie uzupełniłeś danych do edycji wydarzenia')</script>";
                                 } else {
                                     $host = "localhost";
@@ -118,7 +117,6 @@ session_start();
                                     $dbpassword = "";
                                     $dbname = "Aaawlasny_projekt_BS";
                                     $idwyd = $_POST['idwyd'];
-                                    $idzam = $_POST['idzam'];
                                     $tytul = $_POST['tytul1'];
                                     $opis = $_POST['opis1'];
                                     $data = $_POST['data1'];
@@ -126,7 +124,7 @@ session_start();
                                     if (!$conn) {
                                         die("Nie połaczono z baza danych" . mysqli_connect_error());
                                     }
-                                    $sql = "UPDATE `wydarzenia` SET `ID`='$idzam',`nazwa_wyd`='$tytul',`opis_wyd`='$opis',`data_wyd`='$data' WHERE ID = $idwyd";
+                                    $sql = "UPDATE `wydarzenia` SET `nazwa_wyd`='$tytul',`opis_wyd`='$opis',`data_wyd`='$data' WHERE ID = $idwyd";
                                     $result = $conn->query($sql);
                                     if ($result) {
                                         header("Location: ./indexadminiuzytkownik.php");
@@ -152,7 +150,7 @@ session_start();
                     if (!$conn) {
                         die("Nie połaczono z baza danych" . mysqli_connect_error());
                     }
-                    $sql = "SELECT `ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd` FROM `wydarzenia` WHERE 1";
+                    $sql = "SELECT `ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd` FROM `wydarzenia`ORDER BY `data_wyd` ASC";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {

@@ -46,7 +46,7 @@ session_start();
                 if (!$conn) {
                     die("Nie połaczono z baza danych" . mysqli_connect_error());
                 }
-                $sql = "SELECT `ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd` FROM `wydarzenia` WHERE 1";
+                $sql = "SELECT `ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd` FROM `wydarzenia` ORDER BY `data_wyd` ASC";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
