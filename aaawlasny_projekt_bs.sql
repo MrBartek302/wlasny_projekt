@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 22 Mar 2024, 00:22
+-- Czas generowania: 22 Mar 2024, 00:35
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -83,9 +83,9 @@ CREATE TABLE `wydarzenia` (
 --
 
 INSERT INTO `wydarzenia` (`ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES
-(1, 'testujemy1', 'Bartłomiej Fałek zaśpiewa koncert1', '2024-03-06'),
+(1, 'testujemy1', 'Bartłomiej Fałek zaśpiewa koncert1', '2024-03-28'),
 (2, 'testujemy', 'Dawid Trynkiewicz wpierdoli całe menu z McDonalds', '2024-03-01'),
-(3, 'Ryszard', 'sdsa', '2024-02-29');
+(3, 'Ryszard Drań', 'sdsa', '2024-03-05');
 
 -- --------------------------------------------------------
 
@@ -98,14 +98,6 @@ CREATE TABLE `zainteresowania` (
   `uzytkownik` text NOT NULL,
   `id_wydarzenia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
-
---
--- Zrzut danych tabeli `zainteresowania`
---
-
-INSERT INTO `zainteresowania` (`ID`, `uzytkownik`, `id_wydarzenia`) VALUES
-(1, 'user', 1),
-(2, 'user', 2);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -155,13 +147,13 @@ ALTER TABLE `uzytkownicy`
 -- AUTO_INCREMENT dla tabeli `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT dla tabeli `zainteresowania`
 --
 ALTER TABLE `zainteresowania`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
