@@ -44,16 +44,8 @@ session_start();
                     echo '});';
                     echo 'document.getElementById("menprawoprawo").appendChild(buttonAdmin);';
                     echo '</script>';
-                } elseif ($_SESSION['upr'] === 'pracownik') {
-                    echo '<script>';
-                    echo 'const buttonPracownik = document.createElement("button");';
-                    echo 'buttonPracownik.setAttribute("id", "buttonPracownik");';
-                    echo 'buttonPracownik.textContent = "Strona pracownika";';
-                    echo 'buttonPracownik.addEventListener("click", function() {';
-                    echo 'window.location.href = "pracownik.php";';
-                    echo '});';
-                    echo 'document.getElementById("menprawoprawo").appendChild(buttonPracownik);';
-                    echo '</script>';
+                } else {
+                    echo "";
                 }
                 ?>
             </div>
