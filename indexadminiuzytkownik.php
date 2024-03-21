@@ -126,7 +126,7 @@ session_start();
                         echo "";
                     }
                     $conn->close();
-                    ?>dfs
+                    ?>
 
                     <?php
                     $host = "localhost";
