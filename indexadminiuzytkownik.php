@@ -25,7 +25,11 @@ session_start();
             </div>
             <div id="menprawo">
                 <?php
-                echo $_SESSION['user'];
+                if (isset($_SESSION['user'])) {
+                    echo $_SESSION['user'];
+                } else {
+                    echo "";
+                }
                 ?>
             </div>
             <div id="menprawoprawo">

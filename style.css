@@ -244,6 +244,29 @@ body {
   width: 200px;
 }
 
+#button1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  margin-right: 10px; /*odstęp pomiędzy przyciskami*/
+  background-color: red;
+  color: white;
+  text-decoration: none; /*brak podkreslenia*/
+  border-radius: 20px;
+  border: 3px solid white;
+  transition: 0.3s;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  height: 65px;
+  width: 200px;
+}
+
+#button1:hover {
+  background-color: rgb(121, 110, 110);
+}
+
 .button:hover {
   background-color: rgb(121, 110, 110);
 }

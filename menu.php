@@ -4,7 +4,7 @@
     if ($_SESSION['zalogowany'] == false) {
         echo "<li> <a href='./logowanie.php' class='button'>Logowanie</a></li>";
     } else {
-        echo "<li> <a href='./wylog.php' class='button'>Wyloguj</a></li>";
+        echo "<li> <a href='./wylog.php' id='button1'>Wyloguj</a></li>";
     }
     ?>
     <li><a href="./rejestracja.php" class="button">Rejestracja</a></li>

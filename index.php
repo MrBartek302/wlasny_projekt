@@ -25,7 +25,11 @@ session_start();
             </div>
             <div id="menprawo">
                 <?php
-                echo $_SESSION['user'];
+                if (isset($_SESSION['user'])) {
+                    echo $_SESSION['user'];
+                } else {
+                    echo "";
+                }
                 ?>
             </div>
             <div id="menprawoprawo">
@@ -86,8 +90,6 @@ session_start();
                     $dbuser = "root";
                     $dbpassword = "";
                     $dbname = "Aaawlasny_projekt_BS";
-                    $uzytkownik = $_SESSION['user'];
-                    $id_wydarz = $_POST['wartoscID'];
 
                     $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
                     if (!$conn) {
@@ -97,11 +99,20 @@ session_start();
                     if ($_SESSION['zalogowany'] == false) {
                         echo "<script>alert('Nie możesz wybrać tej opcji, nie jesteś zalogowany')</script>";
                     } else {
-                        $sql = "INSERT INTO `zainteresowania`(`uzytkownik`, `id_wydarzenia`) VALUES ('$uzytkownik','$id_wydarz')";
+                        $uzytkownik = $_SESSION['user'];
+                        $id_wydarz = $_POST['wartoscID'];
+                        $sql = "SELECT * FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik' AND `id_wydarzenia` = '$id_wydarz'";
                         $result = $conn->query($sql);
-                        if ($result) {
+                        if ($result->num_rows > 0) {
+                            echo "<script>alert('Zaznaczyłeś już swoje zainteresowanie!')</script>";
                         } else {
-                            echo "";
+                            $sql1 = "INSERT INTO `zainteresowania`(`uzytkownik`, `id_wydarzenia`) VALUES ('$uzytkownik','$id_wydarz')";
+                            $result1 = $conn->query($sql1);
+                            if ($result1) {
+                                header("Location: ./index.php");
+                            } else {
+                                echo "";
+                            }
                         }
                     }
                 }
@@ -109,8 +120,6 @@ session_start();
             </div>
         </div>
     </div>
-
-
 
 </body>
 
