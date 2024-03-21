@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 21 Mar 2024, 21:33
+-- Czas generowania: 22 Mar 2024, 00:22
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `aaawlasny_projekt_bs`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `uprawnienia`
+--
+
+CREATE TABLE `uprawnienia` (
+  `ID_upr` int(11) NOT NULL,
+  `nazwa_upr` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
+
+--
+-- Zrzut danych tabeli `uprawnienia`
+--
+
+INSERT INTO `uprawnienia` (`ID_upr`, `nazwa_upr`) VALUES
+(1, 'admin'),
+(2, 'pracownik'),
+(3, 'user');
 
 -- --------------------------------------------------------
 
@@ -63,10 +83,9 @@ CREATE TABLE `wydarzenia` (
 --
 
 INSERT INTO `wydarzenia` (`ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES
-(1, 'Ryszard', 'Dawid Trynkiewicz wpierdoli całe menu z McDonalds', '2024-03-21'),
-(2, 'Franciszek Gałązka', 'Frano rozjebie się na policji', '2024-03-23'),
-(3, 'Bartek', 'Benjamin aka Bartek Fałek wyliże mi podeszwy butów', '2027-10-21'),
-(4, 'Maciek', 'Maciej Książek w końcu urośnie', '2100-10-02');
+(1, 'testujemy1', 'Bartłomiej Fałek zaśpiewa koncert1', '2024-03-06'),
+(2, 'testujemy', 'Dawid Trynkiewicz wpierdoli całe menu z McDonalds', '2024-03-01'),
+(3, 'Ryszard', 'sdsa', '2024-02-29');
 
 -- --------------------------------------------------------
 
@@ -85,26 +104,18 @@ CREATE TABLE `zainteresowania` (
 --
 
 INSERT INTO `zainteresowania` (`ID`, `uzytkownik`, `id_wydarzenia`) VALUES
-(1, 'user', 4),
-(2, 'user', 4),
-(3, 'user', 4),
-(4, 'user', 4),
-(5, 'user', 3),
-(6, 'user', 2),
-(7, 'user', 3),
-(8, 'user', 3),
-(9, 'user', 3),
-(10, 'user', 3),
-(11, 'user', 3),
-(12, 'user', 3),
-(13, 'user', 3),
-(14, 'user', 3),
-(15, 'user', 3),
-(16, '111', 3);
+(1, 'user', 1),
+(2, 'user', 2);
 
 --
 -- Indeksy dla zrzutów tabel
 --
+
+--
+-- Indeksy dla tabeli `uprawnienia`
+--
+ALTER TABLE `uprawnienia`
+  ADD PRIMARY KEY (`ID_upr`);
 
 --
 -- Indeksy dla tabeli `uzytkownicy`
@@ -129,6 +140,12 @@ ALTER TABLE `zainteresowania`
 --
 
 --
+-- AUTO_INCREMENT dla tabeli `uprawnienia`
+--
+ALTER TABLE `uprawnienia`
+  MODIFY `ID_upr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
@@ -138,13 +155,13 @@ ALTER TABLE `uzytkownicy`
 -- AUTO_INCREMENT dla tabeli `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `zainteresowania`
 --
 ALTER TABLE `zainteresowania`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
