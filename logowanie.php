@@ -32,7 +32,7 @@ session_start();
                 <?php
                 if ($_SESSION['user'] == 'admin' || $_SESSION['user'] == 'pracownik') {
                     include 'menuadmin.php';
-                } elseif ($_SESSION['user'] = 'user') {
+                } elseif ($_SESSION['user'] == 'user' || $_SESSION['user'] == 'viewer') {
                     include 'menu.php';
                 } else {
                     echo "";

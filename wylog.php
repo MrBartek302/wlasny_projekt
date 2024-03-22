@@ -20,7 +20,6 @@ session_start();
     $_SESSION['user'] = "";
     $_SESSION['upr'] = "";
     echo "wylogowano";
-    echo $_SESSION["kolorek"];
     header('location: ./index.php');
     sleep(1);
     ?>
