@@ -212,7 +212,7 @@ body {
   font-weight: bold;
   font-size: 98%;
   color: black;
-  width: 120px;
+  width: 170px;
   height: 25px;
 }
 
@@ -234,7 +234,7 @@ body {
   background-color: rgb(32, 32, 221);
 }
 
-#usunbutton:hover {
+.input1:hover {
   background-color: rgb(102, 0, 0);
 }
 
@@ -303,7 +303,7 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: red;
+  background: rgb(80, 8, 168);
   border-radius: 10px;
 }
 
@@ -338,4 +338,219 @@ body {
   border-radius: 10px 10px 0 0;
   padding: 0.4em;
   color: rgb(255, 255, 255);
+}
+
+#ogoladm {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+}
+
+#lewoadm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-right: dotted darkmagenta 3px;
+  width: 30%;
+  height: 100%;
+}
+
+#lewoadmgora {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border-bottom: dotted darkmagenta 3px;
+  width: 100%;
+  height: 10%;
+}
+
+#lewoadmgoralewo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: dotted darkmagenta 3px;
+  width: 50%;
+  height: 100%;
+}
+
+#lewoadmgoraprawo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+
+#lewoadmdol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: auto;
+  width: 100%;
+  height: 90%;
+}
+
+#lewoadmdolgora {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  width: 100%;
+  height: 10%;
+}
+
+#lewoadmdoldol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: auto;
+  width: 100%;
+  height: 90%;
+}
+
+#srodekadm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-right: dotted darkmagenta 3px;
+  width: 50%;
+  height: 100%;
+}
+
+#prawoadm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 20%;
+  height: 100%;
+}
+h1 {
+  font-family: "Tahoma", sans-serif;
+}
+
+#uzytadm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px;
+  border: solid white 3px;
+  font-family: comic sans ms;
+  text-align: center;
+  border-radius: 20px;
+  width: 500px;
+  height: 300px;
+}
+
+#divgoraadm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border-bottom: solid white 0.5px;
+  width: 100%;
+  height: 25%;
+}
+
+#divgoralewoadm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: solid white 0.5px;
+  width: 20%;
+  height: 100%;
+}
+
+#divgoraprawoadm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 100%;
+}
+
+#divsrodekadm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: auto;
+  border-bottom: solid white 0.5px;
+  width: 100%;
+  height: 40%;
+}
+
+#divdoladm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  height: 35%;
+}
+
+#divdollewoadm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: solid white 0.5px;
+  width: 25%;
+  height: 100%;
+}
+
+#divdolprawoadm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 75%;
+  height: 100%;
+}
+
+#divdolprawogoraadm {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  width: 100%;
+  height: 40%;
+}
+
+#divdolprawodoladm {
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+  height: 60%;
+}
+
+#buttonpowrot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background-color: rebeccapurple;
+  color: white;
+  border-radius: 20px;
+  border: 3px solid white;
+  transition: 0.3s;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  height: 45px;
+  width: 180px;
+}
+
+#buttonpowrot:hover {
+  background-color: rgb(88, 4, 90);
 }

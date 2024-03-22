@@ -165,7 +165,7 @@ session_start();
                             echo "<div id = 'divdolprawo'>";
                             echo "<form method='POST' action=''>";
                             echo "<input type='hidden' class='input1' name='wartoscID' value='" . $row['ID'] . "'>";
-                            echo "<input type='submit' class='input1' name='usun' id='usunbutton' value='Usuń!'>";
+                            echo "<input type='submit' class='input1' name='usun' value='Usuń!'>";
                             echo "</form>";
                             echo "</div>";
                             echo "</div>";
