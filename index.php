@@ -14,13 +14,14 @@ session_start();
 
 <body>
     <?php
-    if (!$_SESSION["zalogowany"]) {
+    if (!isset($_SESSION["zalogowany"])) {
         $_SESSION["zalogowany"] = false;
     }
-    if (!$_SESSION['user']) {
+
+    if (!isset($_SESSION['user'])) {
         $_SESSION['user'] = 'viewer';
-    } else {
-        echo "";
+    } elseif ($_SESSION['user'] == "") {
+        $_SESSION['user'] = 'viewer';
     }
     ?>
     <div id="ogol">
@@ -46,7 +47,7 @@ session_start();
             </div>
         </div>
         <div id="tresc">
-            <div id="trescogol" style=" align-items: baseline; justify-content: center; flex-direction: row; flex-wrap: wrap; overflow-y: auto; border-top: solid darkmagenta 3px; border-radius: 20px; width: 99%; height: 95%;">
+            <div id="trescogol" style="display: flex; align-items: baseline; justify-content: center; flex-direction: row; flex-wrap: wrap; overflow-y: auto; border-top: solid darkmagenta 3px; border-radius: 20px; width: 99%; height: 95%; /* Ustaw maksymalną wysokość */">
                 <?php
                 $host = "localhost";
                 $dbuser = "root";
@@ -62,8 +63,8 @@ session_start();
                     while ($row = $result->fetch_assoc()) {
                         echo "<div id = 'wydarzenie'>";
 
-                        echo "<div id = 'divgora' style='display: flex; align-items: baseline; justify-content: center;'>";
-                        echo "<h1>" . "Nazwa: " .  $row['nazwa_wyd'] . "</h1>";
+                        echo "<div id = 'divgora' style='display: flex; align-items: baseline; justify-content: center; height: 20%; width: 100%;'>";
+                        echo "<h1>" .  $row['nazwa_wyd'] . "</h1>";
                         echo "</div>";
 
                         echo "<div id = 'divsrodek'>";
