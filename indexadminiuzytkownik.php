@@ -190,7 +190,7 @@ session_start();
                         $sql_usun = "DELETE FROM `wydarzenia` WHERE `ID` = $idusun";
                         $result = $conn->query($sql_usun);
                         if ($result) {
-                            header("Location: ./indexadminiuzytkownik.php");
+                            echo "";
                         } else {
                             echo "wystąpił błąd!";
                         }
