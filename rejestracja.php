@@ -12,6 +12,17 @@ session_start();
 </head>
 
 <body>
+    <?php
+    if (!isset($_SESSION["zalogowany"])) {
+        $_SESSION["zalogowany"] = false;
+    }
+
+    if (!isset($_SESSION['user'])) {
+        $_SESSION['user'] = 'viewer';
+    } elseif ($_SESSION['user'] == "") {
+        $_SESSION['user'] = 'viewer';
+    }
+    ?>
     <div id="ogol">
         <div id="menu">
             <div id="menlewolewo">
