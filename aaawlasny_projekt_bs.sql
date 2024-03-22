@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 22 Mar 2024, 17:35
+-- Czas generowania: 22 Mar 2024, 23:58
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -61,10 +61,7 @@ CREATE TABLE `uzytkownicy` (
 INSERT INTO `uzytkownicy` (`ID`, `login`, `pass`, `upr`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin'),
 (2, 'user', '21232f297a57a5a743894a0e4a801fc3', 'user'),
-(3, 'pracownik', '21232f297a57a5a743894a0e4a801fc3', 'pracownik'),
-(4, 'gfdg', 'ae65ca6fdbbead5105c0254745371bba', 'user'),
-(5, '111', '698d51a19d8a121ce581499d7b701668', 'user'),
-(6, 'ds', '698d51a19d8a121ce581499d7b701668', 'user');
+(3, 'pracownik', '21232f297a57a5a743894a0e4a801fc3', 'pracownik');
 
 -- --------------------------------------------------------
 
@@ -106,7 +103,9 @@ CREATE TABLE `zainteresowania` (
 INSERT INTO `zainteresowania` (`ID`, `uzytkownik`, `id_wydarzenia`) VALUES
 (1, 'user', 1),
 (2, 'user', 2),
-(3, 'user', 3);
+(3, 'user', 3),
+(4, 'user', 4),
+(5, 'bartekstepien27gmail.com', 4);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -150,7 +149,7 @@ ALTER TABLE `uprawnienia`
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT dla tabeli `wydarzenia`
@@ -162,7 +161,7 @@ ALTER TABLE `wydarzenia`
 -- AUTO_INCREMENT dla tabeli `zainteresowania`
 --
 ALTER TABLE `zainteresowania`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
