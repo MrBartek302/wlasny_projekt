@@ -1,6 +1,6 @@
 body {
-  background-color: darkgray;
-  color: black;
+  background-color: rgb(16, 15, 15);
+  color: white;
   margin: 0px;
   overflow: hidden;
 }
@@ -129,7 +129,7 @@ body {
   justify-content: center;
   flex-direction: column;
   margin: 10px;
-  border: solid black 3px;
+  border: solid white 3px;
   font-family: "Lucida Console", "Courier New", monospace;
   text-align: center;
   border-radius: 20px;
@@ -202,7 +202,7 @@ body {
   height: 100%;
 }
 
-#usunbutton {
+.input1 {
   background-color: rgb(255, 0, 0);
   border: solid rgb(102, 0, 0) 5px;
   border-radius: 20px;
@@ -326,4 +326,16 @@ body {
 
 #buttonAdmin:hover {
   background-color: rgb(88, 4, 90);
+}
+
+.input {
+  text-align: center;
+  appearance: none;
+  border: none;
+  outline: none;
+  border-bottom: 0.2em solid rgb(255, 255, 255);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px 10px 0 0;
+  padding: 0.4em;
+  color: rgb(255, 255, 255);
 }

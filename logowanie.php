@@ -43,9 +43,9 @@ session_start();
         </div>
         <div id="tresclog" style="display: flex; align-items:center; justify-content:center; flex-direction: row; width: 100%; height: 90vh;">
             <form method="POST" action="" style="height: 20px;">
-                <input type="text" name="login" placeholder="Login">
-                <input type="text" name="pass" placeholder="Hasło">
-                <input type="submit" name="wyss" value="Zaloguj">
+                <input type="text" class="input" name="login" placeholder="Login">
+                <input type="text" class="input" name="pass" placeholder="Hasło">
+                <input type="submit" class="input" name="wyss" value="Zaloguj">
             </form><br><br>
 
             <?php

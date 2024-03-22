@@ -56,10 +56,10 @@ session_start();
                     <div id="trescogolgoralewo">
                         <h1>Utwórz wydarzenie: </h1>
                         <form action="" method="POST">
-                            <input type="text" name="tytul" placeholder="Nazwa Wydarzenia" style="text-align: center;">
-                            <input type="text" name="opis" placeholder="Opis Wydarzenia" style="text-align: center;">
-                            <input type="date" name="data" placeholder="Data Wydarzenia">
-                            <input type="submit" name="wyss" value="Utwórz!">
+                            <input type="text" class="input" name="tytul" placeholder="Nazwa Wydarzenia" style="text-align: center;">
+                            <input type="text" class="input" name="opis" placeholder="Opis Wydarzenia" style="text-align: center;">
+                            <input type="date" class="input" name="data" placeholder="Data Wydarzenia">
+                            <input type="submit" class="input" name="wyss" value="Utwórz!">
                             <?php
                             if (isset($_POST['wyss'])) {
                                 if (empty($_POST['tytul']) || empty($_POST['opis']) || empty($_POST['data'])) {
@@ -94,11 +94,11 @@ session_start();
                     <div id="trescogolgoraprawo">
                         <h1>Edytuj wydarzenie: </h1>
                         <form action="" method="POST">
-                            <input type="number" name="idwyd" placeholder="ID wydarzenia do zmiany" style="text-align: center;">
-                            <input type="text" name="tytul1" placeholder="Nazwa Wydarzenia" style="text-align: center;">
-                            <input type="text" name="opis1" placeholder="Opis Wydarzenia" style="text-align: center;">
-                            <input type="date" name="data1" placeholder="Data Wydarzenia">
-                            <input type="submit" name="wyss1" value="Edytuj!">
+                            <input type="number" class="input" name="idwyd" placeholder="ID wydarzenia do zmiany" style="text-align: center;">
+                            <input type="text" class="input" name="tytul1" placeholder="Nazwa Wydarzenia" style="text-align: center;">
+                            <input type="text" class="input" name="opis1" placeholder="Opis Wydarzenia" style="text-align: center;">
+                            <input type="date" class="input" name="data1" placeholder="Data Wydarzenia">
+                            <input type="submit" class="input" name="wyss1" value="Edytuj!">
                             <?php
                             if (isset($_POST['wyss1'])) {
                                 if (empty($_POST['idwyd']) || empty($_POST['tytul1']) || empty($_POST['opis1']) || empty($_POST['data1'])) {
@@ -164,8 +164,8 @@ session_start();
                             echo "</div>";
                             echo "<div id = 'divdolprawo'>";
                             echo "<form method='POST' action=''>";
-                            echo "<input type='hidden' name='wartoscID' value='" . $row['ID'] . "'>";
-                            echo "<input type='submit' name='usun' id='usunbutton' value='Usuń!'>";
+                            echo "<input type='hidden' class='input1' name='wartoscID' value='" . $row['ID'] . "'>";
+                            echo "<input type='submit' class='input1' name='usun' id='usunbutton' value='Usuń!'>";
                             echo "</form>";
                             echo "</div>";
                             echo "</div>";
