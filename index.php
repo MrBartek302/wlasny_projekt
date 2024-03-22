@@ -13,6 +13,16 @@ session_start();
 </head>
 
 <body>
+    <?php
+    if (!$_SESSION["zalogowany"]) {
+        $_SESSION["zalogowany"] = false;
+    }
+    if (!$_SESSION['user']) {
+        $_SESSION['user'] = 'viewer';
+    } else {
+        echo "";
+    }
+    ?>
     <div id="ogol">
         <div id="menu">
             <div id="menlewolewo">

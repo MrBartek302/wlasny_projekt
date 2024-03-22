@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 22 Mar 2024, 00:35
+-- Czas generowania: 22 Mar 2024, 16:55
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -63,7 +63,8 @@ INSERT INTO `uzytkownicy` (`ID`, `login`, `pass`, `upr`) VALUES
 (2, 'user', '21232f297a57a5a743894a0e4a801fc3', 'user'),
 (3, 'pracownik', '21232f297a57a5a743894a0e4a801fc3', 'pracownik'),
 (4, 'gfdg', 'ae65ca6fdbbead5105c0254745371bba', 'user'),
-(5, '111', '698d51a19d8a121ce581499d7b701668', 'user');
+(5, '111', '698d51a19d8a121ce581499d7b701668', 'user'),
+(6, 'ds', '698d51a19d8a121ce581499d7b701668', 'user');
 
 -- --------------------------------------------------------
 
@@ -83,9 +84,7 @@ CREATE TABLE `wydarzenia` (
 --
 
 INSERT INTO `wydarzenia` (`ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES
-(1, 'testujemy1', 'Bartłomiej Fałek zaśpiewa koncert1', '2024-03-28'),
-(2, 'testujemy', 'Dawid Trynkiewicz wpierdoli całe menu z McDonalds', '2024-03-01'),
-(3, 'Ryszard Drań', 'sdsa', '2024-03-05');
+(1, 'test', 'test1', '2024-03-14');
 
 -- --------------------------------------------------------
 
@@ -98,6 +97,13 @@ CREATE TABLE `zainteresowania` (
   `uzytkownik` text NOT NULL,
   `id_wydarzenia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
+
+--
+-- Zrzut danych tabeli `zainteresowania`
+--
+
+INSERT INTO `zainteresowania` (`ID`, `uzytkownik`, `id_wydarzenia`) VALUES
+(1, 'user', 1);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -141,19 +147,19 @@ ALTER TABLE `uprawnienia`
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT dla tabeli `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT dla tabeli `zainteresowania`
 --
 ALTER TABLE `zainteresowania`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
