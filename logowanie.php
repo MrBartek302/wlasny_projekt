@@ -14,7 +14,7 @@ session_start();
 <body>
     <?php
     if (isset($_SESSION['user'])) {
-        echo $_SESSION['user'];
+        echo "";
     } else {
         echo "";
     }
