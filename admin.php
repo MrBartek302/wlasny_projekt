@@ -54,24 +54,19 @@ session_start();
                     while ($row = $result->fetch_assoc()) {
                         echo "<div id='uzytadm'>";
                         echo "<div id='divgoraadm'>";
-
                         echo "<div id='divgoralewoadm'>";
                         echo "<h4>" . "ID: " .  $row['ID'] . "</h4>";
                         echo "</div>";
-
                         echo "<div id='divgoraprawoadm'>";
                         echo "<h2>" .   $row['login'] . "</h2>";
                         echo "</div>";
-
                         echo "</div>";
                         echo "<div id='divsrodekadm'>";
                         echo "<h4>" . "Hasło: " . $row['pass'] . "</h4>";
                         echo "</div>";
-
                         echo "<div id='divdoladm'>";
                         echo "<div id='divdollewoadm'>";
                         echo "<h4>" . "Upr: " . $row['upr'] . "</h4>";
-
                         echo "</div>";
                         echo "<div id='divdolprawoadm'>";
                         echo "<div id='divdolprawogoraadm'>";
@@ -81,7 +76,6 @@ session_start();
                         echo "<input type='submit' class='input' name='zmienupr' value='Zmień!'>";
                         echo "</form>";
                         echo "</div>";
-
                         echo "<div id='divdolprawodoladm'>";
                         echo "<form method='POST' action=''>";
                         echo "<input type='hidden' class='input' name='wartoscIDuzyt' value='" . $row['ID'] . "'>";

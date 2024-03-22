@@ -74,12 +74,7 @@ session_start();
                     $sql = "INSERT INTO `uzytkownicy`(`login`, `pass`, `upr`) VALUES ('$login','$szyfrowane', 'user')";
                     $result = $conn->query($sql);
                     if ($result) {
-                        echo "<script>
-                            document.getElementById('wyss').style.backgroundColor = 'green';
-                            setTimeout(function() {
-                                window.location.href = './rejestracja.php';
-                            }, 3000);
-                        </script>";
+                        echo "<script>document.getElementById('wyss').style.backgroundColor='green'; setTimeout(function() {window.location.href='./rejestracja.php';}, 3000);</script>";
                         exit();
                     } else {
                         echo "Nie dodano!!!!";
