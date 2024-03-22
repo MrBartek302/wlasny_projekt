@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 22 Mar 2024, 17:02
+-- Czas generowania: 22 Mar 2024, 17:35
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -84,7 +84,8 @@ CREATE TABLE `wydarzenia` (
 --
 
 INSERT INTO `wydarzenia` (`ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES
-(1, 'test', 'test1', '2024-03-14');
+(2, 'Odebranie Audi RS4 Avant', 'Odbiór Audi RS4 Avant czyli przekazanie kluczyków i tyle', '2026-11-21'),
+(4, 'Ryszard', 'sdsa', '2024-02-29');
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,9 @@ CREATE TABLE `zainteresowania` (
 --
 
 INSERT INTO `zainteresowania` (`ID`, `uzytkownik`, `id_wydarzenia`) VALUES
-(1, 'user', 1);
+(1, 'user', 1),
+(2, 'user', 2),
+(3, 'user', 3);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -153,13 +156,13 @@ ALTER TABLE `uzytkownicy`
 -- AUTO_INCREMENT dla tabeli `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT dla tabeli `zainteresowania`
 --
 ALTER TABLE `zainteresowania`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
