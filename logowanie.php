@@ -12,6 +12,13 @@ session_start();
 </head>
 
 <body>
+    <?php
+    if (isset($_SESSION['user'])) {
+        echo $_SESSION['user'];
+    } else {
+        echo "";
+    }
+    ?>
     <div id="ogol">
         <div id="menu">
             <div id="menlewolewo">
@@ -21,8 +28,10 @@ session_start();
                 <?php
                 if ($_SESSION['user'] == 'admin' || $_SESSION['user'] == 'pracownik') {
                     include 'menuadmin.php';
-                } else {
+                } elseif ($_SESSION['user'] = 'user') {
                     include 'menu.php';
+                } else {
+                    echo "";
                 }
                 ?>
             </div>
