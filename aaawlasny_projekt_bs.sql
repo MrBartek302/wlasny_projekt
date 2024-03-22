@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 22 Mar 2024, 00:35
--- Wersja serwera: 10.4.27-MariaDB
--- Wersja PHP: 8.2.0
+-- Czas generowania: 22 Mar 2024, 15:25
+-- Wersja serwera: 10.4.14-MariaDB
+-- Wersja PHP: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `uprawnienia` (
   `ID_upr` int(11) NOT NULL,
-  `nazwa_upr` text NOT NULL
+  `nazwa_upr` text COLLATE utf32_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
 
 --
@@ -49,9 +49,9 @@ INSERT INTO `uprawnienia` (`ID_upr`, `nazwa_upr`) VALUES
 
 CREATE TABLE `uzytkownicy` (
   `ID` int(11) NOT NULL,
-  `login` text NOT NULL,
-  `pass` text NOT NULL,
-  `upr` text NOT NULL
+  `login` text COLLATE utf32_polish_ci NOT NULL,
+  `pass` text COLLATE utf32_polish_ci NOT NULL,
+  `upr` text COLLATE utf32_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
 
 --
@@ -73,8 +73,8 @@ INSERT INTO `uzytkownicy` (`ID`, `login`, `pass`, `upr`) VALUES
 
 CREATE TABLE `wydarzenia` (
   `ID` int(11) NOT NULL,
-  `nazwa_wyd` text NOT NULL,
-  `opis_wyd` text NOT NULL,
+  `nazwa_wyd` text COLLATE utf32_polish_ci NOT NULL,
+  `opis_wyd` text COLLATE utf32_polish_ci NOT NULL,
   `data_wyd` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
 
@@ -83,9 +83,7 @@ CREATE TABLE `wydarzenia` (
 --
 
 INSERT INTO `wydarzenia` (`ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES
-(1, 'testujemy1', 'Bartłomiej Fałek zaśpiewa koncert1', '2024-03-28'),
-(2, 'testujemy', 'Dawid Trynkiewicz wpierdoli całe menu z McDonalds', '2024-03-01'),
-(3, 'Ryszard Drań', 'sdsa', '2024-03-05');
+(1, 'test', 'test1', '2024-03-14');
 
 -- --------------------------------------------------------
 
@@ -95,7 +93,7 @@ INSERT INTO `wydarzenia` (`ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES
 
 CREATE TABLE `zainteresowania` (
   `ID` int(11) NOT NULL,
-  `uzytkownik` text NOT NULL,
+  `uzytkownik` text COLLATE utf32_polish_ci NOT NULL,
   `id_wydarzenia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
 
@@ -128,7 +126,7 @@ ALTER TABLE `zainteresowania`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT dla zrzuconych tabel
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
@@ -147,7 +145,7 @@ ALTER TABLE `uzytkownicy`
 -- AUTO_INCREMENT dla tabeli `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT dla tabeli `zainteresowania`
