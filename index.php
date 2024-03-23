@@ -26,19 +26,18 @@ session_start();
     ?>
     <?php
     if (isset($_POST['zainteres'])) {
-        $host = "localhost";
-        $dbuser = "root";
-        $dbpassword = "";
-        $dbname = "Aaawlasny_projekt_BS";
-
-        $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
-        if (!$conn) {
-            die("Nie połaczono z baza danych" . mysqli_connect_error());
-        }
-
         if ($_SESSION['zalogowany'] == false || $_SESSION['upr'] == 'viewer') {
             echo "<script>alert('Nie możesz wybrać tej opcji, nie jesteś zalogowany')</script>";
         } else {
+            $host = "localhost";
+            $dbuser = "root";
+            $dbpassword = "";
+            $dbname = "Aaawlasny_projekt_BS";
+
+            $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+            if (!$conn) {
+                die("Nie połaczono z baza danych" . mysqli_connect_error());
+            }
             $uzytkownik = $_SESSION['user'];
             $nazwa_wydarzenia = $_POST['nazwa_wydarzenia'];
             $sql = "SELECT * FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik' AND `nazwa_wydarzenia` = '$nazwa_wydarzenia'";
@@ -58,6 +57,7 @@ session_start();
         }
     }
     ?>
+
     <div id="ogol">
         <div id="menu">
             <div id="menlewolewo">
@@ -95,8 +95,6 @@ session_start();
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        $wydarzenie_id = $row['ID'];
-
                         echo "<div id = 'wydarzenie'>";
 
                         echo "<div id = 'divgora' style='display: flex; align-items: baseline; justify-content: center; height: 20%; width: 100%;'>";
@@ -137,31 +135,21 @@ session_start();
                                         echo "<script>alert('Nie możesz wybrać tej opcji, nie jesteś zalogowany')</script>";
                                     }
                                 } else {
-                                    $uzytkownik_ktory_ocenial1 = $_SESSION['user'];
-                                    $nazwa_wydarzenia_do_sprawdzenia = $_POST['value_wydarzenia'];
-                                    $sql = "SELECT * FROM `oceny` WHERE `login_uzyt`='$uzytkownik_ktory_ocenial1' AND `ID_wydarzenia` = '$nazwa_wydarzenia_do_sprawdzenia'";
-                                    $result = $conn->query($sql);
-                                    if ($result->num_rows > 0) {
+                                    $ocena = $_POST['ocena'];
+                                    $id_wydarzenia1 = $_POST['value_wydarzenia'];
+                                    if (!empty($ocena) && $id_wydarzenia1 == $row['ID']) {
+                                        $uzytkownik_ktory_ocenial = $_SESSION['user'];
+                                        $sql = "INSERT INTO `oceny`(`login_uzyt`, `ID_wydarzenia`, `wystawiona_ocena`) VALUES ('$uzytkownik_ktory_ocenial', '$id_wydarzenia1','$ocena')";
 
-                                        echo "<script>alert('Wystawiłeś już ocenę!')</script>";
-                                    } else {
-                                        $ocena = $_POST['ocena'];
-                                        $id_wydarzenia1 = $_POST['value_wydarzenia'];
-
-                                        if (!empty($ocena) && $id_wydarzenia1 == $row['ID']) {
-                                            $uzytkownik_ktory_ocenial = $_SESSION['user'];
-                                            $sql = "INSERT INTO `oceny`(`login_uzyt`, `ID_wydarzenia`, `wystawiona_ocena`) VALUES ('$uzytkownik_ktory_ocenial', '$id_wydarzenia1','$ocena')";
-
-                                            if ($conn->query($sql) === TRUE) {
-                                                header("Location: ./index.php");
-                                                exit();
-                                            } else {
-                                                echo $conn->error;
-                                            }
+                                        if ($conn->query($sql) === TRUE) {
+                                            header("Location: ./index.php");
+                                            exit();
                                         } else {
-                                            if ($id_wydarzenia1 == $row['ID']) {
-                                                echo "<script>alert('Nie wybrano oceny')</script>";
-                                            }
+                                            echo $conn->error;
+                                        }
+                                    } else {
+                                        if ($id_wydarzenia1 == $row['ID']) {
+                                            echo "<script>alert('Nie wybrano oceny')</script>";
                                         }
                                     }
                                 }
