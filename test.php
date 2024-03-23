@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 
 <html lang="en">
@@ -15,7 +19,34 @@
 <body> <!-- partial:index.partial.html -->
 
     <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <?php
+        if (!isset($_SESSION["zalogowany"])) {
+            $_SESSION["zalogowany"] = false;
+        }
 
+        if (!isset($_SESSION['user'])) {
+            $_SESSION['user'] = 'viewer';
+        } elseif ($_SESSION['user'] == "") {
+            $_SESSION['user'] = 'viewer';
+        }
+        ?>
+        <div id="menu">
+            <div id="menlewolewo">
+                <h1>Logowanie</h1>
+            </div>
+            <div id="menlewo">
+                <?php
+                if ($_SESSION['user'] == 'admin' || $_SESSION['user'] == 'pracownik') {
+                    include 'menuadmin.php';
+                } elseif ($_SESSION['user'] == 'user' || $_SESSION['user'] == 'viewer') {
+                    include 'menu.php';
+                } else {
+                    echo "";
+                }
+                ?>
+            </div>
+            <div id="menprawo"></div>
+        </div>
         <div class="signin">
 
             <div class="content">
@@ -24,27 +55,69 @@
 
                 <div class="form">
 
-                    <div class="inputBox">
+                    <form method="POST" action="" style="height: 20px;">
+                        <input type="text" class="inputBox" name="login" required> <i>Username</i>
+                        <input type="text" class="inputBox" name="pass" required> <i>Password</i>
+                        <input type="submit" class="inputBox" name="wyss" value="Login" required>
+                    </form>
+                    <?php
+                    if (isset($_POST["wyss"])) {
+                        if (empty($_POST['login']) || empty($_POST['pass'])) {
+                            echo "<script>alert('Nie uzupełniłeś pozycji przy logowaniu')</script>";
+                        } else {
+                            $login = $_POST["login"];
+                            $pass = $_POST["pass"];
 
-                        <input type="text" required> <i>Username</i>
+                            function szyfruj_haslo($pass)
+                            {
+                                return md5($pass);
+                            }
 
-                    </div>
+                            $szyfrowane = szyfruj_haslo($pass);
 
-                    <div class="inputBox">
+                            $host = "localhost";
+                            $dbuser = "root";
+                            $dbpassword = "";
+                            $dbname = "Aaawlasny_projekt_BS";
 
-                        <input type="password" required> <i>Password</i>
+                            $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
 
-                    </div>
+                            if (!$conn) {
+                                die("Nie połaczono z baza danych" . mysqli_connect_error());
+                            }
 
-                    <div class="links"> <a href="#">Forgot Password</a> <a href="#">Signup</a>
+                            $sql = "SELECT `ID`, `login`, `pass`, `upr` FROM `uzytkownicy` WHERE login='$login' AND pass='$szyfrowane'";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                $_SESSION['zalogowany'] = true;
+                                //tutaj bez while bo wiemy że jest jeden rekord
+                                $row = $result->fetch_assoc();
 
-                    </div>
+                                $_SESSION['user'] = $row['login'];
 
-                    <div class="inputBox">
+                                $_SESSION['upr'] = $row['upr'];
 
-                        <input type="submit" value="Login">
+                                //przenosi do wybranej strony
+                                if ($_SESSION['upr'] == 'admin' || $_SESSION['upr'] == 'pracownik') {
+                                    header('location: ./indexadminiuzytkownik.php');
+                                } elseif ($_SESSION['upr'] == 'user' || $_SESSION['upr'] == 'viewer') {
+                                    header('location: ./index.php');
+                                }
+                            } else {
+                                $_SESSION["zalogowany"] = false;
 
-                    </div>
+                                $_SESSION['user'] = "";
+
+                                $_SESSION['upr'] = "";
+
+                                echo "Nie zalogowano!";
+                            }
+                        }
+                    } else {
+                        echo "";
+                    }
+                    ?>
+
 
                 </div>
 
