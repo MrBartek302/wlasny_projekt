@@ -28,7 +28,7 @@ body {
   justify-content: center;
   width: 65%;
   height: 100%;
-  border-right: 0.5px solid #0f0; /* Linia oddzielająca elementy */
+  border-right: 0.5px solid white; /* Linia oddzielająca elementy */
 }
 #menlewolewo {
   display: flex;
@@ -37,7 +37,7 @@ body {
   justify-content: center;
   width: 15%;
   height: 100%;
-  border-right: 0.5px solid #0f0; /* Linia oddzielająca elementy */
+  border-right: 0.5px solid white; /* Linia oddzielająca elementy */
 }
 #menprawo {
   display: flex;
@@ -57,7 +57,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  border-left: 0.5px solid #0f0;
+  border-left: 0.5px solid white;
   width: 10%;
   height: 100%;
 }
