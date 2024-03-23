@@ -189,7 +189,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
   border-right: solid white 0.5px;
+  width: 70%;
+  height: 100%;
+}
+
+#divdollewolewo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: solid white 0.5px;
+  width: 30%;
+  height: 100%;
+}
+
+#divdollewoprawo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 70%;
   height: 100%;
 }
@@ -454,6 +472,18 @@ h1 {
   font-family: "Tahoma", sans-serif;
 }
 
+h3 {
+  font-family: "Tahoma", sans-serif;
+}
+
+#dobre {
+  color: green;
+}
+
+#zle {
+  color: red;
+}
+
 #uzytadm {
   display: flex;
   align-items: center;
@@ -603,4 +633,10 @@ td {
 #tr2.active-row {
   font-weight: bold;
   color: #009879;
+}
+
+#buttonUsunZainteres {
+  height: 100px;
+  width: 400px;
+  background-color: red;
 }

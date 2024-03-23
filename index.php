@@ -91,6 +91,9 @@ session_start();
                 if (!$conn) {
                     die("Nie połaczono z baza danych" . mysqli_connect_error());
                 }
+
+                $przeszlo_juz = false;
+
                 $sql = "SELECT `ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd` FROM `wydarzenia` ORDER BY `data_wyd` ASC";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
@@ -108,7 +111,18 @@ session_start();
                         echo "<div id = 'divdol'>";
 
                         echo "<div id = 'divdollewo'>";
+                        $date = new DateTime($row['data_wyd']);
+                        $now = new DateTime();
+                        if ($date >= $now) {
+                            echo "<div id = 'divdollewolewo'>";
+                            echo "<h3 id ='dobre'>Przyszłe</h3>";
+                            echo "</div>";
+                        }
+
+                        echo "<div id = 'divdollewoprawo'>";
                         echo "<h4>" . "Data wydarzenia: " . $row['data_wyd'] . "</h4>";
+                        echo "</div>";
+
                         echo "</div>";
 
                         echo "<div id = 'divdolprawo'>";
@@ -116,44 +130,7 @@ session_start();
                         $now = new DateTime();
 
                         if ($date < $now) {
-                            echo "<form method='POST' action=''>";
-                            echo "<select name='ocena'>";
-                            echo "<option value=''>--- Oceń wydarzenie ---</option>";
-                            echo "<option value='1'>1</option>";
-                            echo "<option value='2'>2</option>";
-                            echo "<option value='3'>3</option>";
-                            echo "<option value='4'>4</option>";
-                            echo "<option value='5'>5</option>";
-                            echo "</select>";
-                            echo "<input type='hidden' name='value_wydarzenia' value='" . $row['ID'] . "'>";
-                            echo "<input type='submit' name='wys_ocene' value='Wyślij!'>";
-                            echo "</form>";
-                            if (isset($_POST['wys_ocene'])) {
-                                if ($_SESSION['zalogowany'] == false || $_SESSION['upr'] == 'viewer') {
-                                    $id_wydarzenia = $_POST['value_wydarzenia'];
-                                    if ($id_wydarzenia == $row['ID']) {
-                                        echo "<script>alert('Nie możesz wybrać tej opcji, nie jesteś zalogowany')</script>";
-                                    }
-                                } else {
-                                    $ocena = $_POST['ocena'];
-                                    $id_wydarzenia1 = $_POST['value_wydarzenia'];
-                                    if (!empty($ocena) && $id_wydarzenia1 == $row['ID']) {
-                                        $uzytkownik_ktory_ocenial = $_SESSION['user'];
-                                        $sql = "INSERT INTO `oceny`(`login_uzyt`, `ID_wydarzenia`, `wystawiona_ocena`) VALUES ('$uzytkownik_ktory_ocenial', '$id_wydarzenia1','$ocena')";
-
-                                        if ($conn->query($sql) === TRUE) {
-                                            header("Location: ./index.php");
-                                            exit();
-                                        } else {
-                                            echo $conn->error;
-                                        }
-                                    } else {
-                                        if ($id_wydarzenia1 == $row['ID']) {
-                                            echo "<script>alert('Nie wybrano oceny')</script>";
-                                        }
-                                    }
-                                }
-                            }
+                            echo "<h3 id='zle'>Przeszłe</h3>";
                         } else {
                             echo "<form method='POST' action=''>";
                             echo "<input type='hidden' name='nazwa_wydarzenia' value='" . $row['nazwa_wyd'] . "'>";
