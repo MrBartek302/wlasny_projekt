@@ -1,29 +1,83 @@
 <?php
 session_start();
+
+if (isset($_POST["wyss"])) {
+    if (empty($_POST['login']) || empty($_POST['pass'])) {
+        echo "<script>alert('Nie uzupełniłeś pozycji przy logowaniu')</script>";
+    } else {
+        $login = $_POST["login"];
+        $pass = $_POST["pass"];
+
+        function szyfruj_haslo($pass)
+        {
+            return md5($pass);
+        }
+
+        $szyfrowane = szyfruj_haslo($pass);
+
+        $host = "localhost";
+        $dbuser = "root";
+        $dbpassword = "";
+        $dbname = "Aaawlasny_projekt_BS";
+
+        $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+
+        if (!$conn) {
+            die("Nie połaczono z baza danych" . mysqli_connect_error());
+        }
+
+        $sql = "SELECT `ID`, `login`, `pass`, `upr` FROM `uzytkownicy` WHERE login='$login' AND pass='$szyfrowane'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $_SESSION['zalogowany'] = true;
+            $row = $result->fetch_assoc();
+            $_SESSION['user'] = $row['login'];
+            $_SESSION['upr'] = $row['upr'];
+
+            if ($_SESSION['upr'] == 'admin' || $_SESSION['upr'] == 'pracownik') {
+                header('location: ./indexadminiuzytkownik.php');
+                exit(); // Dodaj exit po header, aby zapobiec dalszemu wykonywaniu kodu
+            } elseif ($_SESSION['upr'] == 'user' || $_SESSION['upr'] == 'viewer') {
+                header('location: ./index.php');
+                exit(); // Dodaj exit po header, aby zapobiec dalszemu wykonywaniu kodu
+            }
+        } else {
+            $_SESSION["zalogowany"] = false;
+            $_SESSION['user'] = "";
+            $_SESSION['upr'] = "";
+            echo "Nie zalogowano!";
+        }
+    }
+}
 ?>
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logowanie</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>CodePen - Animated Login Form using Html &amp; CSS Only</title>
+
+    <link rel="stylesheet" href="stylik.css">
+
 </head>
 
-<body>
-    <?php
-    if (!isset($_SESSION["zalogowany"])) {
-        $_SESSION["zalogowany"] = false;
-    }
+<body> <!-- partial:index.partial.html -->
 
-    if (!isset($_SESSION['user'])) {
-        $_SESSION['user'] = 'viewer';
-    } elseif ($_SESSION['user'] == "") {
-        $_SESSION['user'] = 'viewer';
-    }
-    ?>
-    <div id="ogol">
+    <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <?php
+        if (!isset($_SESSION["zalogowany"])) {
+            $_SESSION["zalogowany"] = false;
+        }
+
+        if (!isset($_SESSION['user'])) {
+            $_SESSION['user'] = 'viewer';
+        } elseif ($_SESSION['user'] == "") {
+            $_SESSION['user'] = 'viewer';
+        }
+        ?>
         <div id="menu">
             <div id="menlewolewo">
                 <h1>Logowanie</h1>
@@ -40,73 +94,32 @@ session_start();
                 ?>
             </div>
             <div id="menprawo"></div>
+            <div id="menprawoprawo"></div>
         </div>
-        <div id="tresclog" style="display: flex; align-items:center; justify-content:center; flex-direction: row; width: 100%; height: 90vh;">
-            <form method="POST" action="" style="height: 20px;">
-                <input type="text" class="input" name="login" placeholder="Login">
-                <input type="text" class="input" name="pass" placeholder="Hasło">
-                <input type="submit" class="input" name="wyss" value="Zaloguj">
-            </form><br><br>
+        <div class="signin">
 
-            <?php
-            if (isset($_POST["wyss"])) {
-                if (empty($_POST['login']) || empty($_POST['pass'])) {
-                    echo "<script>alert('Nie uzupełniłeś pozycji przy logowaniu')</script>";
-                } else {
-                    $login = $_POST["login"];
-                    $pass = $_POST["pass"];
+            <div class="content">
 
-                    function szyfruj_haslo($pass)
-                    {
-                        return md5($pass);
-                    }
+                <h2>Sign In</h2>
 
-                    $szyfrowane = szyfruj_haslo($pass);
+                <div class="form">
 
-                    $host = "localhost";
-                    $dbuser = "root";
-                    $dbpassword = "";
-                    $dbname = "Aaawlasny_projekt_BS";
+                    <form method="POST" action="" style="height: 20px;">
+                        <input type="text" class="inputBox" name="login" required> <i>Username</i>
+                        <input type="text" class="inputBox" name="pass" required> <i>Password</i>
+                        <input type="submit" class="inputBox" name="wyss" value="Login" required>
+                    </form>
 
-                    $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
 
-                    if (!$conn) {
-                        die("Nie połaczono z baza danych" . mysqli_connect_error());
-                    }
 
-                    $sql = "SELECT `ID`, `login`, `pass`, `upr` FROM `uzytkownicy` WHERE login='$login' AND pass='$szyfrowane'";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        $_SESSION['zalogowany'] = true;
-                        //tutaj bez while bo wiemy że jest jeden rekord
-                        $row = $result->fetch_assoc();
+                </div>
 
-                        $_SESSION['user'] = $row['login'];
+            </div>
 
-                        $_SESSION['upr'] = $row['upr'];
-
-                        //przenosi do wybranej strony
-                        if ($_SESSION['upr'] == 'admin' || $_SESSION['upr'] == 'pracownik') {
-                            header('location: ./indexadminiuzytkownik.php');
-                        } elseif ($_SESSION['upr'] == 'user' || $_SESSION['upr'] == 'viewer') {
-                            header('location: ./index.php');
-                        }
-                    } else {
-                        $_SESSION["zalogowany"] = false;
-
-                        $_SESSION['user'] = "";
-
-                        $_SESSION['upr'] = "";
-
-                        echo "Nie zalogowano!";
-                    }
-                }
-            } else {
-                echo "";
-            }
-            ?>
         </div>
-    </div>
+
+    </section> <!-- partial -->
+
 </body>
 
 </html>
