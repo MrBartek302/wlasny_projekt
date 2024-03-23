@@ -442,24 +442,6 @@ body {
   height: 100%;
 }
 
-#srodekadmgora {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: dotted darkmagenta 3px;
-  width: 100%;
-  height: 50%;
-}
-
-#srodekadmdol {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-  height: 50%;
-}
-
 #prawoadm {
   display: flex;
   align-items: center;
@@ -603,13 +585,17 @@ h3 {
   background-color: rgb(88, 4, 90);
 }
 
+#napisadmin {
+  color: darkorange;
+}
+
 table {
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 0.9em;
   font-family: sans-serif;
   width: 80%;
-  height: 85%;
+  height: 60%;
   box-shadow: 0 0 30px darkmagenta;
 }
 

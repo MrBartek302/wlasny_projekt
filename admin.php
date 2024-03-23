@@ -89,7 +89,7 @@ if (isset($_POST['zmienupr'])) {
             </div>
             <div id="lewoadmdol">
                 <div id="lewoadmdolgora">
-                    <h1>Użytkownicy:</h1>
+                    <h1>Działania na użytkownikach:</h1>
                 </div>
                 <div id="lewoadmdoldol">
                     <?php
@@ -149,49 +149,47 @@ if (isset($_POST['zmienupr'])) {
             </div>
         </div>
         <div id="srodekadm">
-            <div id="srodekadmgora">
-                <?php
-                $host = "localhost";
-                $dbuser = "root";
-                $dbpassword = "";
-                $dbname = "Aaawlasny_projekt_BS";
-                $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
-                if (!$conn) {
-                    die("Nie połaczono z baza danych" . mysqli_connect_error());
-                }
-                $sql = "SELECT DISTINCT nazwa_wyd FROM `wydarzenia`";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
+            <h1 id="napisadmin">Statystyka dotycząca wydarzeń:</h1>
+            <?php
+            $host = "localhost";
+            $dbuser = "root";
+            $dbpassword = "";
+            $dbname = "Aaawlasny_projekt_BS";
+            $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+            if (!$conn) {
+                die("Nie połaczono z baza danych" . mysqli_connect_error());
+            }
+            $sql = "SELECT DISTINCT nazwa_wyd FROM `wydarzenia`";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
 
-                    echo "<table>";
-                    echo "<tr id='tr1'>";
-                    echo "<th>Wydarzenia</th>";
-                    echo "<th>Ilość zainteresowań</th>";
-                    echo "</tr>";
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr id ='tr2'>";
-                        echo "<td>" . $row['nazwa_wyd'] . "</td>";
+                echo "<table>";
+                echo "<tr id='tr1'>";
+                echo "<th>Wydarzenia</th>";
+                echo "<th>Ilość zainteresowań</th>";
+                echo "</tr>";
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr id ='tr2'>";
+                    echo "<td>" . $row['nazwa_wyd'] . "</td>";
 
-                        $nazwa_wydarzenia = $row['nazwa_wyd'];
-                        $sql1 = "SELECT COUNT(nazwa_wydarzenia) AS liczba_zainteresowan FROM `zainteresowania` WHERE nazwa_wydarzenia='$nazwa_wydarzenia'";
-                        $result1 = $conn->query($sql1);
-                        if ($result1->num_rows > 0) {
-                            while ($row = $result1->fetch_assoc()) {
-                                echo "<td>" . $row['liczba_zainteresowan'] . "</td>";
-                            }
-                        } else {
-                            echo "";
+                    $nazwa_wydarzenia = $row['nazwa_wyd'];
+                    $sql1 = "SELECT COUNT(nazwa_wydarzenia) AS liczba_zainteresowan FROM `zainteresowania` WHERE nazwa_wydarzenia='$nazwa_wydarzenia'";
+                    $result1 = $conn->query($sql1);
+                    if ($result1->num_rows > 0) {
+                        while ($row = $result1->fetch_assoc()) {
+                            echo "<td>" . $row['liczba_zainteresowan'] . "</td>";
                         }
-                        echo "</tr>";
+                    } else {
+                        echo "";
                     }
-                    echo "</table>";
-                } else {
-                    echo "";
+                    echo "</tr>";
                 }
-                $conn->close();
-                ?>
-            </div>
-            <div id="srodekadmdol"></div>
+                echo "</table>";
+            } else {
+                echo "";
+            }
+            $conn->close();
+            ?>
         </div>
         <div id="prawoadm"></div>
     </div>

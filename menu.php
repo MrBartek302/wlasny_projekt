@@ -8,4 +8,5 @@
     }
     ?>
     <li><a href="./rejestracja.php" class="button">Rejestracja</a></li>
+    <li><a href="./test.php" class="button">Rejestracja</a></li>
 </ul>
