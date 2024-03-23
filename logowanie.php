@@ -88,7 +88,7 @@ session_start();
                         //przenosi do wybranej strony
                         if ($_SESSION['upr'] == 'admin' || $_SESSION['upr'] == 'pracownik') {
                             header('location: ./indexadminiuzytkownik.php');
-                        } elseif ($_SESSION['upr'] == 'user') {
+                        } elseif ($_SESSION['upr'] == 'user' || $_SESSION['upr'] == 'viewer') {
                             header('location: ./index.php');
                         }
                     } else {

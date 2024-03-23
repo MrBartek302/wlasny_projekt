@@ -79,7 +79,7 @@ session_start();
 
                         echo "<div id = 'divdolprawo'>";
                         echo "<form method='POST' action=''>";
-                        echo "<input type='hidden' name='wartoscID' value='" . $row['ID'] . "'>";
+                        echo "<input type='hidden' name='nazwa_wydarzenia' value='" . $row['nazwa_wyd'] . "'>";
                         echo "<input type='submit' name='zainteres' id='zainteresbutton' value='Zainteresowany!'>";
                         echo "</form>";
 
@@ -111,13 +111,13 @@ session_start();
                         echo "<script>alert('Nie możesz wybrać tej opcji, nie jesteś zalogowany')</script>";
                     } else {
                         $uzytkownik = $_SESSION['user'];
-                        $id_wydarz = $_POST['wartoscID'];
-                        $sql = "SELECT * FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik' AND `id_wydarzenia` = '$id_wydarz'";
+                        $nazwa_wydarzenia = $_POST['nazwa_wydarzenia'];
+                        $sql = "SELECT * FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik' AND `nazwa_wydarzenia` = '$nazwa_wydarzenia'";
                         $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
                             echo "<script>alert('Zaznaczyłeś już swoje zainteresowanie!')</script>";
                         } else {
-                            $sql1 = "INSERT INTO `zainteresowania`(`uzytkownik`, `id_wydarzenia`) VALUES ('$uzytkownik','$id_wydarz')";
+                            $sql1 = "INSERT INTO `zainteresowania`(`uzytkownik`, `nazwa_wydarzenia`) VALUES ('$uzytkownik','$nazwa_wydarzenia')";
                             $result1 = $conn->query($sql1);
                             if ($result1) {
                                 header("Location: ./index.php");

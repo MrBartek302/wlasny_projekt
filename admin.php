@@ -2,6 +2,7 @@
 // Start the session
 session_start();
 
+
 // Połączenie z bazą danych
 $host = "localhost";
 $dbuser = "root";
@@ -29,13 +30,25 @@ if (isset($_POST['zmienupr'])) {
             echo "";
         }
     } else {
-        echo "Podane uprawnienie nie istnieje!";
+        echo "<script>alert('Podane uprawnienie nie istnieje!')</script>";
     }
 } elseif (isset($_POST['usunuzytadm'])) {
     $idusun = $_POST['wartoscIDuzyt'];
     $sql_usun = "DELETE FROM `uzytkownicy` WHERE `ID` = $idusun";
     $result = $conn->query($sql_usun);
     if ($result) {
+        header("Location: ./admin.php");
+        exit();
+    } else {
+        echo "";
+    }
+} elseif (isset($_POST['usunupradm'])) {
+    $id_uzytkownika = $_POST['userID2'];
+
+    $sql_zmien_upr = "UPDATE `uzytkownicy` SET `upr` = 'viewer' WHERE `ID`='$id_uzytkownika'";
+    $result_zmien_upr = $conn->query($sql_zmien_upr);
+    if ($result_zmien_upr) {
+        sleep(1);
         header("Location: ./admin.php");
         exit();
     } else {
@@ -117,7 +130,7 @@ if (isset($_POST['zmienupr'])) {
                             echo "<input type='submit' class='input1' name='usunuzytadm' value='Usuń użytkownika!'>";
                             echo "</form>";
                             echo "<form method='POST' action=''>";
-                            echo "<input type='hidden' class='input' name='wartoscIDupr' value='" . $row['ID'] . "'>";
+                            echo "<input type='hidden' class='input' name='userID2' value='" . $row['ID'] . "'>";
                             echo "<input type='submit' class='input1' name='usunupradm' value='Usuń uprawnienie!'>";
                             echo "</form>";
 
@@ -135,7 +148,34 @@ if (isset($_POST['zmienupr'])) {
                 </div>
             </div>
         </div>
-        <div id="srodekadm"></div>
+        <div id="srodekadm">
+            <?php
+            $host = "localhost";
+            $dbuser = "root";
+            $dbpassword = "";
+            $dbname = "Aaawlasny_projekt_BS";
+            $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+            if (!$conn) {
+                die("Nie połaczono z baza danych" . mysqli_connect_error());
+            }
+            $sql = "SELECT * FROM `zainteresowania` WHERE 1";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                echo "<table>";
+                echo "<tr>";
+                while ($row = $result->fetch_assoc()) {
+                    for ($i = 0; $i <= $result->num_rows; $i++) {
+                        echo "<th></th>";
+                    }
+                    echo "</tr>";
+                    echo "</table>";
+                }
+            } else {
+                echo "";
+            }
+            $conn->close();
+            ?>
+        </div>
         <div id="prawoadm"></div>
     </div>
 </body>
