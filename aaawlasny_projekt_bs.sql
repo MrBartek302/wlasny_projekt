@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 22 Mar 2024, 23:58
+-- Czas generowania: 23 Mar 2024, 22:42
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -39,7 +39,8 @@ CREATE TABLE `uprawnienia` (
 INSERT INTO `uprawnienia` (`ID_upr`, `nazwa_upr`) VALUES
 (1, 'admin'),
 (2, 'pracownik'),
-(3, 'user');
+(3, 'user'),
+(4, 'viewer');
 
 -- --------------------------------------------------------
 
@@ -60,8 +61,9 @@ CREATE TABLE `uzytkownicy` (
 
 INSERT INTO `uzytkownicy` (`ID`, `login`, `pass`, `upr`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin'),
-(2, 'user', '21232f297a57a5a743894a0e4a801fc3', 'user'),
-(3, 'pracownik', '21232f297a57a5a743894a0e4a801fc3', 'pracownik');
+(2, 'pracownik', '21232f297a57a5a743894a0e4a801fc3', 'pracownik'),
+(3, 'bartek', '21232f297a57a5a743894a0e4a801fc3', 'user'),
+(4, 'michał', '21232f297a57a5a743894a0e4a801fc3', 'viewer');
 
 -- --------------------------------------------------------
 
@@ -82,7 +84,12 @@ CREATE TABLE `wydarzenia` (
 
 INSERT INTO `wydarzenia` (`ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES
 (2, 'Odebranie Audi RS4 Avant', 'Odbiór Audi RS4 Avant czyli przekazanie kluczyków i tyle', '2026-11-21'),
-(4, 'Ryszard', 'sdsa', '2024-02-29');
+(4, 'Ryszard', 'sdsa', '2024-02-29'),
+(8, 'testujemy', '34234ewfds', '2024-03-07'),
+(9, 'JOOOOŁ', 'Bartłomiej Fałek zaśpiewa koncert', '2024-03-05'),
+(10, 'sadsadsa', '34234ewfds', '2024-03-23'),
+(11, 'dsfsd', 'fsdfs', '2024-04-11'),
+(12, 'sdfsdfsd', 'sdfsdfs', '2024-05-03');
 
 -- --------------------------------------------------------
 
@@ -93,19 +100,24 @@ INSERT INTO `wydarzenia` (`ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES
 CREATE TABLE `zainteresowania` (
   `ID` int(11) NOT NULL,
   `uzytkownik` text NOT NULL,
-  `id_wydarzenia` int(11) NOT NULL
+  `nazwa_wydarzenia` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
 
 --
 -- Zrzut danych tabeli `zainteresowania`
 --
 
-INSERT INTO `zainteresowania` (`ID`, `uzytkownik`, `id_wydarzenia`) VALUES
-(1, 'user', 1),
-(2, 'user', 2),
-(3, 'user', 3),
-(4, 'user', 4),
-(5, 'bartekstepien27gmail.com', 4);
+INSERT INTO `zainteresowania` (`ID`, `uzytkownik`, `nazwa_wydarzenia`) VALUES
+(1, 'bartek', 'Ryszard'),
+(2, 'bartek', 'Odebranie Audi RS4 Avant'),
+(3, 'michał', 'Ryszard'),
+(4, 'michał', 'Odebranie Audi RS4 Avant'),
+(5, 'bartek', 'JOOOOŁ'),
+(6, 'michał', 'JOOOOŁ'),
+(7, 'user', 'Odebranie Audi RS4 Avant'),
+(8, 'user', 'dsfsd'),
+(9, 'user', 'sdfsdfsd'),
+(10, 'michał', 'dsfsd');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -143,25 +155,25 @@ ALTER TABLE `zainteresowania`
 -- AUTO_INCREMENT dla tabeli `uprawnienia`
 --
 ALTER TABLE `uprawnienia`
-  MODIFY `ID_upr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_upr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT dla tabeli `zainteresowania`
 --
 ALTER TABLE `zainteresowania`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
