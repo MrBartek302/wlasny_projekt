@@ -554,3 +554,19 @@ h1 {
 #buttonpowrot:hover {
   background-color: rgb(88, 4, 90);
 }
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+}
+
+td {
+  border: solid 1px white;
+  padding: 5px;
+}
+
+th {
+  border: solid 1px white;
+  width: 20%;
+  padding: 5px;
+}

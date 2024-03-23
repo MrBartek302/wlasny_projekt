@@ -158,18 +158,33 @@ if (isset($_POST['zmienupr'])) {
             if (!$conn) {
                 die("Nie połaczono z baza danych" . mysqli_connect_error());
             }
-            $sql = "SELECT * FROM `zainteresowania` WHERE 1";
+            $sql = "SELECT DISTINCT nazwa_wyd FROM `wydarzenia`";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 echo "<table>";
+
                 echo "<tr>";
+                echo "<th>Wydarzenia</th>";
+                echo "<th>Zainteresowania</th>";
+                echo "</tr>";
+
                 while ($row = $result->fetch_assoc()) {
-                    for ($i = 0; $i <= $result->num_rows; $i++) {
-                        echo "<th></th>";
+                    echo "<tr>";
+                    echo "<td>" . $row['nazwa_wyd'] . "</td>";
+
+                    $nazwa_wyd = $row['nazwa_wyd'];
+                    $sql1 = "SELECT COUNT(nazwa_wydarzenia) AS liczba_zainteresowan FROM `zainteresowania` WHERE nazwa_wydarzenia='$nazwa_wyd'";
+                    $result1 = $conn->query($sql1);
+                    if ($result1->num_rows > 0) {
+                        while ($row = $result1->fetch_assoc()) {
+                            echo "<td>" . $row['liczba_zainteresowan'] . "</td>";
+                        }
+                    } else {
+                        echo "";
                     }
                     echo "</tr>";
-                    echo "</table>";
                 }
+                echo "</table>";
             } else {
                 echo "";
             }
