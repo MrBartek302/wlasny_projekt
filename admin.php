@@ -161,19 +161,18 @@ if (isset($_POST['zmienupr'])) {
             $sql = "SELECT DISTINCT nazwa_wyd FROM `wydarzenia`";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
-                echo "<table>";
 
+                echo "<table>";
                 echo "<tr>";
                 echo "<th>Wydarzenia</th>";
-                echo "<th>Zainteresowania</th>";
+                echo "<th>Ilość zainteresowań</th>";
                 echo "</tr>";
-
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row['nazwa_wyd'] . "</td>";
 
-                    $nazwa_wyd = $row['nazwa_wyd'];
-                    $sql1 = "SELECT COUNT(nazwa_wydarzenia) AS liczba_zainteresowan FROM `zainteresowania` WHERE nazwa_wydarzenia='$nazwa_wyd'";
+                    $nazwa_wydarzenia = $row['nazwa_wyd'];
+                    $sql1 = "SELECT COUNT(nazwa_wydarzenia) AS liczba_zainteresowan FROM `zainteresowania` WHERE nazwa_wydarzenia='$nazwa_wydarzenia'";
                     $result1 = $conn->query($sql1);
                     if ($result1->num_rows > 0) {
                         while ($row = $result1->fetch_assoc()) {
