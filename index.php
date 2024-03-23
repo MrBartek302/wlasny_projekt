@@ -24,6 +24,40 @@ session_start();
         $_SESSION['user'] = 'viewer';
     }
     ?>
+    <?php
+    if (isset($_POST['zainteres'])) {
+        $host = "localhost";
+        $dbuser = "root";
+        $dbpassword = "";
+        $dbname = "Aaawlasny_projekt_BS";
+
+        $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+        if (!$conn) {
+            die("Nie połaczono z baza danych" . mysqli_connect_error());
+        }
+
+        if ($_SESSION['zalogowany'] == false || $_SESSION['upr'] == 'viewer') {
+            echo "<script>alert('Nie możesz wybrać tej opcji, nie jesteś zalogowany')</script>";
+        } else {
+            $uzytkownik = $_SESSION['user'];
+            $nazwa_wydarzenia = $_POST['nazwa_wydarzenia'];
+            $sql = "SELECT * FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik' AND `nazwa_wydarzenia` = '$nazwa_wydarzenia'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                echo "<script>alert('Zaznaczyłeś już swoje zainteresowanie!')</script>";
+            } else {
+                $sql1 = "INSERT INTO `zainteresowania`(`uzytkownik`, `nazwa_wydarzenia`) VALUES ('$uzytkownik','$nazwa_wydarzenia')";
+                $result1 = $conn->query($sql1);
+                if ($result1) {
+                    header("Location: ./index.php");
+                    exit();
+                } else {
+                    echo "";
+                }
+            }
+        }
+    }
+    ?>
     <div id="ogol">
         <div id="menu">
             <div id="menlewolewo">
@@ -78,11 +112,54 @@ session_start();
                         echo "</div>";
 
                         echo "<div id = 'divdolprawo'>";
-                        echo "<form method='POST' action=''>";
-                        echo "<input type='hidden' name='nazwa_wydarzenia' value='" . $row['nazwa_wyd'] . "'>";
-                        echo "<input type='submit' name='zainteres' id='zainteresbutton' value='Zainteresowany!'>";
-                        echo "</form>";
+                        $date = new DateTime($row['data_wyd']);
+                        $now = new DateTime();
 
+                        if ($date < $now) {
+                            echo "<form method='POST' action=''>";
+                            echo "<select name='ocena'>";
+                            echo "<option value=''>--- Oceń wydarzenie ---</option>";
+                            echo "<option value='1'>1</option>";
+                            echo "<option value='2'>2</option>";
+                            echo "<option value='3'>3</option>";
+                            echo "<option value='4'>4</option>";
+                            echo "<option value='5'>5</option>";
+                            echo "</select>";
+                            echo "<input type='hidden' name='value_wydarzenia' value='" . $row['ID'] . "'>";
+                            echo "<input type='submit' name='wys_ocene' value='Wyślij!'>";
+                            echo "</form>";
+                            if (isset($_POST['wys_ocene'])) {
+                                if ($_SESSION['zalogowany'] == false || $_SESSION['upr'] == 'viewer') {
+                                    $id_wydarzenia = $_POST['value_wydarzenia'];
+                                    if ($id_wydarzenia == $row['ID']) {
+                                        echo "<script>alert('Nie możesz wybrać tej opcji, nie jesteś zalogowany')</script>";
+                                    }
+                                } else {
+                                    $ocena = $_POST['ocena'];
+                                    $id_wydarzenia1 = $_POST['value_wydarzenia'];
+
+                                    if (!empty($ocena) && $id_wydarzenia1 == $row['ID']) {
+                                        $sql = "INSERT INTO `oceny`(`ID_wydarzenia`, `wystawiona_ocena`) VALUES ('$id_wydarzenia1','$ocena')";
+
+                                        if ($conn->query($sql) === TRUE) {
+                                            header("Location: ./index.php");
+                                            exit();
+                                        } else {
+                                            echo $conn->error;
+                                        }
+                                    } else {
+                                        if ($id_wydarzenia1 == $row['ID']) {
+                                            echo "<script>alert('Nie wybrano oceny')</script>";
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            echo "<form method='POST' action=''>";
+                            echo "<input type='hidden' name='nazwa_wydarzenia' value='" . $row['nazwa_wyd'] . "'>";
+                            echo "<input type='submit' name='zainteres' id='zainteresbutton' value='Zainteresowany!'>";
+                            echo "</form>";
+                        }
                         echo "</div>";
 
                         echo "</div>";
@@ -93,40 +170,6 @@ session_start();
                     echo "";
                 }
                 $conn->close();
-                ?>
-
-                <?php
-                if (isset($_POST['zainteres'])) {
-                    $host = "localhost";
-                    $dbuser = "root";
-                    $dbpassword = "";
-                    $dbname = "Aaawlasny_projekt_BS";
-
-                    $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
-                    if (!$conn) {
-                        die("Nie połaczono z baza danych" . mysqli_connect_error());
-                    }
-
-                    if ($_SESSION['zalogowany'] == false) {
-                        echo "<script>alert('Nie możesz wybrać tej opcji, nie jesteś zalogowany')</script>";
-                    } else {
-                        $uzytkownik = $_SESSION['user'];
-                        $nazwa_wydarzenia = $_POST['nazwa_wydarzenia'];
-                        $sql = "SELECT * FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik' AND `nazwa_wydarzenia` = '$nazwa_wydarzenia'";
-                        $result = $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                            echo "<script>alert('Zaznaczyłeś już swoje zainteresowanie!')</script>";
-                        } else {
-                            $sql1 = "INSERT INTO `zainteresowania`(`uzytkownik`, `nazwa_wydarzenia`) VALUES ('$uzytkownik','$nazwa_wydarzenia')";
-                            $result1 = $conn->query($sql1);
-                            if ($result1) {
-                                header("Location: ./index.php");
-                            } else {
-                                echo "";
-                            }
-                        }
-                    }
-                }
                 ?>
             </div>
         </div>
