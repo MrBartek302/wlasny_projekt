@@ -2,7 +2,7 @@
     <li><a href="./" class="button">Strona Główna</a></li>
     <?php
     if ($_SESSION['zalogowany'] == false) {
-        echo "<li> <a href='./logowanie.php' class='button'>Logowanie</a></li>";
+        echo "<li> <a href='./logowanie.php' id='button2'>Logowanie</a></li>";
     } else {
         echo "<li> <a href='./wylog.php' id='button1'>Wyloguj</a></li>";
     }
