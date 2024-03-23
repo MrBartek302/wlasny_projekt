@@ -163,12 +163,12 @@ if (isset($_POST['zmienupr'])) {
             if ($result->num_rows > 0) {
 
                 echo "<table>";
-                echo "<tr>";
+                echo "<tr id='tr1'>";
                 echo "<th>Wydarzenia</th>";
                 echo "<th>Ilość zainteresowań</th>";
                 echo "</tr>";
                 while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
+                    echo "<tr id ='tr2'>";
                     echo "<td>" . $row['nazwa_wyd'] . "</td>";
 
                     $nazwa_wydarzenia = $row['nazwa_wyd'];
