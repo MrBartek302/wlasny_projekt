@@ -58,7 +58,7 @@ if (isset($_POST["wyss"])) {
 
     <meta charset="UTF-8">
 
-    <title>CodePen - Animated Login Form using Html &amp; CSS Only</title>
+    <title>Logowanie</title>
 
     <link rel="stylesheet" href="stylik.css">
 
