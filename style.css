@@ -424,6 +424,24 @@ body {
   height: 100%;
 }
 
+#srodekadmgora {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: dotted darkmagenta 3px;
+  width: 100%;
+  height: 50%;
+}
+
+#srodekadmdol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 50%;
+}
+
 #prawoadm {
   display: flex;
   align-items: center;
@@ -557,17 +575,17 @@ h1 {
 
 table {
   border-collapse: collapse;
-  border-radius: 20px;
   margin: 25px 0;
   font-size: 0.9em;
   font-family: sans-serif;
   width: 80%;
-  box-shadow: 0 0 20px red;
+  height: 85%;
+  box-shadow: 0 0 30px darkmagenta;
 }
 
 #tr1 {
-  background-color: #009879;
-  color: #ffffff;
+  background-color: darkmagenta;
+  color: darkorange;
   text-align: left;
 }
 
@@ -577,9 +595,9 @@ td {
 }
 
 #tr2 {
-  background-color: #f3f3f3;
-  border-bottom: 1px solid #dddddd;
-  color: black;
+  background-color: rgb(62, 5, 62);
+  border-bottom: 1px solid darkorange;
+  color: darkorange;
 }
 
 #tr2.active-row {

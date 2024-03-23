@@ -149,46 +149,49 @@ if (isset($_POST['zmienupr'])) {
             </div>
         </div>
         <div id="srodekadm">
-            <?php
-            $host = "localhost";
-            $dbuser = "root";
-            $dbpassword = "";
-            $dbname = "Aaawlasny_projekt_BS";
-            $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
-            if (!$conn) {
-                die("Nie połaczono z baza danych" . mysqli_connect_error());
-            }
-            $sql = "SELECT DISTINCT nazwa_wyd FROM `wydarzenia`";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-
-                echo "<table>";
-                echo "<tr id='tr1'>";
-                echo "<th>Wydarzenia</th>";
-                echo "<th>Ilość zainteresowań</th>";
-                echo "</tr>";
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr id ='tr2'>";
-                    echo "<td>" . $row['nazwa_wyd'] . "</td>";
-
-                    $nazwa_wydarzenia = $row['nazwa_wyd'];
-                    $sql1 = "SELECT COUNT(nazwa_wydarzenia) AS liczba_zainteresowan FROM `zainteresowania` WHERE nazwa_wydarzenia='$nazwa_wydarzenia'";
-                    $result1 = $conn->query($sql1);
-                    if ($result1->num_rows > 0) {
-                        while ($row = $result1->fetch_assoc()) {
-                            echo "<td>" . $row['liczba_zainteresowan'] . "</td>";
-                        }
-                    } else {
-                        echo "";
-                    }
-                    echo "</tr>";
+            <div id="srodekadmgora">
+                <?php
+                $host = "localhost";
+                $dbuser = "root";
+                $dbpassword = "";
+                $dbname = "Aaawlasny_projekt_BS";
+                $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+                if (!$conn) {
+                    die("Nie połaczono z baza danych" . mysqli_connect_error());
                 }
-                echo "</table>";
-            } else {
-                echo "";
-            }
-            $conn->close();
-            ?>
+                $sql = "SELECT DISTINCT nazwa_wyd FROM `wydarzenia`";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+
+                    echo "<table>";
+                    echo "<tr id='tr1'>";
+                    echo "<th>Wydarzenia</th>";
+                    echo "<th>Ilość zainteresowań</th>";
+                    echo "</tr>";
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr id ='tr2'>";
+                        echo "<td>" . $row['nazwa_wyd'] . "</td>";
+
+                        $nazwa_wydarzenia = $row['nazwa_wyd'];
+                        $sql1 = "SELECT COUNT(nazwa_wydarzenia) AS liczba_zainteresowan FROM `zainteresowania` WHERE nazwa_wydarzenia='$nazwa_wydarzenia'";
+                        $result1 = $conn->query($sql1);
+                        if ($result1->num_rows > 0) {
+                            while ($row = $result1->fetch_assoc()) {
+                                echo "<td>" . $row['liczba_zainteresowan'] . "</td>";
+                            }
+                        } else {
+                            echo "";
+                        }
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                } else {
+                    echo "";
+                }
+                $conn->close();
+                ?>
+            </div>
+            <div id="srodekadmdol"></div>
         </div>
         <div id="prawoadm"></div>
     </div>
