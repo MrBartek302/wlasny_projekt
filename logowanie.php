@@ -60,7 +60,7 @@ if (isset($_POST["wyss"])) {
 
     <title>Logowanie</title>
 
-    <link rel="stylesheet" href="stylik.css">
+    <link rel="stylesheet" href="styleLog.css">
 
 </head>
 

@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rejestracja</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleRej.css">
 </head>
 
 <body>
@@ -23,7 +23,8 @@ session_start();
         $_SESSION['user'] = 'viewer';
     }
     ?>
-    <div id="ogol">
+    <!-- partial:index.partial.html -->
+    <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
         <div id="menu">
             <div id="menlewolewo">
                 <h1>Rejestracja</h1>
@@ -32,60 +33,78 @@ session_start();
                 <?php
                 if ($_SESSION['user'] == 'admin' || $_SESSION['user'] == 'pracownik') {
                     include 'menuadmin.php';
-                } else {
+                } elseif ($_SESSION['user'] == 'user' || $_SESSION['user'] == 'viewer') {
                     include 'menu.php';
+                } else {
+                    echo "";
                 }
                 ?>
             </div>
             <div id="menprawo"></div>
+            <div id="menprawoprawo"></div>
         </div>
-        <div id="tresclog" style="display: flex; align-items:center; justify-content:center; flex-direction: row; width: 100%; height: 90vh;">
-            <form method="POST" action="" style="height: 20px;">
-                <input type="text" class="input" name="login" placeholder="Login">
-                <input type="text" class="input" name="pass" placeholder="Hasło">
-                <input type="submit" class="input" id="wyss" name="wyss" value="Zarejestruj">
-            </form>
-            <?php
-            if (isset($_POST["wyss"])) {
-                if (empty($_POST['login']) || empty($_POST['pass'])) {
-                    echo "<script>alert('Nie uzupełniłeś wszystkich pozycji przy rejestracji')</script>";
-                } else {
-                    $login = $_POST["login"];
-                    $pass = $_POST["pass"];
+        <div class="signin">
 
-                    function szyfruj_haslo($pass)
-                    {
-                        return md5($pass);
-                    }
+            <div class="content">
 
-                    $szyfrowane = szyfruj_haslo($pass);
+                <h2>Sign Up</h2>
 
-                    $host = "localhost";
-                    $dbuser = "root";
-                    $dbpassword = "";
-                    $dbname = "Aaawlasny_projekt_BS";
+                <div class="form">
 
-                    $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+                    <form method="POST" action="">
+                        <input type="text" class="inputBox" name="login" placeholder="Login" required>
+                        <input type="password" class="inputBox" name="pass" placeholder="Password" required>
+                        <input type="submit" class="inputBox" name="wyss" value="SIGN UP" required>
+                    </form>
+                    <?php
+                    if (isset($_POST["wyss"])) {
+                        if (empty($_POST['login']) || empty($_POST['pass'])) {
+                            echo "<script>alert('Nie uzupełniłeś wszystkich pozycji przy rejestracji')</script>";
+                        } else {
+                            $login = $_POST["login"];
+                            $pass = $_POST["pass"];
 
-                    if (!$conn) {
-                        die("Nie połaczono z baza danych" . mysqli_connect_error());
-                    }
+                            function szyfruj_haslo($pass)
+                            {
+                                return md5($pass);
+                            }
 
-                    $sql = "INSERT INTO `uzytkownicy`(`login`, `pass`, `upr`) VALUES ('$login','$szyfrowane', 'user')";
-                    $result = $conn->query($sql);
-                    if ($result) {
-                        echo "<script>document.getElementById('wyss').style.backgroundColor='green'; setTimeout(function() {window.location.href='./rejestracja.php';}, 3000);</script>";
-                        exit();
+                            $szyfrowane = szyfruj_haslo($pass);
+
+                            $host = "localhost";
+                            $dbuser = "root";
+                            $dbpassword = "";
+                            $dbname = "Aaawlasny_projekt_BS";
+
+                            $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+
+                            if (!$conn) {
+                                die("Nie połaczono z baza danych" . mysqli_connect_error());
+                            }
+
+                            $sql = "INSERT INTO `uzytkownicy`(`login`, `pass`, `upr`) VALUES ('$login','$szyfrowane', 'user')";
+                            $result = $conn->query($sql);
+                            if ($result) {
+                                echo "<script>document.getElementById('wyss').style.backgroundColor='green'; setTimeout(function() {window.location.href='./rejestracja.php';}, 3000);</script>";
+                                exit();
+                            } else {
+                                echo "Nie dodano!!!!";
+                            }
+                        }
                     } else {
-                        echo "Nie dodano!!!!";
+                        echo "";
                     }
-                }
-            } else {
-                echo "";
-            }
-            ?>
+                    ?>
+
+
+                </div>
+
+            </div>
+
         </div>
-    </div>
+
+    </section> <!-- partial -->
+
 </body>
 
 </html>

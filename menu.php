@@ -7,5 +7,5 @@
         echo "<li> <a href='./wylog.php' id='button1'>Wyloguj</a></li>";
     }
     ?>
-    <li><a href="./rejestracja.php" class="button">Rejestracja</a></li>
+    <li><a href="./rejestracja.php" id="button3">Rejestracja</a></li>
 </ul>
