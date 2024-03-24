@@ -117,21 +117,21 @@ form {
   margin-bottom: 20px;
 }
 
-.inputBox i {
+.inputBox::placeholder {
   position: absolute;
   left: 0;
   padding: 15px 10px;
   font-style: normal;
-  color: #aaa;
+  color: rgb(255, 111, 0);
   transition: 0.5s;
   pointer-events: none;
 }
 
-.inputBox:focus ~ i,
-.inputBox:valid ~ i {
+.inputBox:focus::placeholder,
+.inputBox:valid::placeholder {
   transform: translateY(-7.5px);
   font-size: 0.8em;
-  color: #fff;
+  color: rgb(255, 111, 0);
 }
 
 input[type="submit"] {
