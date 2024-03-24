@@ -32,7 +32,7 @@ section::before {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(#000, #0f0, #000);
+  background: linear-gradient(#000, rgb(255, 111, 0), #000);
   animation: animate 5s linear infinite;
 }
 
@@ -56,7 +56,7 @@ section span {
 }
 
 section span:hover {
-  background: #0f0;
+  background: rgb(255, 111, 0);
   transition: 0s;
 }
 
@@ -86,7 +86,7 @@ section .signin .content {
 
 section .signin .content h2 {
   font-size: 2em;
-  color: #0f0;
+  color: rgb(255, 111, 0);
   text-transform: uppercase;
 }
 
@@ -145,14 +145,14 @@ section .signin .content .form .inputBox i {
 }
 
 .signin .content .form .links a:nth-child(2) {
-  color: #0f0;
+  color: rgb(255, 111, 0);
   font-weight: 600;
 }
 
 input[type="submit"] {
   padding: 10px;
   border-radius: 10px;
-  background: #0f0;
+  background: rgb(255, 111, 0);
   color: #000;
   font-weight: 600;
   font-size: 1.35em;
@@ -166,7 +166,7 @@ input[type="submit"]:active {
 }
 
 input[type="submit"]:hover {
-  background-color: rgb(5, 112, 5);
+  background-color: rgb(122, 54, 2);
 }
 
 .button-list {
@@ -211,7 +211,7 @@ input[type="submit"]:hover {
   top: 0; /* Umieszczenie menu na górze */
   background-color: rgba(0, 0, 0, 0.8); /* Kolor tła z przezroczystością */
   z-index: 1000; /* Wyżej niż inne elementy */
-  border-bottom: 0.5px solid #0f0; /* Linia na dole menu */
+  border-bottom: 0.5px solid rgb(255, 111, 0); /* Linia na dole menu */
 }
 #menlewo {
   display: flex;
@@ -220,7 +220,7 @@ input[type="submit"]:hover {
   justify-content: center;
   width: 65%;
   height: 100%;
-  border-right: 0.5px solid #0f0; /* Linia oddzielająca elementy */
+  border-right: 0.5px solid rgb(255, 111, 0); /* Linia oddzielająca elementy */
 }
 #menlewolewo {
   display: flex;
@@ -229,7 +229,7 @@ input[type="submit"]:hover {
   justify-content: center;
   width: 15%;
   height: 100%;
-  border-right: 0.5px solid #0f0; /* Linia oddzielająca elementy */
+  border-right: 0.5px solid rgb(255, 111, 0); /* Linia oddzielająca elementy */
 }
 #menprawo {
   display: flex;
@@ -246,7 +246,7 @@ input[type="submit"]:hover {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  border-left: 0.5px solid #0f0;
+  border-left: 0.5px solid rgb(255, 111, 0);
   width: 10%;
   height: 100%;
 }
@@ -258,7 +258,7 @@ input[type="submit"]:hover {
 }
 
 i {
-  color: #0f0;
+  color: rgb(255, 111, 0);
 }
 
 #button2 {
@@ -279,5 +279,5 @@ i {
 }
 
 #button2:hover {
-  background-color: #0f0;
+  background-color: rgb(255, 111, 0);
 }
