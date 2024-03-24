@@ -33,10 +33,10 @@ if (isset($_POST["wyss"])) {
 
         if ($_SESSION['upr'] == 'admin' || $_SESSION['upr'] == 'pracownik') {
             header('location: ./indexadminiuzytkownik.php');
-            exit(); // Dodaj exit po header, aby zapobiec dalszemu wykonywaniu kodu
+            exit();
         } elseif ($_SESSION['upr'] == 'user' || $_SESSION['upr'] == 'viewer') {
             header('location: ./index.php');
-            exit(); // Dodaj exit po header, aby zapobiec dalszemu wykonywaniu kodu
+            exit();
         }
     } else {
         $_SESSION["zalogowany"] = false;

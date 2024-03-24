@@ -28,7 +28,7 @@ body {
   justify-content: center;
   width: 65%;
   height: 100%;
-  border-right: 0.5px solid white; /* Linia oddzielająca elementy */
+  border-right: 0.5px solid white;
 }
 #menlewolewo {
   display: flex;
@@ -37,7 +37,7 @@ body {
   justify-content: center;
   width: 15%;
   height: 100%;
-  border-right: 0.5px solid white; /* Linia oddzielająca elementy */
+  border-right: 0.5px solid white;
 }
 #menprawo {
   display: flex;
@@ -45,11 +45,11 @@ body {
   justify-content: center;
   width: 10%;
   height: 100%;
-  padding: 0 20px; /* Odstępy wewnętrzne */
-  color: white; /* Kolor tekstu */
-  font-family: Arial, Helvetica, sans-serif; /* Czcionka */
-  font-weight: bold; /* Pogrubienie tekstu */
-  font-size: 16px; /* Rozmiar tekstu */
+  padding: 0 20px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 #menprawoprawo {
@@ -63,9 +63,9 @@ body {
 }
 
 #menlewolewo h1 {
-  font-size: 1.5em; /* Rozmiar tytułu */
-  margin: 0; /* Usunięcie marginesu */
-  padding: 0; /* Usunięcie wewnętrznego paddingu */
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0;
 }
 
 #tresc {
@@ -128,7 +128,7 @@ body {
   border-top: solid darkmagenta 3px;
   border-radius: 20px;
   width: 100%;
-  height: 80%; /* Ustaw maksymalną wysokość */
+  height: 80%;
 }
 
 #wydarzenie {
@@ -277,10 +277,10 @@ body {
   align-items: center;
   justify-content: center;
   padding: 8px 16px;
-  margin-right: 10px; /*odstęp pomiędzy przyciskami*/
+  margin-right: 10px;
   background-color: black;
   color: white;
-  text-decoration: none; /*brak podkreslenia*/
+  text-decoration: none;
   border-radius: 20px;
   border: 3px solid white;
   transition: 0.3s;

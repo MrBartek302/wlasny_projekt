@@ -2,8 +2,6 @@
 // Start the session
 session_start();
 
-
-// Połączenie z bazą danych
 $host = "localhost";
 $dbuser = "root";
 $dbpassword = "";
@@ -13,7 +11,6 @@ if (!$conn) {
     die("Nie połączono z bazą danych" . mysqli_connect_error());
 }
 
-// Kod PHP odpowiedzialny za przetwarzanie formularzy
 if (isset($_POST['zmienupr'])) {
     $id_uzytkownika = $_POST['userID'];
     $upr_zmian = $_POST['uprdozmiany'];
