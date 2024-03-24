@@ -82,13 +82,19 @@ session_start();
                                 die("Nie połaczono z baza danych" . mysqli_connect_error());
                             }
 
-                            $sql = "INSERT INTO `uzytkownicy`(`login`, `pass`, `upr`) VALUES ('$login','$szyfrowane', 'user')";
+                            $sql = "SELECT `ID`, `login`, `pass`, `upr` FROM `uzytkownicy` WHERE `login`='$login'";
                             $result = $conn->query($sql);
-                            if ($result) {
-                                echo "<script>document.getElementById('wyss').style.backgroundColor='green'; setTimeout(function() {window.location.href='./rejestracja.php';}, 3000);</script>";
-                                exit();
+                            if ($result->num_rows > 0) {
+                                echo "<script>alert('Podany login jest już zajęty!')</script>";
                             } else {
-                                echo "Nie dodano!!!!";
+                                $sql = "INSERT INTO `uzytkownicy`(`login`, `pass`, `upr`) VALUES ('$login','$szyfrowane', 'user')";
+                                $result = $conn->query($sql);
+                                if ($result) {
+                                    echo "<script>document.getElementById('wyss').style.backgroundColor='green'; setTimeout(function() {window.location.href='./rejestracja.php';}, 3000);</script>";
+                                    exit();
+                                } else {
+                                    echo "Nie dodano!!!!";
+                                }
                             }
                         }
                     } else {
