@@ -104,9 +104,9 @@ if (isset($_POST["wyss"])) {
 
                 <div class="form">
 
-                    <form method="POST" action="" style="height: 20px;">
-                        <input type="text" class="inputBox" name="login" required> <i>Username</i>
-                        <input type="text" class="inputBox" name="pass" required> <i>Password</i>
+                    <form method="POST" action="">
+                        <input type="text" class="inputBox" name="login" placeholder="Login" required>
+                        <input type="text" class="inputBox" name="pass" placeholder="Password" required>
                         <input type="submit" class="inputBox" name="wyss" value="Login" required>
                     </form>
 
