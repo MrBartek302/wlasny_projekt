@@ -507,7 +507,7 @@ body {
   flex-direction: column;
   border-bottom: dotted darkmagenta 3px;
   width: 100%;
-  height: 50%;
+  height: 45%;
 }
 
 #formik {
@@ -523,7 +523,6 @@ body {
   outline: none;
   padding: 25px 10px;
   border-radius: 4px;
-  color: #fff;
   font-weight: 500;
   font-size: 1em;
   margin-bottom: 20px;
@@ -550,7 +549,7 @@ body {
   padding: 15px;
   border-radius: 10px;
   background: #003e18;
-  color: #000;
+  color: white;
   font-weight: 600;
   font-size: 1.35em;
   letter-spacing: 0.05em;
@@ -567,11 +566,132 @@ body {
   background-color: #001508;
 }
 
+.inputBox1 {
+  position: relative;
+  width: 100%;
+  background: #003e18;
+  border: none;
+  outline: none;
+  padding: 25px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+.inputBox1::placeholder {
+  position: absolute;
+  left: 0;
+  padding: 15px 10px;
+  font-style: normal;
+  color: white;
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.inputBox1:focus::placeholder,
+.inputBox1:valid::placeholder {
+  transform: translateY(-7.5px);
+  font-size: 0.8em;
+  color: white;
+}
+
+.inputBoxSub1 {
+  padding: 15px;
+  border-radius: 10px;
+  background: #003e18;
+  color: white;
+  font-weight: 600;
+  font-size: 1.35em;
+  letter-spacing: 0.05em;
+  transition: 0.3s;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.inputBoxSub1:active {
+  opacity: 0.6;
+}
+
+.inputBoxSub1:hover {
+  background-color: #001508;
+}
+
+.inputBox2 {
+  position: relative;
+  width: 100%;
+  background: rgb(170, 15, 15);
+  border: none;
+  outline: none;
+  padding: 25px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+.inputBox2::placeholder {
+  position: absolute;
+  left: 0;
+  padding: 15px 10px;
+  font-style: normal;
+  color: black;
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.inputBox2:focus::placeholder,
+.inputBox2:valid::placeholder {
+  transform: translateY(-7.5px);
+  font-size: 0.8em;
+  color: black;
+}
+
+.inputBoxSub2 {
+  padding: 15px;
+  border-radius: 10px;
+  background: rgb(170, 15, 15);
+  color: black;
+  font-weight: 600;
+  font-size: 1.35em;
+  letter-spacing: 0.05em;
+  transition: 0.3s;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.inputBoxSub2:active {
+  opacity: 0.6;
+}
+
+.inputBoxSub2:hover {
+  background-color: rgb(58, 1, 1);
+}
+
 #prawoadmdol {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
+  height: 55%;
+}
+
+#prawoadmdolgora {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: baseline;
+  border-bottom: dotted darkmagenta 3px;
+  width: 100%;
+  height: 50%;
+}
+
+#prawoadmdoldol {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: baseline;
   width: 100%;
   height: 50%;
 }

@@ -78,6 +78,38 @@ if (isset($_POST['zmienupr'])) {
             echo "<script>alert('Podane uprawnienie nie istnieje!')</script>";
         }
     }
+} elseif (isset($_POST['wyss2'])) {
+    $nazwa_nowego_upr = $_POST['nowe_upr'];
+    $sql_sprawdz_upr1 = "SELECT `nazwa_upr` FROM `uprawnienia` WHERE `nazwa_upr`='$nazwa_nowego_upr'";
+    $result_sprawdz_upr1 = $conn->query($sql_sprawdz_upr1);
+    if ($result_sprawdz_upr1->num_rows > 0) {
+        echo "<script>alert('Podane uprawnienie już istnieje!')</script>";
+    } else {
+        $sql_dodaj_upr = "INSERT INTO `uprawnienia`(`nazwa_upr`) VALUES ('$nazwa_nowego_upr')";
+        $result_dodaj_upr = $conn->query($sql_dodaj_upr);
+        if ($result_dodaj_upr) {
+            header("Location: ./admin.php");
+            exit();
+        } else {
+            echo "";
+        }
+    }
+} elseif (isset($_POST['wyss3'])) {
+    $nazwa_usuwanego_upr = $_POST['upr_cancel'];
+    $sql_sprawdz_upr2 = "SELECT `nazwa_upr` FROM `uprawnienia` WHERE `nazwa_upr`='$nazwa_usuwanego_upr'";
+    $result_sprawdz_upr2 = $conn->query($sql_sprawdz_upr2);
+    if ($result_sprawdz_upr2->num_rows > 0) {
+        $sql_usun_upr = "DELETE FROM `uprawnienia` WHERE `nazwa_upr`='$nazwa_usuwanego_upr'";
+        $result_usun_upr = $conn->query($sql_usun_upr);
+        if ($result_usun_upr) {
+            header("Location: ./admin.php");
+            exit();
+        } else {
+            echo "";
+        }
+    } else {
+        echo "<script>alert('Nie można usunąć uprawnienia ponieważ ono nie istnieje!')</script>";
+    }
 } else {
     echo "";
 }
@@ -219,7 +251,7 @@ if (isset($_POST['zmienupr'])) {
         </div>
         <div id="prawoadm">
             <div id="prawoadmgora">
-                <h1>Dodaj Użytkownika:</h1>
+                <h1 style="color: green;">Dodaj Użytkownika:</h1>
                 <form method="POST" action="" id="formik">
                     <input type="text" class="inputBox" name="login" placeholder="Login" required>
                     <input type="text" class="inputBox" name="pass" placeholder="Password" required>
@@ -227,7 +259,22 @@ if (isset($_POST['zmienupr'])) {
                     <input type="submit" class="inputBoxSub" name="wyss1" value="Dodaj!" required>
                 </form>
             </div>
-            <div id="prawoadmdol"></div>
+            <div id="prawoadmdol">
+                <div id="prawoadmdolgora">
+                    <h1 style="color: green;">Dodaj Uprawnienie:</h1>
+                    <form method="POST" action="" id="formik">
+                        <input type="text" class="inputBox1" name="nowe_upr" placeholder="Nazwa uprawnienia" required>
+                        <input type="submit" class="inputBoxSub1" name="wyss2" value="Dodaj!" required>
+                    </form>
+                </div>
+                <div id="prawoadmdoldol">
+                    <h1 style="color: red;">Usuń Uprawnienie:</h1>
+                    <form method="POST" action="" id="formik">
+                        <input type="text" class="inputBox2" name="upr_cancel" placeholder="Nazwa uprawnienia" required>
+                        <input type="submit" class="inputBoxSub2" name="wyss3" value="Usuń!" required>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </body>
