@@ -499,6 +499,83 @@ body {
   width: 20%;
   height: 100%;
 }
+
+#prawoadmgora {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-bottom: dotted darkmagenta 3px;
+  width: 100%;
+  height: 50%;
+}
+
+#formik {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputBox {
+  position: relative;
+  width: 100%;
+  background: #003e18;
+  border: none;
+  outline: none;
+  padding: 25px 10px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+.inputBox::placeholder {
+  position: absolute;
+  left: 0;
+  padding: 15px 10px;
+  font-style: normal;
+  color: white;
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.inputBox:focus::placeholder,
+.inputBox:valid::placeholder {
+  transform: translateY(-7.5px);
+  font-size: 0.8em;
+  color: white;
+}
+
+.inputBoxSub {
+  padding: 15px;
+  border-radius: 10px;
+  background: #003e18;
+  color: #000;
+  font-weight: 600;
+  font-size: 1.35em;
+  letter-spacing: 0.05em;
+  transition: 0.3s;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.inputBoxSub:active {
+  opacity: 0.6;
+}
+
+.inputBoxSub:hover {
+  background-color: #001508;
+}
+
+#prawoadmdol {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 50%;
+}
+
 h1 {
   font-family: "Tahoma", sans-serif;
 }

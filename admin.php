@@ -118,7 +118,7 @@ if (isset($_POST['zmienupr'])) {
 
                             echo "<div id='divdolprawogoraadm'>";
                             echo "<form method='POST' action=''>";
-                            echo "<input type='text' class='input' name='uprdozmiany' placeholder='Upr do zmiany: '>";
+                            echo "<input type='text' class='input' name='uprdozmiany' placeholder='Upr do zmiany: ' required>";
                             echo "<input type='hidden' name='userID' value='" . $row['ID'] . "'>"; // Przekazanie ID użytkownika
                             echo "<input type='submit' class='input' name='zmienupr' value='Zmień!'>";
                             echo "</form>";
@@ -191,7 +191,17 @@ if (isset($_POST['zmienupr'])) {
             $conn->close();
             ?>
         </div>
-        <div id="prawoadm"></div>
+        <div id="prawoadm">
+            <div id="prawoadmgora">
+                <h1>Dodaj Użytkownika:</h1>
+                <form method="POST" action="" id="formik">
+                    <input type="text" class="inputBox" name="login" placeholder="Login" required>
+                    <input type="password" class="inputBox" name="pass" placeholder="Password" required>
+                    <input type="submit" class="inputBoxSub" name="wyss" value="Dodaj!" required>
+                </form>
+            </div>
+            <div id="prawoadmdol"></div>
+        </div>
     </div>
 </body>
 

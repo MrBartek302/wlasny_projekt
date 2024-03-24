@@ -56,34 +56,30 @@ session_start();
                     <div id="trescogolgoralewo">
                         <h1>Utwórz wydarzenie: </h1>
                         <form action="" method="POST">
-                            <input type="text" class="input" name="tytul" placeholder="Nazwa Wydarzenia" style="text-align: center;">
-                            <input type="text" class="input" name="opis" placeholder="Opis Wydarzenia" style="text-align: center;">
-                            <input type="date" class="input" name="data" placeholder="Data Wydarzenia">
+                            <input type="text" class="input" name="tytul" placeholder="Nazwa Wydarzenia" style="text-align: center;" required>
+                            <input type="text" class="input" name="opis" placeholder="Opis Wydarzenia" style="text-align: center;" required>
+                            <input type="date" class="input" name="data" placeholder="Data Wydarzenia" required>
                             <input type="submit" class="input" name="wyss" value="Utwórz!">
                             <?php
                             if (isset($_POST['wyss'])) {
-                                if (empty($_POST['tytul']) || empty($_POST['opis']) || empty($_POST['data'])) {
-                                    echo "<script>alert('Nie uzupełniłeś danych o wydarzeniu')</script>";
+                                $host = "localhost";
+                                $dbuser = "root";
+                                $dbpassword = "";
+                                $dbname = "Aaawlasny_projekt_BS";
+                                $tytul = $_POST['tytul'];
+                                $opis = $_POST['opis'];
+                                $data = $_POST['data'];
+                                $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+                                if (!$conn) {
+                                    die("Nie połaczono z baza danych" . mysqli_connect_error());
+                                }
+                                $sql = "INSERT INTO `wydarzenia`(`nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES ('$tytul','$opis','$data')";
+                                $result = $conn->query($sql);
+                                if ($result) {
+                                    header("Location: ./indexadminiuzytkownik.php");
+                                    exit();
                                 } else {
-                                    $host = "localhost";
-                                    $dbuser = "root";
-                                    $dbpassword = "";
-                                    $dbname = "Aaawlasny_projekt_BS";
-                                    $tytul = $_POST['tytul'];
-                                    $opis = $_POST['opis'];
-                                    $data = $_POST['data'];
-                                    $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
-                                    if (!$conn) {
-                                        die("Nie połaczono z baza danych" . mysqli_connect_error());
-                                    }
-                                    $sql = "INSERT INTO `wydarzenia`(`nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES ('$tytul','$opis','$data')";
-                                    $result = $conn->query($sql);
-                                    if ($result) {
-                                        header("Location: ./indexadminiuzytkownik.php");
-                                        exit();
-                                    } else {
-                                        echo "";
-                                    }
+                                    echo "";
                                 }
                             } else {
                                 echo "";
@@ -94,36 +90,32 @@ session_start();
                     <div id="trescogolgoraprawo">
                         <h1>Edytuj wydarzenie: </h1>
                         <form action="" method="POST">
-                            <input type="number" class="input" name="idwyd" placeholder="ID wydarzenia do zmiany" style="text-align: center;">
-                            <input type="text" class="input" name="tytul1" placeholder="Nazwa Wydarzenia" style="text-align: center;">
-                            <input type="text" class="input" name="opis1" placeholder="Opis Wydarzenia" style="text-align: center;">
-                            <input type="date" class="input" name="data1" placeholder="Data Wydarzenia">
+                            <input type="number" class="input" name="idwyd" placeholder="ID wydarzenia do zmiany" style="text-align: center;" required>
+                            <input type="text" class="input" name="tytul1" placeholder="Nazwa Wydarzenia" style="text-align: center;" required>
+                            <input type="text" class="input" name="opis1" placeholder="Opis Wydarzenia" style="text-align: center;" required>
+                            <input type="date" class="input" name="data1" placeholder="Data Wydarzenia" required>
                             <input type="submit" class="input" name="wyss1" value="Edytuj!">
                             <?php
                             if (isset($_POST['wyss1'])) {
-                                if (empty($_POST['idwyd']) || empty($_POST['tytul1']) || empty($_POST['opis1']) || empty($_POST['data1'])) {
-                                    echo "<script>alert('Nie uzupełniłeś danych do edycji wydarzenia')</script>";
+                                $host = "localhost";
+                                $dbuser = "root";
+                                $dbpassword = "";
+                                $dbname = "Aaawlasny_projekt_BS";
+                                $idwyd = $_POST['idwyd'];
+                                $tytul = $_POST['tytul1'];
+                                $opis = $_POST['opis1'];
+                                $data = $_POST['data1'];
+                                $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+                                if (!$conn) {
+                                    die("Nie połaczono z baza danych" . mysqli_connect_error());
+                                }
+                                $sql = "UPDATE `wydarzenia` SET `nazwa_wyd`='$tytul',`opis_wyd`='$opis',`data_wyd`='$data' WHERE ID = $idwyd";
+                                $result = $conn->query($sql);
+                                if ($result) {
+                                    header("Location: ./indexadminiuzytkownik.php");
+                                    exit();
                                 } else {
-                                    $host = "localhost";
-                                    $dbuser = "root";
-                                    $dbpassword = "";
-                                    $dbname = "Aaawlasny_projekt_BS";
-                                    $idwyd = $_POST['idwyd'];
-                                    $tytul = $_POST['tytul1'];
-                                    $opis = $_POST['opis1'];
-                                    $data = $_POST['data1'];
-                                    $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
-                                    if (!$conn) {
-                                        die("Nie połaczono z baza danych" . mysqli_connect_error());
-                                    }
-                                    $sql = "UPDATE `wydarzenia` SET `nazwa_wyd`='$tytul',`opis_wyd`='$opis',`data_wyd`='$data' WHERE ID = $idwyd";
-                                    $result = $conn->query($sql);
-                                    if ($result) {
-                                        header("Location: ./indexadminiuzytkownik.php");
-                                        exit();
-                                    } else {
-                                        echo "";
-                                    }
+                                    echo "";
                                 }
                             } else {
                                 echo "";
