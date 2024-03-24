@@ -33,14 +33,16 @@ session_start();
                 <?php
                 if ($_SESSION['user'] == 'admin' || $_SESSION['user'] == 'pracownik') {
                     include 'menuadmin.php';
-                } elseif ($_SESSION['user'] == 'user' || $_SESSION['user'] == 'viewer') {
-                    include 'menu.php';
                 } else {
-                    echo "";
+                    include 'menu.php';
                 }
                 ?>
             </div>
-            <div id="menprawo"></div>
+            <div id="menprawo">
+                <?php
+                echo $_SESSION['user'];
+                ?>
+            </div>
             <div id="menprawoprawo"></div>
         </div>
         <div class="signin">

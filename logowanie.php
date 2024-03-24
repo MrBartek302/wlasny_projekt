@@ -93,7 +93,11 @@ if (isset($_POST["wyss"])) {
                 }
                 ?>
             </div>
-            <div id="menprawo"></div>
+            <div id="menprawo">
+                <?php
+                echo $_SESSION['user'];
+                ?>
+            </div>
             <div id="menprawoprawo"></div>
         </div>
         <div class="signin">
