@@ -106,7 +106,7 @@ if (isset($_POST["wyss"])) {
 
                     <form method="POST" action="">
                         <input type="text" class="inputBox" name="login" placeholder="Login" required>
-                        <input type="text" class="inputBox" name="pass" placeholder="Password" required>
+                        <input type="password" class="inputBox" name="pass" placeholder="Password" required>
                         <input type="submit" class="inputBox" name="wyss" value="Login" required>
                     </form>
 
