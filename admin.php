@@ -54,6 +54,32 @@ if (isset($_POST['zmienupr'])) {
     } else {
         echo "";
     }
+} elseif (isset($_POST['wyss1'])) {
+    $login_wys = $_POST['login'];
+    $pass_wys = $_POST['pass'];
+    $upr_wys = $_POST['uprWYS'];
+    $sql = "SELECT * FROM `uzytkownicy` WHERE `login`='$login_wys'";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "<script>alert('Użytkownik o podanym loginie już istnieje!')</script>";
+    } else {
+        $sql_sprawdz_upr = "SELECT `nazwa_upr` FROM `uprawnienia` WHERE `nazwa_upr`='$upr_wys'";
+        $result_sprawdz_upr = $conn->query($sql_sprawdz_upr);
+        if ($result_sprawdz_upr->num_rows > 0) {
+            $sql_dodaj_uzyt = "INSERT INTO `uzytkownicy`(`login`, `pass`, `upr`) VALUES ('$login_wys','$pass_wys','$upr_wys')";
+            $result_dodaj_uzyt = $conn->query($sql_dodaj_uzyt);
+            if ($result_dodaj_uzyt) {
+                header("Location: ./admin.php");
+                exit();
+            } else {
+                echo "";
+            }
+        } else {
+            echo "<script>alert('Podane uprawnienie nie istnieje!')</script>";
+        }
+    }
+} else {
+    echo "";
 }
 ?>
 <!DOCTYPE html>
@@ -196,8 +222,9 @@ if (isset($_POST['zmienupr'])) {
                 <h1>Dodaj Użytkownika:</h1>
                 <form method="POST" action="" id="formik">
                     <input type="text" class="inputBox" name="login" placeholder="Login" required>
-                    <input type="password" class="inputBox" name="pass" placeholder="Password" required>
-                    <input type="submit" class="inputBoxSub" name="wyss" value="Dodaj!" required>
+                    <input type="text" class="inputBox" name="pass" placeholder="Password" required>
+                    <input type="text" class="inputBox" name="uprWYS" placeholder="Uprawnienie" required>
+                    <input type="submit" class="inputBoxSub" name="wyss1" value="Dodaj!" required>
                 </form>
             </div>
             <div id="prawoadmdol"></div>
