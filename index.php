@@ -144,7 +144,7 @@ session_start();
                         echo "</div>";
                     }
                 } else {
-                    echo "";
+                    echo "<h1>Brak wydarzeń</h1>";
                 }
                 $conn->close();
                 ?>

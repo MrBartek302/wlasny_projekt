@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 23 Mar 2024, 22:42
+-- Czas generowania: 24 Mar 2024, 15:41
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.2.0
 
@@ -83,13 +83,9 @@ CREATE TABLE `wydarzenia` (
 --
 
 INSERT INTO `wydarzenia` (`ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES
-(2, 'Odebranie Audi RS4 Avant', 'Odbiór Audi RS4 Avant czyli przekazanie kluczyków i tyle', '2026-11-21'),
-(4, 'Ryszard', 'sdsa', '2024-02-29'),
-(8, 'testujemy', '34234ewfds', '2024-03-07'),
-(9, 'JOOOOŁ', 'Bartłomiej Fałek zaśpiewa koncert', '2024-03-05'),
-(10, 'sadsadsa', '34234ewfds', '2024-03-23'),
-(11, 'dsfsd', 'fsdfs', '2024-04-11'),
-(12, 'sdfsdfsd', 'sdfsdfs', '2024-05-03');
+(1, 'Koncert na auli', 'Klasa 3TEST zaśpiewa hymn szkoły 20 razy z rzędu', '2024-04-27'),
+(2, 'Zlot Samochodów', 'Na parkingu szkoły odbędzie się zlot supersamochodów takich jak Ferrari, Lamborghini i inne.', '2024-04-20'),
+(3, 'Walentynki szkolne', 'Nie trzeba opisywać tego wydarzenia, nazwa mówi sama za siebię', '2024-02-14');
 
 -- --------------------------------------------------------
 
@@ -108,16 +104,8 @@ CREATE TABLE `zainteresowania` (
 --
 
 INSERT INTO `zainteresowania` (`ID`, `uzytkownik`, `nazwa_wydarzenia`) VALUES
-(1, 'bartek', 'Ryszard'),
-(2, 'bartek', 'Odebranie Audi RS4 Avant'),
-(3, 'michał', 'Ryszard'),
-(4, 'michał', 'Odebranie Audi RS4 Avant'),
-(5, 'bartek', 'JOOOOŁ'),
-(6, 'michał', 'JOOOOŁ'),
-(7, 'user', 'Odebranie Audi RS4 Avant'),
-(8, 'user', 'dsfsd'),
-(9, 'user', 'sdfsdfsd'),
-(10, 'michał', 'dsfsd');
+(1, 'bartek', 'Zlot Samochodów'),
+(2, 'bartek', 'Koncert na auli');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -155,25 +143,25 @@ ALTER TABLE `zainteresowania`
 -- AUTO_INCREMENT dla tabeli `uprawnienia`
 --
 ALTER TABLE `uprawnienia`
-  MODIFY `ID_upr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_upr` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT dla tabeli `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT dla tabeli `zainteresowania`
 --
 ALTER TABLE `zainteresowania`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
