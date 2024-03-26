@@ -34,7 +34,7 @@ if (isset($_POST['zainteres'])) {
     }
 } elseif (isset($_POST['usun_zainteres'])) {
     if ($_SESSION['zalogowany'] == false || $_SESSION['upr'] == 'viewer') {
-        echo "<script>alert('Nie możesz wybrać tej opcji, nie jesteś zalogowany')</script>";
+        echo "<script>alert('Nie możesz wybrać tej opcji, nie jesteś zalogowany!')</script>";
     } else {
         $uzytkownik1 = $_SESSION['user'];
         $nazwa_wydarzenia1 = $_POST['nazwa_wydarzenia'];
@@ -53,6 +53,51 @@ if (isset($_POST['zainteres'])) {
             echo "<script>alert('Nie zaznaczyłeś zainteresowania, nie ma czego usunąć!')</script>";
         }
     }
+} elseif (isset($_POST['wyslij_ocene'])) {
+    if ($_SESSION['zalogowany'] == false || $_SESSION['upr'] == 'viewer') {
+        echo "<script>alert('Nie możesz ocenić, nie jesteś zalogowany!')</script>";
+    } else {
+        $uzytkownik2 = $_SESSION['user'];
+        $nazwa_wydarzenia2 = $_POST['name_wyd'];
+        $sql2 = "SELECT * FROM `oceny` WHERE `uzytkownik_wystawiajacy`='$uzytkownik2' AND `nazwa_ocenianego_wyd`='$nazwa_wydarzenia2'";
+        $result2 = $conn->query($sql2);
+        if ($result2->num_rows > 0) {
+            echo "<script>alert('Wystawiłeś już swoją ocenę!')</script>";
+        } else {
+            $ocena = $_POST['ocena_wyd'];
+            $sql3 = "INSERT INTO `oceny`(`uzytkownik_wystawiajacy`, `nazwa_ocenianego_wyd`, `wystawiona_ocena`) VALUES ('$uzytkownik2','$nazwa_wydarzenia2','$ocena')";
+            $result3 = $conn->query($sql3);
+            if ($result3) {
+                header("Location: ./index.php");
+                exit();
+            } else {
+                echo "";
+            }
+        }
+    }
+} elseif (isset($_POST['usun_ocene'])) {
+    if ($_SESSION['zalogowany'] == false || $_SESSION['upr'] == 'viewer') {
+        echo "<script>alert('Nie możesz usunąć oceny, nie jesteś zalogowany!')</script>";
+    } else {
+        $uzytkownik3 = $_SESSION['user'];
+        $nazwa_wydarzenia4 = $_POST['name_wyd'];
+        $sql4 = "SELECT * FROM `oceny` WHERE `uzytkownik_wystawiajacy`='$uzytkownik3' AND `nazwa_ocenianego_wyd`='$nazwa_wydarzenia4'";
+        $result4 = $conn->query($sql4);
+        if ($result4->num_rows > 0) {
+            $sql5 = "DELETE FROM `oceny` WHERE `uzytkownik_wystawiajacy`='$uzytkownik3' AND `nazwa_ocenianego_wyd`='$nazwa_wydarzenia4'";
+            $result5 = $conn->query($sql5);
+            if ($result5) {
+                header("Location: ./index.php");
+                exit();
+            } else {
+                echo "";
+            }
+        } else {
+            echo "<script>alert('Nie wystawiłeś żadnej oceny, nie ma co usunąć!')</script>";
+        }
+    }
+} else {
+    echo "";
 }
 ?>
 <!DOCTYPE html>
@@ -137,6 +182,10 @@ if (isset($_POST['zainteres'])) {
                             echo "<div id = 'divdollewolewo'>";
                             echo "<h3 id ='dobre'>Przyszłe</h3>";
                             echo "</div>";
+                        } else {
+                            echo "<div id = 'divdollewolewo'>";
+                            echo "<h3 id ='zle'>Przeszłe</h3>";
+                            echo "</div>";
                         }
 
                         echo "<div id = 'divdollewoprawo'>";
@@ -150,7 +199,27 @@ if (isset($_POST['zainteres'])) {
                         $now = new DateTime();
 
                         if ($date < $now) {
-                            echo "<h3 id='zle'>Przeszłe</h3>";
+                            echo "<div id = 'divdolprawogora'>";
+                            echo "<form method='POST' action=''>";
+                            echo "<select name='ocena_wyd' required>";
+                            echo "<option value =''>-- Wystaw ocenę --</option>";
+                            echo "<option value ='1'>1</option>";
+                            echo "<option value ='2'>2</option>";
+                            echo "<option value ='3'>3</option>";
+                            echo "<option value ='4'>4</option>";
+                            echo "<option value ='5'>5</option>";
+                            echo "</select>";
+                            echo "<input type='hidden' name='name_wyd' value='" . $row['nazwa_wyd'] . "'>";
+                            echo "<input type='submit' name='wyslij_ocene' id='wys_ocen' value='Wyślij!'>";
+                            echo "</form>";
+                            echo "</div>";
+
+                            echo "<div id = 'divdolprawodol'>";
+                            echo "<form method='POST' action=''>";
+                            echo "<input type='hidden' name='name_wyd' value='" . $row['nazwa_wyd'] . "'>";
+                            echo "<input type='submit' name='usun_ocene' id='usun_zainteresbutton' value='Usuń Ocenę!'>";
+                            echo "</form>";
+                            echo "</div>";
                         } else {
                             echo "<form method='POST' action=''>";
                             echo "<input type='hidden' name='nazwa_wydarzenia' value='" . $row['nazwa_wyd'] . "'>";
