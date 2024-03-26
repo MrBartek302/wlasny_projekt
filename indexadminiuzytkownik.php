@@ -151,13 +151,23 @@ session_start();
                             echo "<h2>" . "Opis: " . $row['opis_wyd'] . "</h2>";
                             echo "</div>";
                             echo "<div id = 'divdol'>";
+                            echo "<div id = 'divdollewolewo'>";
+                            $date = new DateTime($row['data_wyd']);
+                            $now = new DateTime();
+                            if ($date >= $now) {
+                                echo "<h3 id ='dobre'>Upcoming</h3>";
+                            } else {
+                                echo "<h3 id ='zle'>Done</h3>";
+                            }
+                            echo "</div>";
+
                             echo "<div id = 'divdollewo'>";
                             echo "<h4>" . "Data wydarzenia: " . $row['data_wyd'] . "</h4>";
                             echo "</div>";
                             echo "<div id = 'divdolprawo'>";
                             echo "<form method='POST' action=''>";
                             echo "<input type='hidden' class='input1' name='wartoscID' value='" . $row['ID'] . "'>";
-                            echo "<input type='submit' class='input1' name='usun' value='Usuń!'>";
+                            echo "<input type='submit' class='input1' name='usun' value='Usuń!' style='width: 110px;'>";
                             echo "</form>";
                             echo "</div>";
                             echo "</div>";

@@ -176,17 +176,16 @@ if (isset($_POST['zainteres'])) {
                         echo "<div id = 'divdol'>";
 
                         echo "<div id = 'divdollewo'>";
+
+                        echo "<div id = 'divdollewolewo'>";
                         $date = new DateTime($row['data_wyd']);
                         $now = new DateTime();
                         if ($date >= $now) {
-                            echo "<div id = 'divdollewolewo'>";
-                            echo "<h3 id ='dobre'>Przyszłe</h3>";
-                            echo "</div>";
+                            echo "<h3 id ='dobre'>Upcoming</h3>";
                         } else {
-                            echo "<div id = 'divdollewolewo'>";
-                            echo "<h3 id ='zle'>Przeszłe</h3>";
-                            echo "</div>";
+                            echo "<h3 id ='zle'>Done</h3>";
                         }
+                        echo "</div>";
 
                         echo "<div id = 'divdollewoprawo'>";
                         echo "<h4>" . "Data wydarzenia: " . $row['data_wyd'] . "</h4>";

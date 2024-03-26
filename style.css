@@ -530,6 +530,25 @@ body {
   height: 100%;
 }
 
+#srodekadmgora {
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+  flex-direction: column;
+  border-bottom: dotted darkmagenta 3px;
+  width: 100%;
+  height: 50%;
+}
+
+#srodekadmdol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 50%;
+}
+
 #prawoadm {
   display: flex;
   align-items: center;
@@ -874,13 +893,17 @@ h3 {
   color: darkorange;
 }
 
+#napisadmin2 {
+  color: darkmagenta;
+}
+
 table {
   border-collapse: collapse;
   margin: 25px 0;
   font-size: 0.9em;
   font-family: sans-serif;
   width: 80%;
-  height: 60%;
+  height: 75%;
   box-shadow: 0 0 30px darkmagenta;
 }
 
@@ -901,9 +924,31 @@ td {
   color: darkorange;
 }
 
-#tr2.active-row {
-  font-weight: bold;
-  color: #009879;
+#tabela1 {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  width: 80%;
+  height: 75%;
+  box-shadow: 0 0 30px darkorange;
+}
+
+#tr11 {
+  background-color: orange;
+  color: darkmagenta;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 12px 15px;
+}
+
+#tr22 {
+  background-color: darkorange;
+  border-bottom: 1px solid darkmagenta;
+  color: darkmagenta;
 }
 
 #buttonUsunZainteres {

@@ -204,47 +204,93 @@ if (isset($_POST['zmienupr'])) {
             </div>
         </div>
         <div id="srodekadm">
-            <h1 id="napisadmin">Statystyka dotycząca wydarzeń:</h1>
-            <?php
-            $host = "localhost";
-            $dbuser = "root";
-            $dbpassword = "";
-            $dbname = "Aaawlasny_projekt_BS";
-            $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
-            if (!$conn) {
-                die("Nie połaczono z baza danych" . mysqli_connect_error());
-            }
-            $sql = "SELECT DISTINCT nazwa_wyd FROM `wydarzenia`";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-
-                echo "<table>";
-                echo "<tr id='tr1'>";
-                echo "<th>Wydarzenia</th>";
-                echo "<th>Ilość zainteresowań</th>";
-                echo "</tr>";
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr id ='tr2'>";
-                    echo "<td>" . $row['nazwa_wyd'] . "</td>";
-
-                    $nazwa_wydarzenia = $row['nazwa_wyd'];
-                    $sql1 = "SELECT COUNT(nazwa_wydarzenia) AS liczba_zainteresowan FROM `zainteresowania` WHERE nazwa_wydarzenia='$nazwa_wydarzenia'";
-                    $result1 = $conn->query($sql1);
-                    if ($result1->num_rows > 0) {
-                        while ($row = $result1->fetch_assoc()) {
-                            echo "<td>" . $row['liczba_zainteresowan'] . "</td>";
-                        }
-                    } else {
-                        echo "";
-                    }
-                    echo "</tr>";
+            <div id="srodekadmgora">
+                <h1 id="napisadmin">Zainteresowania przyszłymi wydarzeniami:</h1>
+                <?php
+                $host = "localhost";
+                $dbuser = "root";
+                $dbpassword = "";
+                $dbname = "Aaawlasny_projekt_BS";
+                $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+                if (!$conn) {
+                    die("Nie połaczono z baza danych" . mysqli_connect_error());
                 }
-                echo "</table>";
-            } else {
-                echo "";
-            }
-            $conn->close();
-            ?>
+                $sql = "SELECT DISTINCT nazwa_wyd FROM `wydarzenia` WHERE data_wyd>CURRENT_DATE";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+
+                    echo "<table>";
+                    echo "<tr id='tr1'>";
+                    echo "<th>Wydarzenia</th>";
+                    echo "<th>Ilość zainteresowań</th>";
+                    echo "</tr>";
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr id ='tr2'>";
+                        echo "<td>" . $row['nazwa_wyd'] . "</td>";
+
+                        $nazwa_wydarzenia = $row['nazwa_wyd'];
+                        $sql1 = "SELECT COUNT(nazwa_wydarzenia) AS liczba_zainteresowan FROM `zainteresowania` WHERE nazwa_wydarzenia='$nazwa_wydarzenia'";
+                        $result1 = $conn->query($sql1);
+                        if ($result1->num_rows > 0) {
+                            while ($row = $result1->fetch_assoc()) {
+                                echo "<td>" . $row['liczba_zainteresowan'] . "</td>";
+                            }
+                        } else {
+                            echo "";
+                        }
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                } else {
+                    echo "";
+                }
+                $conn->close();
+                ?>
+            </div>
+            <div id="srodekadmdol">
+                <h1 id="napisadmin2">Oceny przeszłych wydarzeń:</h1>
+                <?php
+                $host = "localhost";
+                $dbuser = "root";
+                $dbpassword = "";
+                $dbname = "Aaawlasny_projekt_BS";
+                $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+                if (!$conn) {
+                    die("Nie połaczono z baza danych" . mysqli_connect_error());
+                }
+                $sql = "SELECT DISTINCT nazwa_ocenianego_wyd FROM `oceny` WHERE 1";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+
+                    echo "<table id='tabela1'>";
+                    echo "<tr id='tr11'>";
+                    echo "<th>Wydarzenia</th>";
+                    echo "<th>Średnia ocen dla wydarzenia</th>";
+                    echo "</tr>";
+                    while ($row = $result->fetch_assoc()) {
+                        echo "<tr id ='tr22'>";
+                        echo "<td>" . $row['nazwa_ocenianego_wyd'] . "</td>";
+
+                        $nazwa_wydarzenia = $row['nazwa_ocenianego_wyd'];
+                        $sql1 = "SELECT nazwa_ocenianego_wyd, AVG(wystawiona_ocena) AS srednia FROM `oceny` WHERE nazwa_ocenianego_wyd='$nazwa_wydarzenia';";
+                        $result1 = $conn->query($sql1);
+                        if ($result1->num_rows > 0) {
+                            while ($row = $result1->fetch_assoc()) {
+                                echo "<td>" . round($row['srednia'], 2) . "</td>";
+                            }
+                        } else {
+                            echo "";
+                        }
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                } else {
+                    echo "";
+                }
+                $conn->close();
+                ?>
+            </div>
+
         </div>
         <div id="prawoadm">
             <div id="prawoadmgora">
