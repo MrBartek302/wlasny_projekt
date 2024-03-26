@@ -131,13 +131,15 @@ if (isset($_POST['zmienupr'])) {
                 <div id="lewoadmgoraprawo">
                     <?php
                     echo '<script>';
-                    echo 'const buttonpowrot = document.createElement("button");';
-                    echo 'buttonpowrot.setAttribute("id", "buttonpowrot");';
-                    echo 'buttonpowrot.textContent = "Powrót";';
-                    echo 'buttonpowrot.addEventListener("click", function() {';
-                    echo 'window.location.href = "indexadminiuzytkownik.php";';
+                    echo 'const buttonImg = document.createElement("img");';
+                    echo 'buttonImg.setAttribute("src", "arrow-left.png");'; // Zmień ścieżkę do obrazka
+                    echo 'buttonImg.classList.add("button-image");'; // Opcjonalna klasa dla dodatkowego stylowania
+                    echo 'buttonImg.style.cursor = "pointer";'; // Zmiana kursora na wskaźnik podczas najechania
+                    echo 'buttonImg.addEventListener("click", function() {';
+                    echo '  window.location.href = "indexadminiuzytkownik.php";'; // Adres do przekierowania po kliknięciu
                     echo '});';
-                    echo 'document.getElementById("lewoadmgoraprawo").appendChild(buttonpowrot);';
+
+                    echo 'document.getElementById("lewoadmgoraprawo").appendChild(buttonImg);';
                     echo '</script>';
                     ?>
                 </div>

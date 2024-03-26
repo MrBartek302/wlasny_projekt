@@ -36,13 +36,15 @@ session_start();
                 <?php
                 if ($_SESSION['upr'] === 'admin') {
                     echo '<script>';
-                    echo 'const buttonAdmin = document.createElement("button");';
-                    echo 'buttonAdmin.setAttribute("id", "buttonAdmin");';
-                    echo 'buttonAdmin.textContent = "Strona Admina";';
-                    echo 'buttonAdmin.addEventListener("click", function() {';
-                    echo 'window.location.href = "admin.php";';
+                    echo 'const buttonImg = document.createElement("img");';
+                    echo 'buttonImg.setAttribute("src", "admin.png");'; // Zmień ścieżkę do obrazka
+                    echo 'buttonImg.classList.add("button-image");'; // Opcjonalna klasa dla dodatkowego stylowania
+                    echo 'buttonImg.style.cursor = "pointer";'; // Zmiana kursora na wskaźnik podczas najechania
+                    echo 'buttonImg.addEventListener("click", function() {';
+                    echo '  window.location.href = "admin.php";'; // Adres do przekierowania po kliknięciu
                     echo '});';
-                    echo 'document.getElementById("menprawoprawo").appendChild(buttonAdmin);';
+
+                    echo 'document.getElementById("menprawoprawo").appendChild(buttonImg);';
                     echo '</script>';
                 } else {
                     echo "";
