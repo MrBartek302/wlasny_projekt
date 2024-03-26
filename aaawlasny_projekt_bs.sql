@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 24 Mar 2024, 21:01
--- Wersja serwera: 10.4.27-MariaDB
--- Wersja PHP: 8.2.0
+-- Czas generowania: 26 Mar 2024, 14:48
+-- Wersja serwera: 10.4.14-MariaDB
+-- Wersja PHP: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `uprawnienia` (
   `ID_upr` int(11) NOT NULL,
-  `nazwa_upr` text NOT NULL
+  `nazwa_upr` text COLLATE utf32_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
 
 --
@@ -50,9 +50,9 @@ INSERT INTO `uprawnienia` (`ID_upr`, `nazwa_upr`) VALUES
 
 CREATE TABLE `uzytkownicy` (
   `ID` int(11) NOT NULL,
-  `login` text NOT NULL,
-  `pass` text NOT NULL,
-  `upr` text NOT NULL
+  `login` text COLLATE utf32_polish_ci NOT NULL,
+  `pass` text COLLATE utf32_polish_ci NOT NULL,
+  `upr` text COLLATE utf32_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
 
 --
@@ -63,7 +63,9 @@ INSERT INTO `uzytkownicy` (`ID`, `login`, `pass`, `upr`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin'),
 (2, 'pracownik', '21232f297a57a5a743894a0e4a801fc3', 'pracownik'),
 (3, 'bartek', '21232f297a57a5a743894a0e4a801fc3', 'user'),
-(4, 'michał', '21232f297a57a5a743894a0e4a801fc3', 'viewer');
+(4, 'michał', '21232f297a57a5a743894a0e4a801fc3', 'viewer'),
+(19, 'user', '21232f297a57a5a743894a0e4a801fc3', 'user'),
+(20, 'user1', '21232f297a57a5a743894a0e4a801fc3', 'user');
 
 -- --------------------------------------------------------
 
@@ -73,8 +75,8 @@ INSERT INTO `uzytkownicy` (`ID`, `login`, `pass`, `upr`) VALUES
 
 CREATE TABLE `wydarzenia` (
   `ID` int(11) NOT NULL,
-  `nazwa_wyd` text NOT NULL,
-  `opis_wyd` text NOT NULL,
+  `nazwa_wyd` text COLLATE utf32_polish_ci NOT NULL,
+  `opis_wyd` text COLLATE utf32_polish_ci NOT NULL,
   `data_wyd` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
 
@@ -85,7 +87,8 @@ CREATE TABLE `wydarzenia` (
 INSERT INTO `wydarzenia` (`ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES
 (1, 'Koncert na auli', 'Klasa 3TEST zaśpiewa hymn szkoły 20 razy z rzędu', '2024-04-27'),
 (2, 'Zlot Samochodów', 'Na parkingu szkoły odbędzie się zlot supersamochodów takich jak Ferrari, Lamborghini i inne.', '2024-04-20'),
-(3, 'Walentynki szkolne', 'Nie trzeba opisywać tego wydarzenia, nazwa mówi sama za siebie', '2024-02-14');
+(3, 'Walentynki szkolne', 'Nie trzeba opisywać tego wydarzenia, nazwa mówi sama za siebie', '2024-02-14'),
+(4, 'Podpisywanie współpracy z Uniwersytetem Warszawskim', 'Przewodniczący Uniwersytetu Siedleckiego podpisze współpracę z naszą szkołą ZS1 w Mińsku Mazowieckim', '2024-04-17');
 
 -- --------------------------------------------------------
 
@@ -95,8 +98,8 @@ INSERT INTO `wydarzenia` (`ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES
 
 CREATE TABLE `zainteresowania` (
   `ID` int(11) NOT NULL,
-  `uzytkownik` text NOT NULL,
-  `nazwa_wydarzenia` text NOT NULL
+  `uzytkownik` text COLLATE utf32_polish_ci NOT NULL,
+  `nazwa_wydarzenia` text COLLATE utf32_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
 
 --
@@ -104,8 +107,12 @@ CREATE TABLE `zainteresowania` (
 --
 
 INSERT INTO `zainteresowania` (`ID`, `uzytkownik`, `nazwa_wydarzenia`) VALUES
-(1, 'bartek', 'Zlot Samochodów'),
-(2, 'bartek', 'Koncert na auli');
+(3, 'michał', 'Zlot Samochodów'),
+(4, 'michał', 'Koncert na auli'),
+(5, 'user', 'Zlot Samochodów'),
+(6, 'user', 'Koncert na auli'),
+(7, 'user1', 'Zlot Samochodów'),
+(10, 'bartek', 'Koncert na auli');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -136,7 +143,7 @@ ALTER TABLE `zainteresowania`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT dla zrzuconych tabel
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
@@ -149,19 +156,19 @@ ALTER TABLE `uprawnienia`
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT dla tabeli `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `zainteresowania`
 --
 ALTER TABLE `zainteresowania`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
