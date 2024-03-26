@@ -181,7 +181,7 @@ body {
   overflow: auto;
   border-bottom: solid white 0.5px;
   width: 100%;
-  height: 60%;
+  height: 50%;
 }
 
 #divdol {
@@ -190,7 +190,7 @@ body {
   justify-content: center;
   flex-direction: row;
   width: 100%;
-  height: 20%;
+  height: 30%;
 }
 
 #divdollewo {
