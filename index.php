@@ -1,6 +1,59 @@
 <?php
 // Start the session
 session_start();
+
+$host = "localhost";
+$dbuser = "root";
+$dbpassword = "";
+$dbname = "Aaawlasny_projekt_BS";
+$conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+if (!$conn) {
+    die("Nie połączono z bazą danych" . mysqli_connect_error());
+}
+
+if (isset($_POST['zainteres'])) {
+    if ($_SESSION['zalogowany'] == false || $_SESSION['upr'] == 'viewer') {
+        echo "<script>alert('Nie możesz wybrać tej opcji, nie jesteś zalogowany')</script>";
+    } else {
+        $uzytkownik = $_SESSION['user'];
+        $nazwa_wydarzenia = $_POST['nazwa_wydarzenia'];
+        $sql = "SELECT * FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik' AND `nazwa_wydarzenia` = '$nazwa_wydarzenia'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            echo "<script>alert('Zaznaczyłeś już swoje zainteresowanie!')</script>";
+        } else {
+            $sql1 = "INSERT INTO `zainteresowania`(`uzytkownik`, `nazwa_wydarzenia`) VALUES ('$uzytkownik','$nazwa_wydarzenia')";
+            $result1 = $conn->query($sql1);
+            if ($result1) {
+                header("Location: ./index.php");
+                exit();
+            } else {
+                echo "";
+            }
+        }
+    }
+} elseif (isset($_POST['usun_zainteres'])) {
+    if ($_SESSION['zalogowany'] == false || $_SESSION['upr'] == 'viewer') {
+        echo "<script>alert('Nie możesz wybrać tej opcji, nie jesteś zalogowany')</script>";
+    } else {
+        $uzytkownik1 = $_SESSION['user'];
+        $nazwa_wydarzenia1 = $_POST['nazwa_wydarzenia'];
+        $sql = "SELECT * FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik1' AND `nazwa_wydarzenia` = '$nazwa_wydarzenia1'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $sql1 = "DELETE FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik1' AND `nazwa_wydarzenia` = '$nazwa_wydarzenia1'";
+            $result1 = $conn->query($sql1);
+            if ($result1) {
+                header("Location: ./index.php");
+                exit();
+            } else {
+                echo "";
+            }
+        } else {
+            echo "<script>alert('Nie zaznaczyłeś zainteresowania, nie ma czego usunąć!')</script>";
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,39 +75,6 @@ session_start();
         $_SESSION['user'] = 'viewer';
     } elseif ($_SESSION['user'] == "") {
         $_SESSION['user'] = 'viewer';
-    }
-    ?>
-    <?php
-    if (isset($_POST['zainteres'])) {
-        if ($_SESSION['zalogowany'] == false || $_SESSION['upr'] == 'viewer') {
-            echo "<script>alert('Nie możesz wybrać tej opcji, nie jesteś zalogowany')</script>";
-        } else {
-            $host = "localhost";
-            $dbuser = "root";
-            $dbpassword = "";
-            $dbname = "Aaawlasny_projekt_BS";
-
-            $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
-            if (!$conn) {
-                die("Nie połaczono z baza danych" . mysqli_connect_error());
-            }
-            $uzytkownik = $_SESSION['user'];
-            $nazwa_wydarzenia = $_POST['nazwa_wydarzenia'];
-            $sql = "SELECT * FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik' AND `nazwa_wydarzenia` = '$nazwa_wydarzenia'";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                echo "<script>alert('Zaznaczyłeś już swoje zainteresowanie!')</script>";
-            } else {
-                $sql1 = "INSERT INTO `zainteresowania`(`uzytkownik`, `nazwa_wydarzenia`) VALUES ('$uzytkownik','$nazwa_wydarzenia')";
-                $result1 = $conn->query($sql1);
-                if ($result1) {
-                    header("Location: ./index.php");
-                    exit();
-                } else {
-                    echo "";
-                }
-            }
-        }
     }
     ?>
 
