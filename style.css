@@ -233,7 +233,7 @@ body {
 #divdolprawogora {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: baseline;
   flex-direction: column;
   width: 100%;
   height: 50%;
@@ -914,4 +914,27 @@ td {
 
 #nazwa_wyd {
   font-family: "Tahoma", sans-serif;
+}
+
+#wys_ocen {
+  height: 30px;
+  width: 100px;
+  border-radius: 10px;
+  border: solid 3px #061c0f;
+  background: #003e18;
+  color: white;
+  transition: 0.3s;
+  cursor: pointer;
+}
+#wys_ocen:hover {
+  background-color: #001508;
+}
+
+select[name="ocena_wyd"] {
+  padding: 8px;
+  font-size: 85%;
+  border-radius: 5px;
+  background-color: rebeccapurple;
+  height: 50%;
+  width: 85%;
 }
