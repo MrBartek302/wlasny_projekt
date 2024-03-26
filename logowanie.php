@@ -94,7 +94,20 @@ if (isset($_POST["wyss"])) {
                 echo $_SESSION['user'];
                 ?>
             </div>
-            <div id="menprawoprawo"></div>
+            <div id="menprawoprawo">
+                <?php
+                echo '<script>';
+                echo 'const buttonImg = document.createElement("img");';
+                echo 'buttonImg.setAttribute("src", "school.png");';
+                echo 'buttonImg.classList.add("button-image");';
+                echo 'buttonImg.style.cursor = "pointer";';
+                echo 'buttonImg.addEventListener("click", function() {';
+                echo '  window.open("http://www.zs1mm.home.pl/strona/", "_blank");';
+                echo '});';
+                echo 'document.getElementById("menprawoprawo").appendChild(buttonImg);';
+                echo '</script>';
+                ?>
+            </div>
         </div>
         <div class="signin">
 

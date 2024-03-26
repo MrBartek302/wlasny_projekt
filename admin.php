@@ -132,11 +132,11 @@ if (isset($_POST['zmienupr'])) {
                     <?php
                     echo '<script>';
                     echo 'const buttonImg = document.createElement("img");';
-                    echo 'buttonImg.setAttribute("src", "arrow-left.png");'; // Zmień ścieżkę do obrazka
-                    echo 'buttonImg.classList.add("button-image");'; // Opcjonalna klasa dla dodatkowego stylowania
-                    echo 'buttonImg.style.cursor = "pointer";'; // Zmiana kursora na wskaźnik podczas najechania
+                    echo 'buttonImg.setAttribute("src", "arrow-left.png");';
+                    echo 'buttonImg.classList.add("button-image");';
+                    echo 'buttonImg.style.cursor = "pointer";';
                     echo 'buttonImg.addEventListener("click", function() {';
-                    echo '  window.location.href = "indexadminiuzytkownik.php";'; // Adres do przekierowania po kliknięciu
+                    echo '  window.location.href = "indexadminiuzytkownik.php";';
                     echo '});';
 
                     echo 'document.getElementById("lewoadmgoraprawo").appendChild(buttonImg);';
