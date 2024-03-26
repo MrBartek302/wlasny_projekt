@@ -893,3 +893,7 @@ td {
   width: 400px;
   background-color: red;
 }
+
+#nazwa_wyd {
+  font-family: "Tahoma", sans-serif;
+}

@@ -121,7 +121,7 @@ if (isset($_POST['zainteres'])) {
                         echo "<div id = 'wydarzenie'>";
 
                         echo "<div id = 'divgora' style='display: flex; align-items: baseline; justify-content: center; height: 20%; width: 100%;'>";
-                        echo "<h1>" .  $row['nazwa_wyd'] . "</h1>";
+                        echo "<h2 id='nazwa_wyd'>" .  $row['nazwa_wyd'] . "</h2>";
                         echo "</div>";
 
                         echo "<div id = 'divsrodek'>";

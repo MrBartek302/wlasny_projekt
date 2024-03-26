@@ -144,7 +144,7 @@ session_start();
                             echo "<h3>" . "ID: " .  $row['ID'] . "</h3>";
                             echo "</div>";
                             echo "<div id = 'divgoraprawo'>";
-                            echo "<h1>" .   $row['nazwa_wyd'] . "</h1>";
+                            echo "<h2 id='nazwa_wyd'>" .   $row['nazwa_wyd'] . "</h2>";
                             echo "</div>";
                             echo "</div>";
                             echo "<div id = 'divsrodek'>";
