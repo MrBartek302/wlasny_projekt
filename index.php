@@ -136,6 +136,11 @@ session_start();
                             echo "<input type='hidden' name='nazwa_wydarzenia' value='" . $row['nazwa_wyd'] . "'>";
                             echo "<input type='submit' name='zainteres' id='zainteresbutton' value='Zainteresowany!'>";
                             echo "</form>";
+
+                            echo "<form method='POST' action=''>";
+                            echo "<input type='hidden' name='nazwa_wydarzenia' value='" . $row['nazwa_wyd'] . "'>";
+                            echo "<input type='submit' name='usun_zainteres' id='usun_zainteresbutton' value='Usuń Zainteresowanie!'>";
+                            echo "</form>";
                         }
                         echo "</div>";
 
