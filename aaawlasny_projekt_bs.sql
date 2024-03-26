@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 26 Mar 2024, 14:48
--- Wersja serwera: 10.4.14-MariaDB
--- Wersja PHP: 7.4.9
+-- Czas generowania: 26 Mar 2024, 20:34
+-- Wersja serwera: 10.4.27-MariaDB
+-- Wersja PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,12 +24,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `oceny`
+--
+
+CREATE TABLE `oceny` (
+  `ID_oceny` int(11) NOT NULL,
+  `uzytkownik_wystawiajacy` text NOT NULL,
+  `nazwa_ocenianego_wyd` text NOT NULL,
+  `wystawiona_ocena` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
+
+--
+-- Zrzut danych tabeli `oceny`
+--
+
+INSERT INTO `oceny` (`ID_oceny`, `uzytkownik_wystawiajacy`, `nazwa_ocenianego_wyd`, `wystawiona_ocena`) VALUES
+(16, 'user', 'Walentynki szkolne', 5),
+(18, 'user1', 'Wigilia klasowa', 3),
+(19, 'user1', 'Walentynki szkolne', 4),
+(20, 'user', 'Wigilia klasowa', 5),
+(23, 'bartek', 'Walentynki szkolne', 1),
+(24, 'bartek', 'Wigilia klasowa', 5);
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `uprawnienia`
 --
 
 CREATE TABLE `uprawnienia` (
   `ID_upr` int(11) NOT NULL,
-  `nazwa_upr` text COLLATE utf32_polish_ci NOT NULL
+  `nazwa_upr` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
 
 --
@@ -50,9 +75,9 @@ INSERT INTO `uprawnienia` (`ID_upr`, `nazwa_upr`) VALUES
 
 CREATE TABLE `uzytkownicy` (
   `ID` int(11) NOT NULL,
-  `login` text COLLATE utf32_polish_ci NOT NULL,
-  `pass` text COLLATE utf32_polish_ci NOT NULL,
-  `upr` text COLLATE utf32_polish_ci NOT NULL
+  `login` text NOT NULL,
+  `pass` text NOT NULL,
+  `upr` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
 
 --
@@ -75,8 +100,8 @@ INSERT INTO `uzytkownicy` (`ID`, `login`, `pass`, `upr`) VALUES
 
 CREATE TABLE `wydarzenia` (
   `ID` int(11) NOT NULL,
-  `nazwa_wyd` text COLLATE utf32_polish_ci NOT NULL,
-  `opis_wyd` text COLLATE utf32_polish_ci NOT NULL,
+  `nazwa_wyd` text NOT NULL,
+  `opis_wyd` text NOT NULL,
   `data_wyd` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
 
@@ -88,7 +113,8 @@ INSERT INTO `wydarzenia` (`ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES
 (1, 'Koncert na auli', 'Klasa 3TEST zaśpiewa hymn szkoły 20 razy z rzędu', '2024-04-27'),
 (2, 'Zlot Samochodów', 'Na parkingu szkoły odbędzie się zlot supersamochodów takich jak Ferrari, Lamborghini i inne.', '2024-04-20'),
 (3, 'Walentynki szkolne', 'Nie trzeba opisywać tego wydarzenia, nazwa mówi sama za siebie', '2024-02-14'),
-(4, 'Podpisywanie współpracy z Uniwersytetem Warszawskim', 'Przewodniczący Uniwersytetu Siedleckiego podpisze współpracę z naszą szkołą ZS1 w Mińsku Mazowieckim', '2024-04-17');
+(4, 'Podpisywanie współpracy z Uniwersytetem Siedleckim', 'Przewodniczący Uniwersytetu Siedleckiego podpisze współpracę z naszą szkołą ZS1 w Mińsku Mazowieckim', '2024-04-17'),
+(5, 'Wigilia klasowa', 'Każdy będzie losował osobę z klasy której kupi prezent niespodziankę do 50 zł', '2023-12-14');
 
 -- --------------------------------------------------------
 
@@ -98,8 +124,8 @@ INSERT INTO `wydarzenia` (`ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES
 
 CREATE TABLE `zainteresowania` (
   `ID` int(11) NOT NULL,
-  `uzytkownik` text COLLATE utf32_polish_ci NOT NULL,
-  `nazwa_wydarzenia` text COLLATE utf32_polish_ci NOT NULL
+  `uzytkownik` text NOT NULL,
+  `nazwa_wydarzenia` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci;
 
 --
@@ -112,11 +138,19 @@ INSERT INTO `zainteresowania` (`ID`, `uzytkownik`, `nazwa_wydarzenia`) VALUES
 (5, 'user', 'Zlot Samochodów'),
 (6, 'user', 'Koncert na auli'),
 (7, 'user1', 'Zlot Samochodów'),
-(10, 'bartek', 'Koncert na auli');
+(10, 'bartek', 'Koncert na auli'),
+(15, 'bartek', 'Zlot Samochodów'),
+(16, 'bartek', 'Podpisywanie współpracy z Uniwersytetem Warszawskim');
 
 --
 -- Indeksy dla zrzutów tabel
 --
+
+--
+-- Indeksy dla tabeli `oceny`
+--
+ALTER TABLE `oceny`
+  ADD PRIMARY KEY (`ID_oceny`);
 
 --
 -- Indeksy dla tabeli `uprawnienia`
@@ -143,8 +177,14 @@ ALTER TABLE `zainteresowania`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT dla zrzuconych tabel
 --
+
+--
+-- AUTO_INCREMENT dla tabeli `oceny`
+--
+ALTER TABLE `oceny`
+  MODIFY `ID_oceny` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT dla tabeli `uprawnienia`
@@ -162,13 +202,13 @@ ALTER TABLE `uzytkownicy`
 -- AUTO_INCREMENT dla tabeli `wydarzenia`
 --
 ALTER TABLE `wydarzenia`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `zainteresowania`
 --
 ALTER TABLE `zainteresowania`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
