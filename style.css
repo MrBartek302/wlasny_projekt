@@ -34,6 +34,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  text-align: center;
   justify-content: center;
   width: 15%;
   height: 100%;
@@ -504,9 +505,28 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
   overflow: auto;
   width: 100%;
   height: 10%;
+}
+
+#lewoadmdolgoralewo {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+
+#lewoadmdolgoraprawo {
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+  gap: 10px;
+  width: 50%;
+  height: 100%;
 }
 
 #lewoadmdoldol {
@@ -755,6 +775,10 @@ body {
 }
 
 h1 {
+  font-family: "Tahoma", sans-serif;
+}
+
+#h2 {
   font-family: "Tahoma", sans-serif;
 }
 
