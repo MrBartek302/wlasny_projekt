@@ -983,3 +983,29 @@ select[name="ocena_wyd"] {
   height: 50%;
   width: 85%;
 }
+
+#div_do_zmiany {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 900px;
+  height: 500px;
+}
+
+#inputson {
+  padding: 15px;
+  border-radius: 10px;
+  background: #003e18;
+  color: white;
+  font-weight: 600;
+  font-size: 1.35em;
+  letter-spacing: 0.05em;
+  transition: 0.3s;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#inputson:hover {
+  background-color: #001508;
+}

@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edycja wydarzenia</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="display:flex; flex-direction:column">
-    <div id="trescogolgoraprawo">
+<body style="display:flex; flex-direction:column; align-items: center; justify-content:center; background-color: grey;">
+    <div id="div_do_zmiany">
         <?php
         $host = "localhost";
         $dbuser = "root";
@@ -26,12 +27,12 @@
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo "<form method='POST' action='' style='display:flex; flex-direction:column'>";
+                    echo "<form method='POST' action='' style='display:flex; flex-direction:column; align-items: center; justify-content:center;'>";
                     echo "<input type='hidden' name='edyt' value='" . $row['ID'] . "'>";
-                    echo "<input type='text' class='input1' name='change_name' style='width: 500px;' value='" . $row['nazwa_wyd'] . "'>";
-                    echo "<input type='text' class='input1' name='change_desc' style='width: 700px;' value='" . $row['opis_wyd'] . "'>";
-                    echo "<input type='text' class='input1' name='change_date' style='width: 110px;' value='" . $row['data_wyd'] . "'>";
-                    echo "<input type='submit' class='input1' name='zmiana' value='Zmień!' style='width: 110px;'>";
+                    echo "<input type='text' class='input' name='change_name' style='width: 500px;' value='" . $row['nazwa_wyd'] . "'>";
+                    echo "<input type='text' class='input' name='change_desc' style='width: 700px;' value='" . $row['opis_wyd'] . "'>";
+                    echo "<input type='text' class='input' name='change_date' style='width: 110px;' value='" . $row['data_wyd'] . "'>";
+                    echo "<input type='submit' id='inputson' name='zmiana' value='Zmień!' style='width: 110px;'>";
                     echo "</form>";
                 }
             } else {
