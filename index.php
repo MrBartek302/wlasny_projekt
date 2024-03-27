@@ -221,6 +221,7 @@ if (isset($_POST['zainteres'])) {
                             echo "<option value ='5'>5</option>";
                             echo "</select>";
                             echo "<input type='hidden' name='name_wyd' value='" . $row['nazwa_wyd'] . "'>";
+                            echo "<input type='hidden' name='id_wydarzenia_ocena' value='" . $row['ID'] . "'>";
                             echo "<input type='submit' name='wyslij_ocene' id='wys_ocen' value='Wyślij!'>";
                             echo "</form>";
                             echo "</div>";
@@ -228,17 +229,20 @@ if (isset($_POST['zainteres'])) {
                             echo "<div id = 'divdolprawodol'>";
                             echo "<form method='POST' action=''>";
                             echo "<input type='hidden' name='name_wyd' value='" . $row['nazwa_wyd'] . "'>";
+                            echo "<input type='hidden' name='id_wydarzenia_ocena' value='" . $row['ID'] . "'>";
                             echo "<input type='submit' name='usun_ocene' id='usun_zainteresbutton' value='Usuń Ocenę!'>";
                             echo "</form>";
                             echo "</div>";
                         } else {
                             echo "<form method='POST' action=''>";
                             echo "<input type='hidden' name='nazwa_wydarzenia' value='" . $row['nazwa_wyd'] . "'>";
+                            echo "<input type='hidden' name='id_wydarzenia_zainteres' value='" . $row['ID'] . "'>";
                             echo "<input type='submit' name='zainteres' id='zainteresbutton' value='Zainteresowany!'>";
                             echo "</form>";
 
                             echo "<form method='POST' action=''>";
                             echo "<input type='hidden' name='nazwa_wydarzenia' value='" . $row['nazwa_wyd'] . "'>";
+                            echo "<input type='hidden' name='id_wydarzenia_zainteres' value='" . $row['ID'] . "'>";
                             echo "<input type='submit' name='usun_zainteres' id='usun_zainteresbutton' value='Usuń Zainteresowanie!'>";
                             echo "</form>";
                         }
