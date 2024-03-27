@@ -263,31 +263,30 @@ if (isset($_POST['zmienupr'])) {
                 $sql = "SELECT DISTINCT ID_ocenionego_wyd FROM `oceny` WHERE 1";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
-
                     echo "<table id='tabela1'>";
                     echo "<tr id='tr11'>";
                     echo "<th>Wydarzenia</th>";
                     echo "<th>Średnia ocen dla wydarzenia</th>";
                     echo "</tr>";
+
                     while ($row = $result->fetch_assoc()) {
-                        echo "<tr id ='tr22'>";
-                        $id_wydarzenia = $row['ID_ocenionego_wyd'];
-
-                        $sql_name = "SELECT nazwa_wyd FROM `wydarzenia` WHERE ID='$id_wydarzenia' LIMIT 1";
+                        $id_wydarzenia1 = $row['ID_ocenionego_wyd'];
+                        echo "<tr id='tr22'>";
+                        $sql_name = "SELECT nazwa_wyd FROM `wydarzenia` WHERE ID='$id_wydarzenia1'";
                         $result_name = $conn->query($sql_name);
-                        $row_name = $result_name->fetch_assoc();
-
-                        echo "<td>" . $row_name['nazwa_wyd'] . "</td>";
-
-                        $sql_avg = "SELECT AVG(wystawiona_ocena) AS srednia FROM `oceny` WHERE ID_ocenionego_wyd='$id_wydarzenia';";
-                        $result_avg = $conn->query($sql_avg);
-                        if ($result_avg->num_rows > 0) {
-                            $row_avg = $result_avg->fetch_assoc();
-                            echo "<td>" . round($row_avg['srednia'], 2) . "</td>";
-                        } else {
-                            echo "<td>Brak ocen</td>";
+                        if ($result_name->num_rows > 0) {
+                            while ($row = $result_name->fetch_assoc()) {
+                                echo "<td>" . $row['nazwa_wyd'] . "</td>";
+                            }
+                            $sql_avg = "SELECT AVG(wystawiona_ocena) AS srednia_ocen FROM `oceny` WHERE ID_ocenionego_wyd='$id_wydarzenia1'";
+                            $result_avg = $conn->query($sql_avg);
+                            if ($result_avg->num_rows > 0) {
+                                while ($row = $result_avg->fetch_assoc()) {
+                                    echo "<td>" . round($row['srednia_ocen'], 2) . "</td>";
+                                }
+                            }
+                            echo "</tr>";
                         }
-                        echo "</tr>";
                     }
                     echo "</table>";
                 } else {
