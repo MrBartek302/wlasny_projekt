@@ -1,3 +1,57 @@
+<?php
+$host = "localhost";
+$dbuser = "root";
+$dbpassword = "";
+$dbname = "Aaawlasny_projekt_BS";
+$conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+if (!$conn) {
+    die("Nie połaczono z bazą danych" . mysqli_connect_error());
+}
+if (isset($_POST['zmienupr'])) {
+    $id_uzytkownika = $_POST['userID'];
+    $upr_zmian = $_POST['uprdozmiany'];
+
+    $sql_sprawdz_upr = "SELECT `nazwa_upr` FROM `uprawnienia` WHERE `nazwa_upr`='$upr_zmian'";
+    $result_sprawdz_upr = $conn->query($sql_sprawdz_upr);
+    if ($result_sprawdz_upr->num_rows > 0) {
+        $sql_zmien_upr = "UPDATE `uzytkownicy` SET `upr`='$upr_zmian' WHERE `ID`='$id_uzytkownika'";
+        $result_zmien_upr = $conn->query($sql_zmien_upr);
+        if ($result_zmien_upr) {
+            sleep(1);
+            header("Location: ./admin.php");
+            exit();
+        } else {
+            echo "";
+        }
+    } else {
+        echo "<script>alert('Podane uprawnienie nie istnieje!')</script>";
+    }
+} elseif (isset($_POST['usunuzytadm'])) {
+    $idusun = $_POST['wartoscIDuzyt'];
+    $sql_usun = "DELETE FROM `uzytkownicy` WHERE `ID` = $idusun";
+    $result = $conn->query($sql_usun);
+    if ($result) {
+        sleep(1);
+        header("Location: ./admin.php");
+        exit();
+    } else {
+        echo "";
+    }
+} elseif (isset($_POST['usunupradm'])) {
+    $id_uzytkownika = $_POST['userID2'];
+
+    $sql_zmien_upr = "UPDATE `uzytkownicy` SET `upr` = 'viewer' WHERE `ID`='$id_uzytkownika'";
+    $result_zmien_upr = $conn->query($sql_zmien_upr);
+    if ($result_zmien_upr) {
+        sleep(1);
+        header("Location: ./admin.php");
+        exit();
+    } else {
+        echo "";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,14 +71,6 @@
         </div>
         <div id="tresc">
             <?php
-            $host = "localhost";
-            $dbuser = "root";
-            $dbpassword = "";
-            $dbname = "Aaawlasny_projekt_BS";
-            $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
-            if (!$conn) {
-                die("Nie połaczono z bazą danych" . mysqli_connect_error());
-            }
             $nazwa_uzyt = $_POST['uuzyt'];
             $sql_wyswietl_uzyt = "SELECT * FROM `uzytkownicy` WHERE `login`='$nazwa_uzyt'";
             $result_wyswietl_uzyt = $conn->query($sql_wyswietl_uzyt);
@@ -77,6 +123,7 @@
             } else {
                 echo "";
             }
+
             ?>
         </div>
     </div>
