@@ -217,7 +217,7 @@ if (isset($_POST['zmienupr'])) {
                 if (!$conn) {
                     die("Nie połaczono z baza danych" . mysqli_connect_error());
                 }
-                $sql = "SELECT DISTINCT nazwa_wyd FROM `wydarzenia` WHERE data_wyd>CURRENT_DATE";
+                $sql = "SELECT DISTINCT nazwa_wyd, ID FROM `wydarzenia` WHERE data_wyd>CURRENT_DATE";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
 
@@ -230,8 +230,8 @@ if (isset($_POST['zmienupr'])) {
                         echo "<tr id ='tr2'>";
                         echo "<td>" . $row['nazwa_wyd'] . "</td>";
 
-                        $nazwa_wydarzenia = $row['nazwa_wyd'];
-                        $sql1 = "SELECT COUNT(nazwa_wydarzenia) AS liczba_zainteresowan FROM `zainteresowania` WHERE nazwa_wydarzenia='$nazwa_wydarzenia'";
+                        $id_wydarzenia = $row['ID'];
+                        $sql1 = "SELECT COUNT(ID_wydarzenia) AS liczba_zainteresowan FROM `zainteresowania` WHERE ID_wydarzenia='$id_wydarzenia'";
                         $result1 = $conn->query($sql1);
                         if ($result1->num_rows > 0) {
                             while ($row = $result1->fetch_assoc()) {
@@ -258,9 +258,9 @@ if (isset($_POST['zmienupr'])) {
                 $dbname = "Aaawlasny_projekt_BS";
                 $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
                 if (!$conn) {
-                    die("Nie połaczono z baza danych" . mysqli_connect_error());
+                    die("Nie połączono z bazą danych" . mysqli_connect_error());
                 }
-                $sql = "SELECT DISTINCT nazwa_ocenianego_wyd FROM `oceny` WHERE 1";
+                $sql = "SELECT DISTINCT ID_ocenionego_wyd FROM `oceny` WHERE 1";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
 
@@ -271,27 +271,32 @@ if (isset($_POST['zmienupr'])) {
                     echo "</tr>";
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr id ='tr22'>";
-                        echo "<td>" . $row['nazwa_ocenianego_wyd'] . "</td>";
+                        $id_wydarzenia = $row['ID_ocenionego_wyd'];
 
-                        $nazwa_wydarzenia = $row['nazwa_ocenianego_wyd'];
-                        $sql1 = "SELECT nazwa_ocenianego_wyd, AVG(wystawiona_ocena) AS srednia FROM `oceny` WHERE nazwa_ocenianego_wyd='$nazwa_wydarzenia';";
-                        $result1 = $conn->query($sql1);
-                        if ($result1->num_rows > 0) {
-                            while ($row = $result1->fetch_assoc()) {
-                                echo "<td>" . round($row['srednia'], 2) . "</td>";
-                            }
+                        $sql_name = "SELECT nazwa_wyd FROM `wydarzenia` WHERE ID='$id_wydarzenia' LIMIT 1";
+                        $result_name = $conn->query($sql_name);
+                        $row_name = $result_name->fetch_assoc();
+
+                        echo "<td>" . $row_name['nazwa_wyd'] . "</td>";
+
+                        $sql_avg = "SELECT AVG(wystawiona_ocena) AS srednia FROM `oceny` WHERE ID_ocenionego_wyd='$id_wydarzenia';";
+                        $result_avg = $conn->query($sql_avg);
+                        if ($result_avg->num_rows > 0) {
+                            $row_avg = $result_avg->fetch_assoc();
+                            echo "<td>" . round($row_avg['srednia'], 2) . "</td>";
                         } else {
-                            echo "";
+                            echo "<td>Brak ocen</td>";
                         }
                         echo "</tr>";
                     }
                     echo "</table>";
                 } else {
-                    echo "";
+                    echo "Brak danych do wyświetlenia";
                 }
                 $conn->close();
                 ?>
             </div>
+
 
         </div>
         <div id="prawoadm">
