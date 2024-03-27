@@ -7,19 +7,53 @@
     <title>Edycja wydarzenia</title>
 </head>
 
-<body>
+<body style="display:flex; flex-direction:column">
     <div id="trescogolgoraprawo">
-        <h1>
-            <?php
-            if (isset($_POST['submit'])) {
-                if (isset($_POST['edyt'])) {
-                    echo "Edycja wydarzenia: " . $_POST['edyt'];
-                } else {
-                    echo "Nie wybrano wydarzenia do edycji.";
+        <?php
+        $host = "localhost";
+        $dbuser = "root";
+        $dbpassword = "";
+        $dbname = "Aaawlasny_projekt_BS";
+        $id_wyd_edyt = $_POST['edyt'];
+
+        $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+        if (!$conn) {
+            die("Nie połączono z bazą danych" . mysqli_connect_error());
+        }
+
+        if (isset($_POST['submit'])) {
+            $sql = "SELECT `ID`, `nazwa_wyd`, `opis_wyd`, `data_wyd` FROM `wydarzenia` WHERE `ID`='$id_wyd_edyt'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<form method='POST' action='' style='display:flex; flex-direction:column'>";
+                    echo "<input type='hidden' name='edyt' value='" . $row['ID'] . "'>";
+                    echo "<input type='text' class='input1' name='change_name' style='width: 500px;' value='" . $row['nazwa_wyd'] . "'>";
+                    echo "<input type='text' class='input1' name='change_desc' style='width: 700px;' value='" . $row['opis_wyd'] . "'>";
+                    echo "<input type='text' class='input1' name='change_date' style='width: 110px;' value='" . $row['data_wyd'] . "'>";
+                    echo "<input type='submit' class='input1' name='zmiana' value='Zmień!' style='width: 110px;'>";
+                    echo "</form>";
                 }
+            } else {
+                echo "Nie pobrano danych.";
             }
-            ?>
-        </h1>
+        } elseif (isset($_POST['zmiana'])) {
+            $id_wyd_edyt = $_POST['edyt'];
+            $change_name = $_POST['change_name'];
+            $change_desc = $_POST['change_desc'];
+            $change_date = $_POST['change_date'];
+
+            $sql1 = "UPDATE `wydarzenia` SET `nazwa_wyd`='$change_name', `opis_wyd`='$change_desc', `data_wyd`='$change_date' WHERE `ID`='$id_wyd_edyt'";
+            $result1 = $conn->query($sql1);
+            if ($result1) {
+                echo "Zaktualizowano!";
+            } else {
+                echo "Błąd podczas aktualizacji danych.";
+            }
+        } else {
+            echo "Nie wybrano wydarzenia do edycji.";
+        }
+        ?>
     </div>
 </body>
 
