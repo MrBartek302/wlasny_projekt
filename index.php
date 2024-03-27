@@ -61,13 +61,14 @@ if (isset($_POST['zainteres'])) {
     } else {
         $uzytkownik2 = $_SESSION['user'];
         $nazwa_wydarzenia2 = $_POST['name_wyd'];
-        $sql2 = "SELECT * FROM `oceny` WHERE `uzytkownik_wystawiajacy`='$uzytkownik2' AND `nazwa_ocenianego_wyd`='$nazwa_wydarzenia2'";
+        $id_wydarzenia2 = $_POST['id_wydarzenia_ocena'];
+        $sql2 = "SELECT * FROM `oceny` WHERE `uzytkownik_wystawiajacy`='$uzytkownik2' AND `ID_ocenionego_wyd`='$id_wydarzenia2'";
         $result2 = $conn->query($sql2);
         if ($result2->num_rows > 0) {
             echo "<script>alert('Wystawiłeś już swoją ocenę!')</script>";
         } else {
             $ocena = $_POST['ocena_wyd'];
-            $sql3 = "INSERT INTO `oceny`(`uzytkownik_wystawiajacy`, `nazwa_ocenianego_wyd`, `wystawiona_ocena`) VALUES ('$uzytkownik2','$nazwa_wydarzenia2','$ocena')";
+            $sql3 = "INSERT INTO `oceny`(`uzytkownik_wystawiajacy`, `nazwa_ocenianego_wyd`, `ID_ocenionego_wyd`, `wystawiona_ocena`) VALUES ('$uzytkownik2','$nazwa_wydarzenia2', '$id_wydarzenia2','$ocena')";
             $result3 = $conn->query($sql3);
             if ($result3) {
                 header("Location: ./index.php");
@@ -83,10 +84,11 @@ if (isset($_POST['zainteres'])) {
     } else {
         $uzytkownik3 = $_SESSION['user'];
         $nazwa_wydarzenia4 = $_POST['name_wyd'];
-        $sql4 = "SELECT * FROM `oceny` WHERE `uzytkownik_wystawiajacy`='$uzytkownik3' AND `nazwa_ocenianego_wyd`='$nazwa_wydarzenia4'";
+        $id_wydarzenia3 = $_POST['id_wydarzenia_ocena'];
+        $sql4 = "SELECT * FROM `oceny` WHERE `uzytkownik_wystawiajacy`='$uzytkownik3' AND `ID_ocenionego_wyd`='$id_wydarzenia3'";
         $result4 = $conn->query($sql4);
         if ($result4->num_rows > 0) {
-            $sql5 = "DELETE FROM `oceny` WHERE `uzytkownik_wystawiajacy`='$uzytkownik3' AND `nazwa_ocenianego_wyd`='$nazwa_wydarzenia4'";
+            $sql5 = "DELETE FROM `oceny` WHERE `uzytkownik_wystawiajacy`='$uzytkownik3' AND `ID_ocenionego_wyd`='$id_wydarzenia3'";
             $result5 = $conn->query($sql5);
             if ($result5) {
                 header("Location: ./index.php");
