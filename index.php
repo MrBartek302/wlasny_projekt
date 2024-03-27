@@ -17,12 +17,13 @@ if (isset($_POST['zainteres'])) {
     } else {
         $uzytkownik = $_SESSION['user'];
         $nazwa_wydarzenia = $_POST['nazwa_wydarzenia'];
-        $sql = "SELECT * FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik' AND `nazwa_wydarzenia` = '$nazwa_wydarzenia'";
+        $id_wydarzenia = $_POST['id_wydarzenia_zainteres'];
+        $sql = "SELECT * FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik' AND `ID_wydarzenia` = '$id_wydarzenia'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             echo "<script>alert('Zaznaczyłeś już swoje zainteresowanie!')</script>";
         } else {
-            $sql1 = "INSERT INTO `zainteresowania`(`uzytkownik`, `nazwa_wydarzenia`) VALUES ('$uzytkownik','$nazwa_wydarzenia')";
+            $sql1 = "INSERT INTO `zainteresowania`(`uzytkownik`, `nazwa_wydarzenia`, `ID_wydarzenia`) VALUES ('$uzytkownik','$nazwa_wydarzenia', '$id_wydarzenia')";
             $result1 = $conn->query($sql1);
             if ($result1) {
                 header("Location: ./index.php");
@@ -38,10 +39,11 @@ if (isset($_POST['zainteres'])) {
     } else {
         $uzytkownik1 = $_SESSION['user'];
         $nazwa_wydarzenia1 = $_POST['nazwa_wydarzenia'];
-        $sql = "SELECT * FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik1' AND `nazwa_wydarzenia` = '$nazwa_wydarzenia1'";
+        $id_wydarzenia1 = $_POST['id_wydarzenia_zainteres'];
+        $sql = "SELECT * FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik1' AND `ID_wydarzenia` = '$id_wydarzenia1'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
-            $sql1 = "DELETE FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik1' AND `nazwa_wydarzenia` = '$nazwa_wydarzenia1'";
+            $sql1 = "DELETE FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik1' AND `ID_wydarzenia` = '$id_wydarzenia1'";
             $result1 = $conn->query($sql1);
             if ($result1) {
                 header("Location: ./index.php");
