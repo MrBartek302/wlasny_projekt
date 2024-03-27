@@ -161,7 +161,7 @@ if (isset($_POST['zmienupr'])) {
                                 die("Nie połaczono z bazą danych" . mysqli_connect_error());
                             }
                             echo "<select name='uuzyt' class='input' style='margin-right: 10px; background-color: grey;'>";
-                            $sql = "SELECT * FROM `uzytkownicy` WHERE 1";
+                            $sql = "SELECT * FROM `uzytkownicy` ORDER BY `upr`";
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
