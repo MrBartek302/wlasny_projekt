@@ -613,7 +613,7 @@ body {
   letter-spacing: 0.05em;
   transition: 0.3s;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .inputBoxSub:active {
