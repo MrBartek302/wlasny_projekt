@@ -102,41 +102,34 @@ session_start();
                     </div>
                     <div id="trescogolgoraprawo">
                         <h1>Edytuj wydarzenie: </h1>
-                        <form action="" method="POST">
-                            <input type="number" class="input" name="idwyd" placeholder="ID wydarzenia do zmiany" style="text-align: center;" required>
-                            <input type="text" class="input" name="tytul1" placeholder="Nazwa Wydarzenia" style="text-align: center;" required>
-                            <input type="text" class="input" name="opis1" placeholder="Opis Wydarzenia" style="text-align: center;" required>
-                            <input type="date" class="input" name="data1" placeholder="Data Wydarzenia" required>
-                            <input type="submit" class="input" name="wyss1" value="Edytuj!">
+                        <form action="edycja.php" method="POST">
                             <?php
-                            if (isset($_POST['wyss1'])) {
-                                $host = "localhost";
-                                $dbuser = "root";
-                                $dbpassword = "";
-                                $dbname = "Aaawlasny_projekt_BS";
-                                $idwyd = $_POST['idwyd'];
-                                $tytul = $_POST['tytul1'];
-                                $opis = $_POST['opis1'];
-                                $data = $_POST['data1'];
-                                $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
-                                if (!$conn) {
-                                    die("Nie połaczono z baza danych" . mysqli_connect_error());
-                                }
-                                $sql = "UPDATE `wydarzenia` SET `nazwa_wyd`='$tytul',`opis_wyd`='$opis',`data_wyd`='$data' WHERE ID = $idwyd";
-                                $result = $conn->query($sql);
-                                if ($result) {
-                                    header("Location: ./indexadminiuzytkownik.php");
-                                    exit();
-                                } else {
-                                    echo "";
-                                }
-                            } else {
-                                echo "";
+                            $host = "localhost";
+                            $dbuser = "root";
+                            $dbpassword = "";
+                            $dbname = "Aaawlasny_projekt_BS";
+                            $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
+                            if (!$conn) {
+                                die("Nie połaczono z bazą danych" . mysqli_connect_error());
                             }
+                            echo "<select name='edyt' class='input'>";
+                            $sql = "SELECT * FROM `wydarzenia` WHERE 1";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<option value='" . $row['ID'] . "'>" . $row['nazwa_wyd'] . "</option>";
+                                }
+                                echo "</select>";
+                                echo '<input type="submit" class="input" name="submit" value="Edytuj!">';
+                            } else {
+                                echo "<option value=''>Brak kandydatów</option>";
+                            }
+                            $conn->close();
                             ?>
                         </form>
                     </div>
                 </div>
+
                 <div id="trescogoldol">
                     <?php
                     $host = "localhost";
