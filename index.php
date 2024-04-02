@@ -204,7 +204,7 @@ if (isset($_POST['zainteres'])) {
                         echo "</div>";
 
                         echo "<div id = 'divdollewoprawo'>";
-                        echo "<h4>" . "Data wydarzenia: " . $row['data_wyd'] . "</h4>";
+                        echo "<h4 style='color: yellow;'>" . "Data wydarzenia: " . $row['data_wyd'] . "</h4>";
                         echo "</div>";
 
                         echo "</div>";

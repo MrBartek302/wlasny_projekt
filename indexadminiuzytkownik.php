@@ -169,7 +169,7 @@ session_start();
                             echo "</div>";
 
                             echo "<div id = 'divdollewo'>";
-                            echo "<h4>" . "Data wydarzenia: " . $row['data_wyd'] . "</h4>";
+                            echo "<h4 style='color: yellow;'>" . "Data wydarzenia: " . $row['data_wyd'] . "</h4>";
                             echo "</div>";
                             echo "<div id = 'divdolprawo'>";
                             echo "<form method='POST' action=''>";
