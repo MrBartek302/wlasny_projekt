@@ -89,7 +89,7 @@ session_start();
                                 $sql = "INSERT INTO `wydarzenia`(`nazwa_wyd`, `opis_wyd`, `data_wyd`) VALUES ('$tytul','$opis','$data')";
                                 $result = $conn->query($sql);
                                 if ($result) {
-                                    header("Location: ./indexadminiuzytkownik.php");
+                                    echo "<script>alert('Poprawnie dodano wydarzenie!'); window.location.href = 'indexadminiuzytkownik.php';</script>";
                                     exit();
                                 } else {
                                     echo "";
@@ -199,7 +199,7 @@ session_start();
                         $sql_usun = "DELETE FROM `wydarzenia` WHERE `ID` = $idusun";
                         $result = $conn->query($sql_usun);
                         if ($result) {
-                            echo "";
+                            echo "<script>alert('Poprawnie usunięto wydarzenie!'); window.location.href = 'indexadminiuzytkownik.php';</script>";
                         } else {
                             echo "wystąpił błąd!";
                         }

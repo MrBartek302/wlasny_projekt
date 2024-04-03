@@ -47,8 +47,7 @@
             $sql1 = "UPDATE `wydarzenia` SET `nazwa_wyd`='$change_name', `opis_wyd`='$change_desc', `data_wyd`='$change_date' WHERE `ID`='$id_wyd_edyt'";
             $result1 = $conn->query($sql1);
             if ($result1) {
-                sleep(2);
-                header("Location: ./indexadminiuzytkownik.php");
+                echo "<script>alert('Poprawnie zmieniono wydarzenie!'); window.location.href = 'indexadminiuzytkownik.php';</script>";
             } else {
                 echo "Błąd podczas aktualizacji danych.";
             }
