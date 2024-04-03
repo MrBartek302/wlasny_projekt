@@ -21,7 +21,7 @@ if (isset($_POST['zmienupr'])) {
         $sql_zmien_upr = "UPDATE `uzytkownicy` SET `upr`='$upr_zmian' WHERE `ID`='$id_uzytkownika'";
         $result_zmien_upr = $conn->query($sql_zmien_upr);
         if ($result_zmien_upr) {
-            header("Location: ./admin.php");
+            echo "<script>alert('Poprawnie zmieniono uprawnienie użytkownikowi!'); window.location.href = 'admin.php';</script>";
             exit();
         } else {
             echo "";
@@ -34,7 +34,7 @@ if (isset($_POST['zmienupr'])) {
     $sql_usun = "DELETE FROM `uzytkownicy` WHERE `ID` = $idusun";
     $result = $conn->query($sql_usun);
     if ($result) {
-        header("Location: ./admin.php");
+        echo "<script>alert('Poprawnie usunięto użytkownika!'); window.location.href = 'admin.php';</script>";
         exit();
     } else {
         echo "";
@@ -45,8 +45,7 @@ if (isset($_POST['zmienupr'])) {
     $sql_zmien_upr = "UPDATE `uzytkownicy` SET `upr` = 'viewer' WHERE `ID`='$id_uzytkownika'";
     $result_zmien_upr = $conn->query($sql_zmien_upr);
     if ($result_zmien_upr) {
-        sleep(1);
-        header("Location: ./admin.php");
+        echo "<script>alert('Poprawnie usunięto uprawnienie użytkownikowi!'); window.location.href = 'admin.php';</script>";
         exit();
     } else {
         echo "";
@@ -74,7 +73,7 @@ if (isset($_POST['zmienupr'])) {
             $sql_dodaj_uzyt = "INSERT INTO `uzytkownicy`(`login`, `pass`, `upr`) VALUES ('$login_wys','$szyfrowane','$upr_wys')";
             $result_dodaj_uzyt = $conn->query($sql_dodaj_uzyt);
             if ($result_dodaj_uzyt) {
-                header("Location: ./admin.php");
+                echo "<script>alert('Poprawnie dodano użytkownika!'); window.location.href = 'admin.php';</script>";
                 exit();
             } else {
                 echo "";
@@ -93,7 +92,7 @@ if (isset($_POST['zmienupr'])) {
         $sql_dodaj_upr = "INSERT INTO `uprawnienia`(`nazwa_upr`) VALUES ('$nazwa_nowego_upr')";
         $result_dodaj_upr = $conn->query($sql_dodaj_upr);
         if ($result_dodaj_upr) {
-            header("Location: ./admin.php");
+            echo "<script>alert('Poprawnie dodano uprawnienie!'); window.location.href = 'admin.php';</script>";
             exit();
         } else {
             echo "";
@@ -107,7 +106,7 @@ if (isset($_POST['zmienupr'])) {
         $sql_usun_upr = "DELETE FROM `uprawnienia` WHERE `nazwa_upr`='$nazwa_usuwanego_upr'";
         $result_usun_upr = $conn->query($sql_usun_upr);
         if ($result_usun_upr) {
-            header("Location: ./admin.php");
+            echo "<script>alert('Poprawnie usunięto uprawnienie!'); window.location.href = 'admin.php';</script>";
             exit();
         } else {
             echo "";
@@ -201,7 +200,7 @@ if (isset($_POST['zmienupr'])) {
                             echo "<div id='divdolprawogoraadm'>";
                             echo "<form method='POST' action=''>";
                             echo "<input type='text' class='input' name='uprdozmiany' placeholder='Upr do zmiany: ' required>";
-                            echo "<input type='hidden' name='userID' value='" . $row['ID'] . "'>"; // Przekazanie ID użytkownika
+                            echo "<input type='hidden' name='userID' value='" . $row['ID'] . "'>";
                             echo "<input type='submit' class='input' name='zmienupr' value='Zmień!'>";
                             echo "</form>";
                             echo "</div>";
