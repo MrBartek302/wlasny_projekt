@@ -17,22 +17,19 @@ if (isset($_POST['zmienupr'])) {
         $sql_zmien_upr = "UPDATE `uzytkownicy` SET `upr`='$upr_zmian' WHERE `ID`='$id_uzytkownika'";
         $result_zmien_upr = $conn->query($sql_zmien_upr);
         if ($result_zmien_upr) {
-            sleep(1);
-            header("Location: ./admin.php");
-            exit();
+            echo "<script>alert('Poprawnie zmieniono uprawnienie użytkownika!'); window.location.href = 'admin.php';</script>";
         } else {
             echo "";
         }
     } else {
-        echo "<script>alert('Podane uprawnienie nie istnieje!')</script>";
+        echo "<script>alert('Podane uprawnienie nie istnieje!'); window.location.href = 'admin.php';</script>";
     }
 } elseif (isset($_POST['usunuzytadm'])) {
     $idusun = $_POST['wartoscIDuzyt'];
     $sql_usun = "DELETE FROM `uzytkownicy` WHERE `ID` = $idusun";
     $result = $conn->query($sql_usun);
     if ($result) {
-        sleep(1);
-        header("Location: ./admin.php");
+        echo "<script>alert('Poprawnie usunięto użytkownika!'); window.location.href = 'admin.php';</script>";
         exit();
     } else {
         echo "";
@@ -43,8 +40,7 @@ if (isset($_POST['zmienupr'])) {
     $sql_zmien_upr = "UPDATE `uzytkownicy` SET `upr` = 'viewer' WHERE `ID`='$id_uzytkownika'";
     $result_zmien_upr = $conn->query($sql_zmien_upr);
     if ($result_zmien_upr) {
-        sleep(1);
-        header("Location: ./admin.php");
+        echo "<script>alert('Poprawnie usunięto uprawnienie użytkownikowi!'); window.location.href = 'admin.php';</script>";
         exit();
     } else {
         echo "";
@@ -121,7 +117,7 @@ if (isset($_POST['zmienupr'])) {
                     echo "</div>";
                 }
             } else {
-                echo "";
+                echo "Wyszukany user nie istnieje!";
             }
 
             ?>

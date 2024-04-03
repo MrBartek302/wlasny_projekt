@@ -145,36 +145,25 @@ if (isset($_POST['zmienupr'])) {
                 </div>
             </div>
             <div id="lewoadmdol">
+
                 <div id="lewoadmdolgora">
                     <div id="lewoadmdolgoralewo">
                         <h2 id="h2">Działania na użytkownikach:</h2>
                     </div>
+
                     <div id="lewoadmdolgoraprawo">
-                        <form action="edycja_uzyt.php" method="POST">
-                            <?php
-                            $host = "localhost";
-                            $dbuser = "root";
-                            $dbpassword = "";
-                            $dbname = "Aaawlasny_projekt_BS";
-                            $conn = mysqli_connect($host, $dbuser, $dbpassword, $dbname);
-                            if (!$conn) {
-                                die("Nie połaczono z bazą danych" . mysqli_connect_error());
-                            }
-                            echo "<select name='uuzyt' class='input' style='margin-right: 10px; background-color: grey;'>";
-                            $sql = "SELECT * FROM `uzytkownicy` ORDER BY `upr`";
-                            $result = $conn->query($sql);
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<option value='" . $row['login'] . "'>" . $row['login'] . "</option>";
-                                }
-                                echo "</select>";
-                                echo '<input type="submit" class="input" name="submit_uzyt" value="Wyświetl!" style="background-color: grey;">';
-                            } else {
-                                echo "<option value=''>Brak kandydatów</option>";
-                            }
-                            ?>
-                        </form>
+                        <div class="searchBox">
+                            <form action="edycja_uzyt.php" method="POST">
+                                <input class="searchInput" type="text" name="uuzyt" placeholder="Search" required>
+                                <button type="submit" class="searchButton">
+                                    <i class="material-icons">
+                                        search
+                                    </i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
+
                 </div>
                 <div id="lewoadmdoldol">
                     <?php
