@@ -55,6 +55,14 @@ if (isset($_POST['zmienupr'])) {
     $login_wys = $_POST['login'];
     $pass_wys = $_POST['pass'];
     $upr_wys = $_POST['uprWYS'];
+
+    function szyfruj_haslo($pass_wys)
+    {
+        return md5($pass_wys);
+    }
+
+    $szyfrowane = szyfruj_haslo($pass_wys);
+
     $sql = "SELECT * FROM `uzytkownicy` WHERE `login`='$login_wys'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -63,7 +71,7 @@ if (isset($_POST['zmienupr'])) {
         $sql_sprawdz_upr = "SELECT `nazwa_upr` FROM `uprawnienia` WHERE `nazwa_upr`='$upr_wys'";
         $result_sprawdz_upr = $conn->query($sql_sprawdz_upr);
         if ($result_sprawdz_upr->num_rows > 0) {
-            $sql_dodaj_uzyt = "INSERT INTO `uzytkownicy`(`login`, `pass`, `upr`) VALUES ('$login_wys','$pass_wys','$upr_wys')";
+            $sql_dodaj_uzyt = "INSERT INTO `uzytkownicy`(`login`, `pass`, `upr`) VALUES ('$login_wys','$szyfrowane','$upr_wys')";
             $result_dodaj_uzyt = $conn->query($sql_dodaj_uzyt);
             if ($result_dodaj_uzyt) {
                 header("Location: ./admin.php");
