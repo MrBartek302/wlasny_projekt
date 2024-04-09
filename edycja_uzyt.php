@@ -9,7 +9,7 @@ if (!$conn) {
 }
 if (isset($_POST['zmienupr'])) {
     $id_uzytkownika = $_POST['userID'];
-    $upr_zmian = $_POST['uprdozmiany'];
+    $upr_zmian = $_POST['change_upr'];
 
     $sql_sprawdz_upr = "SELECT `nazwa_upr` FROM `uprawnienia` WHERE `nazwa_upr`='$upr_zmian'";
     $result_sprawdz_upr = $conn->query($sql_sprawdz_upr);
@@ -93,7 +93,17 @@ if (isset($_POST['zmienupr'])) {
 
                     echo "<div id='divdolprawogoraadm'>";
                     echo "<form method='POST' action=''>";
-                    echo "<input type='text' class='input' name='uprdozmiany' placeholder='Upr do zmiany: ' required>";
+                    echo "<select name='change_upr' class='input'>";
+                    $sql1 = "SELECT * FROM `uprawnienia` WHERE 1";
+                    $result1 = $conn->query($sql1);
+                    if ($result1->num_rows > 0) {
+                        while ($row1 = $result1->fetch_assoc()) {
+                            echo "<option value='" . $row1['nazwa_upr'] . "'>" . $row1['nazwa_upr'] . "</option>";
+                        }
+                        echo "</select>";
+                    } else {
+                        echo "<option value=''>Brak kandydatów</option>";
+                    }
                     echo "<input type='hidden' name='userID' value='" . $row['ID'] . "'>";
                     echo "<input type='submit' class='input' name='zmienupr' value='Zmień!'>";
                     echo "</form>";
