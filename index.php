@@ -21,12 +21,12 @@ if (isset($_POST['zainteres'])) {
         $sql = "SELECT * FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik' AND `ID_wydarzenia` = '$id_wydarzenia'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
-            echo "<script>alert('Zaznaczyłeś już swoje zainteresowanie!')</script>";
+            echo "<script>alert('Nie możesz zgłosić zainteresowania ponieważ już je zaznaczyłeś!'); window.location.href = 'index.php';</script>";
         } else {
             $sql1 = "INSERT INTO `zainteresowania`(`uzytkownik`, `nazwa_wydarzenia`, `ID_wydarzenia`) VALUES ('$uzytkownik','$nazwa_wydarzenia', '$id_wydarzenia')";
             $result1 = $conn->query($sql1);
             if ($result1) {
-                header("Location: ./index.php");
+                echo "<script>alert('Poprawnie zaznaczono zainteresowanie!'); window.location.href = 'index.php';</script>";
                 exit();
             } else {
                 echo "";
@@ -46,18 +46,18 @@ if (isset($_POST['zainteres'])) {
             $sql1 = "DELETE FROM `zainteresowania` WHERE `uzytkownik`='$uzytkownik1' AND `ID_wydarzenia` = '$id_wydarzenia1'";
             $result1 = $conn->query($sql1);
             if ($result1) {
-                header("Location: ./index.php");
+                echo "<script>alert('Poprawnie usunięto zainteresowanie!'); window.location.href = 'index.php';</script>";
                 exit();
             } else {
                 echo "";
             }
         } else {
-            echo "<script>alert('Nie zaznaczyłeś zainteresowania, nie ma czego usunąć!')</script>";
+            echo "<script>alert('Nie zaznaczyłeś zainteresowania, nie ma czego usunąć!'); window.location.href = 'index.php';</script>";
         }
     }
 } elseif (isset($_POST['wyslij_ocene'])) {
     if ($_SESSION['zalogowany'] == false || $_SESSION['upr'] == 'viewer') {
-        echo "<script>alert('Nie możesz ocenić, nie jesteś zalogowany!')</script>";
+        echo "<script>alert('Nie możesz ocenić, nie jesteś zalogowany!'); window.location.href = 'index.php';</script>";
     } else {
         $uzytkownik2 = $_SESSION['user'];
         $nazwa_wydarzenia2 = $_POST['name_wyd'];
@@ -65,13 +65,13 @@ if (isset($_POST['zainteres'])) {
         $sql2 = "SELECT * FROM `oceny` WHERE `uzytkownik_wystawiajacy`='$uzytkownik2' AND `ID_ocenionego_wyd`='$id_wydarzenia2'";
         $result2 = $conn->query($sql2);
         if ($result2->num_rows > 0) {
-            echo "<script>alert('Wystawiłeś już swoją ocenę!')</script>";
+            echo "<script>alert('Nie możesz wysłać oceny ponieważ już ją wystawiłeś!'); window.location.href = 'index.php';</script>";
         } else {
             $ocena = $_POST['ocena_wyd'];
             $sql3 = "INSERT INTO `oceny`(`uzytkownik_wystawiajacy`, `nazwa_ocenianego_wyd`, `ID_ocenionego_wyd`, `wystawiona_ocena`) VALUES ('$uzytkownik2','$nazwa_wydarzenia2', '$id_wydarzenia2','$ocena')";
             $result3 = $conn->query($sql3);
             if ($result3) {
-                header("Location: ./index.php");
+                echo "<script>alert('Poprawnie wystawiono ocenę!'); window.location.href = 'index.php';</script>";
                 exit();
             } else {
                 echo "";
@@ -80,7 +80,7 @@ if (isset($_POST['zainteres'])) {
     }
 } elseif (isset($_POST['usun_ocene'])) {
     if ($_SESSION['zalogowany'] == false || $_SESSION['upr'] == 'viewer') {
-        echo "<script>alert('Nie możesz usunąć oceny, nie jesteś zalogowany!')</script>";
+        echo "<script>alert('Nie możesz usunąć oceny, nie jesteś zalogowany!'); window.location.href = 'index.php';</script>";
     } else {
         $uzytkownik3 = $_SESSION['user'];
         $nazwa_wydarzenia4 = $_POST['name_wyd'];
@@ -91,13 +91,12 @@ if (isset($_POST['zainteres'])) {
             $sql5 = "DELETE FROM `oceny` WHERE `uzytkownik_wystawiajacy`='$uzytkownik3' AND `ID_ocenionego_wyd`='$id_wydarzenia3'";
             $result5 = $conn->query($sql5);
             if ($result5) {
-                header("Location: ./index.php");
-                exit();
+                echo "<script>alert('Poprawnie usunięto ocenę!'); window.location.href = 'index.php';</script>";
             } else {
                 echo "";
             }
         } else {
-            echo "<script>alert('Nie wystawiłeś żadnej oceny, nie ma co usunąć!')</script>";
+            echo "<script>alert('Nie wystawiłeś żadnej oceny, nie ma co usunąć!'); window.location.href = 'index.php';</script>";
         }
     }
 } else {
